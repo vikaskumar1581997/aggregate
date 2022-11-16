@@ -1,0 +1,10 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Gods Own Country",
+        "description": "API Documentions"
+    },
+    "host": "localhost:2800",
+    "basePath": "/"
+}
