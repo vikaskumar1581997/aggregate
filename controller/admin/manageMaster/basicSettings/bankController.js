@@ -53,7 +53,8 @@ const getAllBanks = async (req, res, next) => {
 //Update a bank
 const updateBank = async (req, res, next) => {
   try {
-    const { _id, bank, bankCode, value } = req.body;
+    const { id: _id } = req.params;
+    const { bank, bankCode, value } = req.body;
     const finalBank = await Bank.findById(_id).exec();
 
     finalBank.bank = bank;
@@ -81,7 +82,7 @@ const updateBank = async (req, res, next) => {
 //Delete a Bank
 const deleteBank = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteBank = await Bank.findByIdAndDelete(_id);
     if (deleteBank) {
       res.status(201).json({

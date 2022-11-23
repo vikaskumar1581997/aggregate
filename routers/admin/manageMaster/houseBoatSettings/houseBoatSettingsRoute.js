@@ -12,12 +12,15 @@ router.get("/houseboatType", houseBoatTypeController.getAllHouseBoatType);
 router.get("/houseboatRoomCategory", HBTRCController.getAllHBTRCategory);
 router.get("/houseboatRoomType", HBRTController.getAllHBRT);
 
-router.put("/houseboatType", houseBoatTypeController.updateHouseBoatType);
-router.put("/houseboatRoomCategory", HBTRCController.updateHBTRCategory);
-router.put("/houseboatRoomType", HBRTController.updateHBRT);
+router.put("/houseboatType/:id", houseBoatTypeController.updateHouseBoatType);
+router.put("/houseboatRoomCategory/:id", HBTRCController.updateHBTRCategory);
+router.put("/houseboatRoomType/:id", HBRTController.updateHBRT);
 
-router.delete("/:_id", houseBoatTypeController.deleteHouseBoatType);
-router.delete("/:_id", HBTRCController.deleteHBTRCategory);
-router.delete("/:_id", HBRTController.deleteHBRT);
+router.delete(
+  "/houseboatType/:id",
+  houseBoatTypeController.deleteHouseBoatType
+);
+router.delete("/houseboatRoomCategory/:id", HBTRCController.deleteHBTRCategory);
+router.delete("/houseboatRoomType/:id", HBRTController.deleteHBRT);
 
 module.exports = router;

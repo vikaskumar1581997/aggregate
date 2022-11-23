@@ -53,7 +53,8 @@ const getAllHBRT = async (req, res, next) => {
 //Update a  HouseBoatRoomType
 const updateHBRT = async (req, res, next) => {
   try {
-    const { _id, roomTypeName, roomTypeCode } = req.body;
+    const { id: _id } = req.params;
+    const { roomTypeName, roomTypeCode } = req.body;
 
     const finalHBRT = await HouseBoatRoomType.findById({ _id });
 
@@ -83,7 +84,7 @@ const updateHBRT = async (req, res, next) => {
 //Delete a  HouseBoatRoomType
 const deleteHBRT = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const delHBRT = await HouseBoatRoomType.findByIdAndDelete({ _id });
 
     if (delHBRT) {

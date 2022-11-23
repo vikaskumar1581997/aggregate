@@ -78,8 +78,9 @@ const getAllCoupon = async (req, res, next) => {
 //Update a Coupon
 const updateCoupon = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       couponCode,
       couponType,
       allHotels,
@@ -137,7 +138,7 @@ const updateCoupon = async (req, res, next) => {
 //Delete a Coupon
 const deleteCoupon = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const delCoupon = await Coupon.findByIdAndDelete({ _id });
 

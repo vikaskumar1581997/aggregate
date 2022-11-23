@@ -49,7 +49,9 @@ const getAllRegion = async (req, res, next) => {
 //Update a Region
 const updateRegion = async (req, res, next) => {
   try {
-    const { _id, region } = req.body;
+    const { id: _id } = req.params;
+
+    const { region } = req.body;
 
     const finalRegion = await Region.findById(_id).exec();
     finalRegion.region = region;
@@ -77,7 +79,7 @@ const updateRegion = async (req, res, next) => {
 //Delete a Region
 const deleteRegion = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteRegion = await Region.findByIdAndDelete(_id);
     if (deleteRegion) {
       res.status(201).json({

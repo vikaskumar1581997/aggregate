@@ -30,24 +30,30 @@ router.get("/hotelAmenity", hotelAmenityController.getAllHotelAmenity);
 router.get("/roomAmenity", roomAmenityController.getAllRoomAmenity);
 router.get("/mealPlan", mealPlanController.getAllMealPlan);
 
-router.put("/hotelCategory", hotelCategoryController.updateHotelCategory);
-router.put("/hotelType", hotelTypeController.updateHotelType);
-router.put("/occupancyType", occupancyTypeController.updateOccupancyType);
-router.put("/seasonType", seasonTypeController.updateSeasonType);
-router.put("/roomCategory", roomCategoryController.updateRoomCategory);
-router.put("/roomType", roomTypeController.updateRoomType);
-router.put("/hotelAmenity", hotelAmenityController.updateHotelAmenity);
-router.put("/roomAmenity", roomAmenityController.updateRoomAmenity);
-router.put("/mealPlan", mealPlanController.updateMealPlan);
+router.put("/hotelCategory/:id", hotelCategoryController.updateHotelCategory);
+router.put("/hotelType/:id", hotelTypeController.updateHotelType);
+router.put("/occupancyType/:id", occupancyTypeController.updateOccupancyType);
+router.put("/seasonType/:id", seasonTypeController.updateSeasonType);
+router.put("/roomCategory/:id", roomCategoryController.updateRoomCategory);
+router.put("/roomType/:id", roomTypeController.updateRoomType);
+router.put("/hotelAmenity/:id", hotelAmenityController.updateHotelAmenity);
+router.put("/roomAmenity/:id", roomAmenityController.updateRoomAmenity);
+router.put("/mealPlan/:id", mealPlanController.updateMealPlan);
 
-router.delete("/:_id", hotelCategoryController.deleteHotelCategory);
-router.delete("/:_id", hotelTypeController.deleteHotelType);
-router.delete("/:_id", occupancyTypeController.deleteOccupancyType);
-router.delete("/:_id", seasonTypeController.deleteSeasonType);
-router.delete("/:_id", roomCategoryController.deleteRoomCategory);
-router.delete("/:_id", roomTypeController.deleteRoomType);
-router.delete("/:_id", hotelAmenityController.deleteHotelAmenity);
-router.delete("/:_id", roomAmenityController.deleteRoomAmenity);
-router.delete("/:_id", mealPlanController.deleteMealPlan);
+router.delete(
+  "/hotelCategory/:id",
+  hotelCategoryController.deleteHotelCategory
+);
+router.delete("/hotelType/:id", hotelTypeController.deleteHotelType);
+router.delete(
+  "/occupancyType/:id",
+  occupancyTypeController.deleteOccupancyType
+);
+router.delete("/seasonType/:id", seasonTypeController.deleteSeasonType);
+router.delete("/roomCategory/:id", roomCategoryController.deleteRoomCategory);
+router.delete("/roomType/:id", roomTypeController.deleteRoomType);
+router.delete("/hotelAmenity/:id", hotelAmenityController.deleteHotelAmenity);
+router.delete("/roomAmenity/:id", roomAmenityController.deleteRoomAmenity);
+router.delete("/mealPlan/:id", mealPlanController.deleteMealPlan);
 
 module.exports = router;

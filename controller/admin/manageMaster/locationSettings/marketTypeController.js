@@ -49,7 +49,9 @@ const getAllMarketType = async (req, res, next) => {
 //Update a MarketType
 const updateMarketType = async (req, res, next) => {
   try {
-    const { _id, marketType } = req.body;
+    const { id: _id } = req.params;
+
+    const { marketType } = req.body;
 
     const finalMarketType = await MarketType.findById(_id).exec();
     finalMarketType.marketType = marketType;
@@ -77,7 +79,8 @@ const updateMarketType = async (req, res, next) => {
 //Delete a MarketType
 const deleteMarketType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
+
     const deleteMarketType = await MarketType.findByIdAndDelete(_id);
     if (deleteMarketType) {
       res.status(201).json({

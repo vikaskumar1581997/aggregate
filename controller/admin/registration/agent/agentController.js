@@ -99,6 +99,8 @@ const getAllAgent = async (req, res, next) => {
 //Update an Agent
 const updateAgent = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
       companyName,
       shortName,
@@ -175,7 +177,7 @@ const updateAgent = async (req, res, next) => {
 //Delete a  Agent
 const deleteAgent = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const delAgent = await AgentModel.findByIdAndDelete(_id);
 
     if (delAgent) {

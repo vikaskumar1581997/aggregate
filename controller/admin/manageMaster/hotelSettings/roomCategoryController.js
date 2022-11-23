@@ -55,7 +55,8 @@ const getAllRoomCategory = async (req, res, next) => {
 //Update Room Category
 const updateRoomCategory = async (req, res, next) => {
   try {
-    const { _id, roomCategory, categoryCode, roomArea } = req.body;
+    const { id: _id } = req.params;
+    const { roomCategory, categoryCode, roomArea } = req.body;
 
     const finalRoomCategory = await RoomCategory.findById(_id).exec();
 
@@ -86,7 +87,7 @@ const updateRoomCategory = async (req, res, next) => {
 //Delete Room Category
 const deleteRoomCategory = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteCategory = await RoomCategory.findByIdAndDelete(_id);
 
     if (deleteCategory) {

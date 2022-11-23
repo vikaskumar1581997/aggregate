@@ -51,7 +51,8 @@ const getAllOccupancyType = async (req, res, next) => {
 //Update Occupancy Type
 const updateOccupancyType = async (req, res, next) => {
   try {
-    const { _id, occupancyType } = req.body;
+    const { id: _id } = req.params;
+    const { occupancyType } = req.body;
 
     const finalOccupancyType = await OccupancyType.findById(_id).exec();
 
@@ -79,7 +80,7 @@ const updateOccupancyType = async (req, res, next) => {
 //Delete Occupancy Type
 const deleteOccupancyType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await OccupancyType.findByIdAndDelete(_id);
 
     if (deleteType) {

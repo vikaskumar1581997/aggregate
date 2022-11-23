@@ -11,11 +11,11 @@ router.post(
 router.get("/employee", employeeController.getAllEmployee);
 
 router.put(
-  "/employee",
+  "/employee/:id",
   upload.single("profileImage"),
   employeeController.updateEmployee
 );
 
-router.delete("/:_id", employeeController.deleteEmployee);
+router.delete("/employee/:id", employeeController.deleteEmployee);
 
 module.exports = router;

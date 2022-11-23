@@ -53,7 +53,9 @@ const getAllPackageCategory = async (req, res, next) => {
 //Update a Package Category
 const updatePackageCategory = async (req, res, next) => {
   try {
-    const { _id, packageCategory, categoryCode } = req.body;
+    const { id: _id } = req.params;
+
+    const {  packageCategory, categoryCode } = req.body;
 
     const finalPackageCategory = await PackageCategory.findById(_id);
     finalPackageCategory.packageCategory = packageCategory;
@@ -82,7 +84,8 @@ const updatePackageCategory = async (req, res, next) => {
 //Delete a package Category
 const deletePackageCategory = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+      const { id: _id } = req.params;
+
 
     const deleteCategory = await PackageCategory.findByIdAndDelete(_id);
 

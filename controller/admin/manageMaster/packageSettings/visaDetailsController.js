@@ -56,8 +56,9 @@ const getAllVisaModel = async (req, res, next) => {
 //Update Visa Model
 const updateVisaModel = async (req, res, next) => {
   try {
-    const { _id, passportCountry, country, passportCode, description } =
-      req.body;
+    const { id: _id } = req.params;
+
+    const { passportCountry, country, passportCode, description } = req.body;
     const finalVisaModel = await VisaDetails.findById(_id);
 
     finalVisaModel.passportCountry = passportCountry;
@@ -88,7 +89,7 @@ const updateVisaModel = async (req, res, next) => {
 //Delete Visa Model
 const deleteVisaModel = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteModel = await VisaDetails.findByIdAndDelete(_id);
 

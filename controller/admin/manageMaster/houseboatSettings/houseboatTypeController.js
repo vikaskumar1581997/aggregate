@@ -53,7 +53,9 @@ const getAllHouseBoatType = async (req, res, next) => {
 //Update a HouseBoatType
 const updateHouseBoatType = async (req, res, next) => {
   try {
-    const { _id, boatName, boatCode } = req.body;
+    const { id: _id } = req.params;
+
+    const { boatName, boatCode } = req.body;
 
     const finalHBT = await HouseBoatType.findById({ _id });
 
@@ -83,7 +85,7 @@ const updateHouseBoatType = async (req, res, next) => {
 //Delete a HouseBoatType
 const deleteHouseBoatType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteHBT = await HouseBoatType.findByIdAndDelete({ _id });
 
     if (deleteHBT) {

@@ -51,7 +51,8 @@ const getAllSeasonType = async (req, res, next) => {
 //Update Season Type
 const updateSeasonType = async (req, res, next) => {
   try {
-    const { _id, seasonType } = req.body;
+    const { id: _id } = req.params;
+    const { seasonType } = req.body;
 
     const finalSeasonType = await SeasonType.findById(_id).exec();
 
@@ -79,7 +80,7 @@ const updateSeasonType = async (req, res, next) => {
 //Delete Season Type
 const deleteSeasonType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await SeasonType.findByIdAndDelete(_id);
 
     if (deleteType) {

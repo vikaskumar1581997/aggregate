@@ -79,8 +79,9 @@ const getAllEmployee = async (req, res, next) => {
 //Update an Employee
 const updateEmployee = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       employeeCode,
       firstName,
       lastName,
@@ -135,7 +136,7 @@ const updateEmployee = async (req, res, next) => {
 //Delete an Employee
 const deleteEmployee = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteEmp = await Employee.findByIdAndDelete(_id);
 
     if (deleteEmp) {

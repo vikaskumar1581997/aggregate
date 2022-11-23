@@ -54,7 +54,8 @@ const getAllRoomAmenity = async (req, res, next) => {
 //Update an Amenity
 const updateRoomAmenity = async (req, res, next) => {
   try {
-    const { _id, amenityName, amenityIcon } = req.body;
+    const { id: _id } = req.params;
+    const { amenityName, amenityIcon } = req.body;
 
     const finalRoomAmenity = await RoomAmenity.findById(_id).exec();
 
@@ -84,7 +85,7 @@ const updateRoomAmenity = async (req, res, next) => {
 //Delete an Amenity
 const deleteRoomAmenity = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteAmenity = await RoomAmenity.findByIdAndDelete(_id);
 
     if (deleteAmenity) {

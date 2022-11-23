@@ -64,8 +64,9 @@ const allDestination = async (req, res, next) => {
 //Update a Destination
 const updateDestination = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       country,
       province,
       destinationCode,
@@ -106,7 +107,8 @@ const updateDestination = async (req, res, next) => {
 //Delete a destination
 const deleteDestination = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
+
     const deleteDestination = await Destination.findByIdAndDelete(_id);
     if (deleteDestination) {
       res.status(201).json({

@@ -51,7 +51,8 @@ const getAllHotelType = async (req, res, next) => {
 //Update Hotel Type
 const updateHotelType = async (req, res, next) => {
   try {
-    const { _id, hotelType } = req.body;
+    const { id: _id } = req.params;
+    const { hotelType } = req.body;
 
     const finalHotelType = await HotelType.findById(_id).exec();
 
@@ -79,7 +80,7 @@ const updateHotelType = async (req, res, next) => {
 //Delete Hotel Type
 const deleteHotelType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await HotelType.findByIdAndDelete(_id);
 
     if (deleteType) {

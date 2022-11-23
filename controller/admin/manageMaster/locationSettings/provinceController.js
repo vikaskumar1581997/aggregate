@@ -54,8 +54,9 @@ const getAllProvince = async (req, res, next) => {
 //Update a Province
 const updateProvince = async (req, res, next) => {
   try {
-    const { _id, country, stateCode, stateName, latitude, longitude } =
-      req.body;
+    const { id: _id } = req.params;
+
+    const { country, stateCode, stateName, latitude, longitude } = req.body;
 
     const finalProvince = await Province.findById(_id).exec();
 
@@ -88,7 +89,8 @@ const updateProvince = async (req, res, next) => {
 //Delete a Provice
 const deleteProvince = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
+
     const deleteProvince = await Province.findByIdAndDelete(_id);
     if (deleteProvince) {
       res.status(201).json({

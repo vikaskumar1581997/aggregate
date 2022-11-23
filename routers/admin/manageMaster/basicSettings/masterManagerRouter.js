@@ -21,18 +21,18 @@ router.get("/contactType", contactTypeController.getAllContactTypes);
 router.get("/bank", bankController.getAllBanks);
 router.get("/assignMenu", assignMenuController.getAllAssignMenu);
 
-router.put("/designation", designationController.updateDesignation);
-router.put("/currency", currencyController.updateCurrency);
-router.put("/markup", markupController.updateMarkup);
-router.put("/contactType", contactTypeController.updateContactType);
-router.put("/bank", bankController.updateBank);
-router.put("/assignMenu", assignMenuController.updateAllAssignMenu);
+router.put("/designation/:id", designationController.updateDesignation);
+router.put("/currency/:id", currencyController.updateCurrency);
+router.put("/markup/:id", markupController.updateMarkup);
+router.put("/contactType/:id", contactTypeController.updateContactType);
+router.put("/bank/:id", bankController.updateBank);
+router.put("/assignMenu/:id", assignMenuController.updateAllAssignMenu);
 
-router.delete("/:_id", designationController.deleteDesignation);
-router.delete("/:_id", currencyController.deleteCurrency);
-router.delete("/:_id", markupController.deleteMarkup);
-router.delete("/:_id", contactTypeController.deleteContactType);
-router.delete("/:_id", bankController.deleteBank);
-router.delete("/:_id", assignMenuController.deleteAllAssignMenu);
+router.delete("/designation/:id", designationController.deleteDesignation);
+router.delete("/currency/:id", currencyController.deleteCurrency);
+router.delete("/markup/:id", markupController.deleteMarkup);
+router.delete("/contactType/:id", contactTypeController.deleteContactType);
+router.delete("/bank/:id", bankController.deleteBank);
+router.delete("/assignMenu/:id", assignMenuController.deleteAllAssignMenu);
 
 module.exports = router;
