@@ -48,6 +48,29 @@ const getAllContactTypes = async (req, res, next) => {
   }
 };
 
+//Get Single ContactType
+const getSingleContactType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleContactType = await ContactType.findById(_id).exec();
+
+    if (singleContactType) {
+      res.status(201).json({
+        error: false,
+        message: "Single ContactType Fetched!",
+        response: singleContactType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single ContactType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a ContactType
 const updateContactType = async (req, res, next) => {
   try {
@@ -104,4 +127,5 @@ module.exports = {
   getAllContactTypes,
   updateContactType,
   deleteContactType,
+  getSingleContactType,
 };

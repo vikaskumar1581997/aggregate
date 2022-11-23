@@ -50,6 +50,29 @@ const getAllPackageType = async (req, res, next) => {
   }
 };
 
+//Get Single PackageType
+const getSinglePackageType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singlePackageType = await PackageType.findById(_id).exec();
+
+    if (singlePackageType) {
+      res.status(201).json({
+        error: false,
+        message: "Single PackageType Fetched!",
+        response: singlePackageType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single PackageType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Package Type
 const updatePackageType = async (req, res, next) => {
   try {
@@ -107,6 +130,7 @@ const deletePackageType = async (req, res, next) => {
 
 module.exports = {
   getAllPackageType,
+  getSinglePackageType,
   createNewPackageType,
   updatePackageType,
   deletePackageType,

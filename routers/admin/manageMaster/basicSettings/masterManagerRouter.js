@@ -15,11 +15,17 @@ router.post("/bank", bankController.createNewBank);
 router.post("/assignMenu", assignMenuController.createNewAssignMenu);
 
 router.get("/designation", designationController.getAllDesignations);
+router.get("/designation/:id", designationController.getSingleDesignation);
 router.get("/currency", currencyController.getAllCurrencies);
+router.get("/currency/:id", currencyController.getSingleCurrency);
 router.get("/markup", markupController.getAllMarkups);
+router.get("/markup/:id", markupController.getSingleMarkUp);
 router.get("/contactType", contactTypeController.getAllContactTypes);
+router.get("/contactType/:id", contactTypeController.getSingleContactType);
 router.get("/bank", bankController.getAllBanks);
+router.get("/bank/:id", bankController.getSingleBank);
 router.get("/assignMenu", assignMenuController.getAllAssignMenu);
+router.get("/assignMenu/:id", assignMenuController.getSingleAssignMenu);
 
 router.put("/designation/:id", designationController.updateDesignation);
 router.put("/currency/:id", currencyController.updateCurrency);

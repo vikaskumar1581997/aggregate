@@ -50,6 +50,31 @@ const getAllHBRT = async (req, res, next) => {
   }
 };
 
+//Get Single HouseBoatRoomType
+const getSingleHouseBoatRoomType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHouseBoatRoomType = await HouseBoatRoomType.findById(
+      _id
+    ).exec();
+
+    if (singleHouseBoatRoomType) {
+      res.status(201).json({
+        error: false,
+        message: "Single HouseBoatRoomType Fetched!",
+        response: singleHouseBoatRoomType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HouseBoatRoomType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a  HouseBoatRoomType
 const updateHBRT = async (req, res, next) => {
   try {
@@ -105,4 +130,10 @@ const deleteHBRT = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewHBRT, getAllHBRT, updateHBRT, deleteHBRT };
+module.exports = {
+  createNewHBRT,
+  getAllHBRT,
+  updateHBRT,
+  deleteHBRT,
+  getSingleHouseBoatRoomType,
+};

@@ -49,6 +49,29 @@ const getAllHotelCategory = async (req, res, next) => {
   }
 };
 
+//Get Single HotelCategory
+const getSingleHotelCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHotelCategory = await HotelCategory.findById(_id).exec();
+
+    if (singleHotelCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single HotelCategory Fetched!",
+        response: singleHotelCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HotelCategory Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Hotel Category
 const updateHotelCategory = async (req, res, next) => {
   try {
@@ -107,4 +130,5 @@ module.exports = {
   getAllHotelCategory,
   updateHotelCategory,
   deleteHotelCategory,
+  getSingleHotelCategory,
 };

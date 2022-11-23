@@ -53,6 +53,29 @@ const getAllItineary = async (req, res, next) => {
   }
 };
 
+//Get Single Itineary
+const getSingleItineary = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleItineary = await Itineary.findById(_id).exec();
+
+    if (singleItineary) {
+      res.status(201).json({
+        error: false,
+        message: "Single Itineary Fetched!",
+        response: singleItineary,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Itineary Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update an Itineary
 const updateItineary = async (req, res, next) => {
   try {
@@ -116,6 +139,7 @@ const deleteItineary = async (req, res, next) => {
 module.exports = {
   createNewItineary,
   getAllItineary,
+  getSingleItineary,
   updateItineary,
   deleteItineary,
 };

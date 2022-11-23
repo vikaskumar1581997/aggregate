@@ -52,6 +52,29 @@ const getAllRoomCategory = async (req, res, next) => {
   }
 };
 
+//Get Single RoomCategory
+const getSingleRoomCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleRoomCategory = await RoomCategory.findById(_id).exec();
+
+    if (singleRoomCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single RoomCategory Fetched!",
+        response: singleRoomCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single RoomCategory Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Room Category
 const updateRoomCategory = async (req, res, next) => {
   try {
@@ -110,6 +133,7 @@ const deleteRoomCategory = async (req, res, next) => {
 module.exports = {
   createNewRoomCategory,
   getAllRoomCategory,
+  getSingleRoomCategory,
   updateRoomCategory,
   deleteRoomCategory,
 };

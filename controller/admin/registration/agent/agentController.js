@@ -96,6 +96,29 @@ const getAllAgent = async (req, res, next) => {
   }
 };
 
+//Get Single AgentModel
+const getSingleAgentModel = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleAgentModel = await AgentModel.findById(_id).exec();
+
+    if (singleAgentModel) {
+      res.status(201).json({
+        error: false,
+        message: "Single AgentModel Fetched!",
+        response: singleAgentModel,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single AgentModel Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update an Agent
 const updateAgent = async (req, res, next) => {
   try {
@@ -197,4 +220,10 @@ const deleteAgent = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewAgent, getAllAgent, updateAgent, deleteAgent };
+module.exports = {
+  createNewAgent,
+  getAllAgent,
+  updateAgent,
+  deleteAgent,
+  getSingleAgentModel,
+};

@@ -51,6 +51,29 @@ const getAllProvince = async (req, res, next) => {
   }
 };
 
+//Get Single Province
+const getSingleProvince = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleProvince = await Province.findById(_id).exec();
+
+    if (singleProvince) {
+      res.status(201).json({
+        error: false,
+        message: "Single Province Fetched!",
+        response: singleProvince,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Province Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Province
 const updateProvince = async (req, res, next) => {
   try {
@@ -114,4 +137,5 @@ module.exports = {
   createNewProvince,
   updateProvince,
   deleteProvince,
+  getSingleProvince,
 };

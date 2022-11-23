@@ -53,6 +53,29 @@ const getAllMealPlan = async (req, res, next) => {
   }
 };
 
+//Get Single MealPlan
+const getSingleMealPlan = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleMealPlan = await MealPlan.findById(_id).exec();
+
+    if (singleMealPlan) {
+      res.status(201).json({
+        error: false,
+        message: "Single MealPlan Fetched!",
+        response: singleMealPlan,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single MealPlan Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a meal plan
 const updateMealPlan = async (req, res, next) => {
   try {
@@ -113,6 +136,7 @@ const deleteMealPlan = async (req, res, next) => {
 module.exports = {
   createNewMealPlan,
   getAllMealPlan,
+  getSingleMealPlan,
   updateMealPlan,
   deleteMealPlan,
 };

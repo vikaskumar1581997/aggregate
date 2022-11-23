@@ -236,6 +236,29 @@ const getAllAssignMenu = async (req, res, next) => {
   }
 };
 
+//Get Single Assign Menu
+const getSingleAssignMenu = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleAssignMenu = await AssignMenu.findById(_id).exec();
+
+    if (singleAssignMenu) {
+      res.status(201).json({
+        error: false,
+        message: "Single AssignMenu Fetched!",
+        response: singleAssignMenu,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single AssignMenu Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update all Assign
 const updateAllAssignMenu = async (req, res, next) => {
   try {
@@ -381,4 +404,5 @@ module.exports = {
   getAllAssignMenu,
   updateAllAssignMenu,
   deleteAllAssignMenu,
+  getSingleAssignMenu,
 };

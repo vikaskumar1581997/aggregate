@@ -11,6 +11,7 @@ router.post(
 );
 
 router.get("/package", packageController.getAllPackage);
+router.get("/package/:id", packageController.getSinglePackage);
 
 router.put(
   "/package/:id",

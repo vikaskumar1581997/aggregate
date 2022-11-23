@@ -51,6 +51,29 @@ const getAllRoomAmenity = async (req, res, next) => {
   }
 };
 
+//Get Single RoomAmenity
+const getSingleRoomAmenity = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleRoomAmenity = await RoomAmenity.findById(_id).exec();
+
+    if (singleRoomAmenity) {
+      res.status(201).json({
+        error: false,
+        message: "Single RoomAmenity Fetched!",
+        response: singleRoomAmenity,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single RoomAmenity Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update an Amenity
 const updateRoomAmenity = async (req, res, next) => {
   try {
@@ -108,6 +131,7 @@ const deleteRoomAmenity = async (req, res, next) => {
 module.exports = {
   createNewRoomAmenity,
   getAllRoomAmenity,
+  getSingleRoomAmenity,
   updateRoomAmenity,
   deleteRoomAmenity,
 };

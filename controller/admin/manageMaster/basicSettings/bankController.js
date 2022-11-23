@@ -28,7 +28,7 @@ const createNewBank = async (req, res, next) => {
   }
 };
 
-//Get all Currencies
+//Get all Banks
 const getAllBanks = async (req, res, next) => {
   try {
     const allBank = await Bank.find().lean();
@@ -47,6 +47,29 @@ const getAllBanks = async (req, res, next) => {
   } catch (error) {
     next(error);
     console.error(error);
+  }
+};
+
+//Get Single Bank
+const getSingleBank = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleBank = await Bank.findById(_id).exec();
+
+    if (singleBank) {
+      res.status(201).json({
+        error: false,
+        message: "Single Bank Fetched!",
+        response: singleBank,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Bank Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -106,4 +129,5 @@ module.exports = {
   getAllBanks,
   updateBank,
   deleteBank,
+  getSingleBank,
 };

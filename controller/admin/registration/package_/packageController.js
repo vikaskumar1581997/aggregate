@@ -106,6 +106,29 @@ const getAllPackage = async (req, res, next) => {
   }
 };
 
+//Get Single Package
+const getSinglePackage = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singlePackage = await Package.findById(_id).exec();
+
+    if (singlePackage) {
+      res.status(201).json({
+        error: false,
+        message: "Single Package Fetched!",
+        response: singlePackage,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Package Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a package
 const updatePackage = async (req, res, next) => {
   try {
@@ -217,6 +240,7 @@ const deletePackage = async (req, res, next) => {
 module.exports = {
   createNewPackage,
   getAllPackage,
+  getSinglePackage,
   updatePackage,
   deletePackage,
 };
