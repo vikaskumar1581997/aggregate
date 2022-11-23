@@ -68,8 +68,9 @@ const getAllRoomType = async (req, res, next) => {
 //Update Room Type
 const updateRoomType = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       code,
       tagLine,
       selfValue,
@@ -114,7 +115,7 @@ const updateRoomType = async (req, res, next) => {
 //Delete Room Type
 const deleteRoomType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await RoomType.findByIdAndDelete(_id);
 
     if (deleteType) {

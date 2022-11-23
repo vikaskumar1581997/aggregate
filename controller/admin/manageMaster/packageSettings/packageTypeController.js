@@ -53,7 +53,9 @@ const getAllPackageType = async (req, res, next) => {
 //Update a Package Type
 const updatePackageType = async (req, res, next) => {
   try {
-    const { _id, packageType, typeCode } = req.body;
+    const { id: _id } = req.params;
+
+    const { packageType, typeCode } = req.body;
 
     const finalPackageType = await PackageType.findById(_id);
     finalPackageType.packageType = packageType;
@@ -82,7 +84,7 @@ const updatePackageType = async (req, res, next) => {
 //Delete a package Type
 const deletePackageType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteType = await PackageType.findByIdAndDelete(_id);
 

@@ -240,7 +240,6 @@ const getAllAssignMenu = async (req, res, next) => {
 const updateAllAssignMenu = async (req, res, next) => {
   try {
     var {
-      id,
       roleName,
       dashboard,
       masterManager: {
@@ -329,6 +328,8 @@ const updateAllAssignMenu = async (req, res, next) => {
       },
     } = req.body;
 
+    const { id } = req.params;
+
     const updatedAAM = await AssignMenu.findByIdAndUpdate(
       { _id: id },
       req.body
@@ -356,7 +357,7 @@ const updateAllAssignMenu = async (req, res, next) => {
 
 const deleteAllAssignMenu = async (req, res, next) => {
   try {
-    const { _id } = req.body;
+    const { id: _id } = req.params;
     const deleteAllAssignMenu = await AssignMenu.findByIdAndDelete(_id);
     if (deleteAllAssignMenu) {
       res.status(201).json({

@@ -59,15 +59,10 @@ const getAllTAndC = async (req, res, next) => {
 //Update T&C
 const updateTAndC = async (req, res, next) => {
   try {
-    const {
-      _id,
-      descriptionType,
-      tagLine,
-      termsCode,
-      description,
-      country,
-      state,
-    } = req.body;
+    const { id: _id } = req.params;
+
+    const { descriptionType, tagLine, termsCode, description, country, state } =
+      req.body;
 
     const finalTAndC = await TermsConditions.findById(_id);
 
@@ -101,7 +96,7 @@ const updateTAndC = async (req, res, next) => {
 //Delete T&C
 const deleteTAndC = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteTC = await TermsConditions.findByIdAndDelete({ _id });
 

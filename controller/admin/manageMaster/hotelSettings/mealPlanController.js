@@ -56,7 +56,8 @@ const getAllMealPlan = async (req, res, next) => {
 //Update a meal plan
 const updateMealPlan = async (req, res, next) => {
   try {
-    const { _id, mealName, isMainMeal, breakfast, lunch, dinner } = req.body;
+    const { id: _id } = req.params;
+    const { mealName, isMainMeal, breakfast, lunch, dinner } = req.body;
 
     const finalMealPlan = await MealPlan.findById(_id);
 
@@ -89,7 +90,7 @@ const updateMealPlan = async (req, res, next) => {
 //Delete a meal plan
 const deleteMealPlan = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deletePlan = await MealPlan.findByIdAndDelete(_id);
 
     if (deletePlan) {

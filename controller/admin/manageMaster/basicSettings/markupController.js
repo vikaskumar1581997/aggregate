@@ -52,7 +52,8 @@ const getAllMarkups = async (req, res, next) => {
 //Update a Markup
 const updateMarkup = async (req, res, next) => {
   try {
-    const { _id, markupType, markupName, markupValue } = req.body;
+    const { id: _id } = req.params;
+    const { markupType, markupName, markupValue } = req.body;
     const finalMarkup = await MarkUp.findById(_id).exec();
 
     finalMarkup.markupType = markupType;
@@ -82,7 +83,7 @@ const updateMarkup = async (req, res, next) => {
 //Delete a Markup
 const deleteMarkup = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteMarkup = await MarkUp.findByIdAndDelete(_id);
     if (deleteMarkup) {
       res.status(201).json({

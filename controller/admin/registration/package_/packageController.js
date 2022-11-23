@@ -109,8 +109,9 @@ const getAllPackage = async (req, res, next) => {
 //Update a package
 const updatePackage = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       packageName,
       packageCode,
       packageBasicRate,
@@ -193,7 +194,7 @@ const updatePackage = async (req, res, next) => {
 //Delete a package
 const deletePackage = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const delPackage = await Package.findByIdAndDelete(_id);
 
     if (delPackage) {

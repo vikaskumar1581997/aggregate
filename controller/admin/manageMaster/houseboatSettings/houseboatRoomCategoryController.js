@@ -60,8 +60,9 @@ const getAllHBTRCategory = async (req, res, next) => {
 //Update a HBTRCategory
 const updateHBTRCategory = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       roomCategoryName,
       roomCategoryCode,
       minimumRoomCount,
@@ -98,7 +99,7 @@ const updateHBTRCategory = async (req, res, next) => {
 //Delete a HBTRCategory
 const deleteHBTRCategory = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteHBTRC = await HBTRCategory.findByIdAndDelete({ _id });
 
     if (deleteHBTRC) {

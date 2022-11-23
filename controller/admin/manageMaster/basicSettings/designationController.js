@@ -51,7 +51,8 @@ const getAllDesignations = async (req, res, next) => {
 //Update a Designation
 const updateDesignation = async (req, res, next) => {
   try {
-    const { _id, designation } = req.body;
+    const { id: _id } = req.params;
+    const { designation } = req.body;
 
     const finalDesignation = await Designation.findById(_id).exec();
     finalDesignation.designation = designation;
@@ -79,7 +80,7 @@ const updateDesignation = async (req, res, next) => {
 //Delete a Designation
 const deleteDesignation = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteDesignation = await Designation.findByIdAndDelete(_id);
     if (deleteDesignation) {
       res.status(201).json({

@@ -58,14 +58,10 @@ const getAllDayActivity = async (req, res, next) => {
 //Update A Day Activity
 const updateDayActivity = async (req, res, next) => {
   try {
-    const {
-      _id,
-      country,
-      place,
-      dayActivityName,
-      dayActivityCode,
-      dayDescription,
-    } = req.body;
+    const { id: _id } = req.params;
+
+    const { country, place, dayActivityName, dayActivityCode, dayDescription } =
+      req.body;
 
     const finalDayActivity = await DayActivity.findById(_id);
     finalDayActivity.country = country;
@@ -97,7 +93,7 @@ const updateDayActivity = async (req, res, next) => {
 //Delete a day activity
 const deleteDayActivity = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteActivity = await DayActivity.findByIdAndDelete(_id);
 

@@ -12,8 +12,12 @@ router.post(
 
 router.get("/package", packageController.getAllPackage);
 
-router.put("/package", upload.array("files"), packageController.updatePackage);
+router.put(
+  "/package/:id",
+  upload.array("files"),
+  packageController.updatePackage
+);
 
-router.delete("/", packageController.deletePackage);
+router.delete("/package/:id", packageController.deletePackage);
 
 module.exports = router;

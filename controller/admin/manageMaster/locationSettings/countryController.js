@@ -53,7 +53,9 @@ const getAllCountry = async (req, res, next) => {
 //Update a country
 const updateCountry = async (req, res, next) => {
   try {
-    const { _id, marketType, region, countryCode, countryName } = req.body;
+    const { id: _id } = req.params;
+
+    const { marketType, region, countryCode, countryName } = req.body;
 
     const finalCountry = await Country.findById(_id).exec();
 
@@ -85,7 +87,7 @@ const updateCountry = async (req, res, next) => {
 //Delete a country
 const deleteCountry = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteCountry = await Country.findByIdAndDelete(_id);
     if (deleteCountry) {
       res.status(201).json({

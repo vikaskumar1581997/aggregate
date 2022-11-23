@@ -56,7 +56,9 @@ const getAllItineary = async (req, res, next) => {
 //Update an Itineary
 const updateItineary = async (req, res, next) => {
   try {
-    const { _id, heading, description } = req.body;
+    const { id: _id } = req.params;
+
+    const { heading, description } = req.body;
     const img = `${req.file.filename}`;
     const itinearyImage = img.toString("base64");
     const newImg = new Buffer.from(itinearyImage, "base64");
@@ -90,7 +92,7 @@ const updateItineary = async (req, res, next) => {
 //Delete an Itineary
 const deleteItineary = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const delItineary = await Itineary.findByIdAndDelete(_id);
 

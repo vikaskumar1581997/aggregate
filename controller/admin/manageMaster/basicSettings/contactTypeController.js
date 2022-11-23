@@ -51,7 +51,8 @@ const getAllContactTypes = async (req, res, next) => {
 //Update a ContactType
 const updateContactType = async (req, res, next) => {
   try {
-    const { _id, contactType } = req.body;
+    const { id: _id } = req.params;
+    const { contactType } = req.body;
 
     const finalContactType = await ContactType.findById(_id).exec();
     finalContactType.contactType = contactType;
@@ -79,7 +80,7 @@ const updateContactType = async (req, res, next) => {
 //Delete a ContactType
 const deleteContactType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteContactType = await ContactType.findByIdAndDelete(_id);
     if (deleteContactType) {
       res.status(201).json({
