@@ -48,6 +48,29 @@ const getAllSeasonType = async (req, res, next) => {
   }
 };
 
+//Get Single SeasonType
+const getSingleSeasonType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleSeasonType = await SeasonType.findById(_id).exec();
+
+    if (singleSeasonType) {
+      res.status(201).json({
+        error: false,
+        message: "Single SeasonType Fetched!",
+        response: singleSeasonType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single SeasonType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Season Type
 const updateSeasonType = async (req, res, next) => {
   try {
@@ -103,6 +126,7 @@ const deleteSeasonType = async (req, res, next) => {
 module.exports = {
   createSeasonType,
   getAllSeasonType,
+  getSingleSeasonType,
   updateSeasonType,
   deleteSeasonType,
 };

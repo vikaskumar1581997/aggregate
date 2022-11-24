@@ -9,6 +9,7 @@ router.post(
 );
 
 router.get("/coupon", couponController.getAllCoupon);
+router.get("/coupon/:id", couponController.getSingleCoupon);
 
 router.put(
   "/coupon/:id",

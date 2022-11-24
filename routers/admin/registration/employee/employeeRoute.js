@@ -9,6 +9,7 @@ router.post(
 );
 
 router.get("/employee", employeeController.getAllEmployee);
+router.get("/employee/:id", employeeController.getSingleEmployee);
 
 router.put(
   "/employee/:id",

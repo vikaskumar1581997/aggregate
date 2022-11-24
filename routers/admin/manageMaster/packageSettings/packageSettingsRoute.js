@@ -23,11 +23,20 @@ router.post(
 );
 
 router.get("/packageCategory", packageCategoryController.getAllPackageCategory);
+router.get(
+  "/packageCategory/:id",
+  packageCategoryController.getSinglePackageCategory
+);
 router.get("/packageType", packageTypeController.getAllPackageType);
+router.get("/packageType/:id", packageTypeController.getSinglePackageType);
 router.get("/dayActivity", dayActivityController.getAllDayActivity);
+router.get("/dayActivity/:id", dayActivityController.getSingleDayActivity);
 router.get("/visaDetails", visaDetailsController.getAllVisaModel);
+router.get("/visaDetails/:id", visaDetailsController.getSingleVisaModel);
 router.get("/termsConditions", termsConditionsController.getAllTAndC);
+router.get("/termsConditions/:id", termsConditionsController.getSingleTAndC);
 router.get("/itineary", itinearyController.getAllItineary);
+router.get("/itineary/:id", itinearyController.getSingleItineary);
 
 router.put(
   "/packageCategory/:id",

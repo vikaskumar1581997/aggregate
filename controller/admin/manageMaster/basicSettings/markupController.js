@@ -49,6 +49,29 @@ const getAllMarkups = async (req, res, next) => {
   }
 };
 
+//Get Single MarkUp
+const getSingleMarkUp = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleMarkUp = await MarkUp.findById(_id).exec();
+
+    if (singleMarkUp) {
+      res.status(201).json({
+        error: false,
+        message: "Single MarkUp Fetched!",
+        response: singleMarkUp,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single MarkUp Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Markup
 const updateMarkup = async (req, res, next) => {
   try {
@@ -102,4 +125,10 @@ const deleteMarkup = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewMarkup, getAllMarkups, updateMarkup, deleteMarkup };
+module.exports = {
+  createNewMarkup,
+  getAllMarkups,
+  updateMarkup,
+  deleteMarkup,
+  getSingleMarkUp,
+};

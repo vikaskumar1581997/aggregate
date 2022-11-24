@@ -11,6 +11,7 @@ router.post(
 );
 
 router.get("/agentSettings", agentController.getAllAgent);
+router.get("/agentSettings/:id", agentController.getSingleAgentModel);
 
 router.put(
   "/agentSettings/:id",

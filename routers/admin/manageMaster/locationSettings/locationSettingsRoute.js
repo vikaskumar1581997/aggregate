@@ -13,10 +13,15 @@ router.post("/province", provinceController.createNewProvince);
 router.post("/destination", destinationController.createNewDestination);
 
 router.get("/marketType", marketTypeController.getAllMarketType);
+router.get("/marketType/:id", marketTypeController.getSingleMarketType);
 router.get("/region", regionController.getAllRegion);
+router.get("/region/:id", regionController.getSingleRegion);
 router.get("/country", countryController.getAllCountry);
+router.get("/country/:id", countryController.getSingleCountry);
 router.get("/province", provinceController.getAllProvince);
+router.get("/province/:id", provinceController.getSingleProvince);
 router.get("/destination", destinationController.allDestination);
+router.get("/destination/:id", destinationController.getSingleDestination);
 
 router.put("/marketType/:id"), marketTypeController.updateMarketType;
 router.put("/region/:id", regionController.updateRegion);

@@ -61,6 +61,29 @@ const allDestination = async (req, res, next) => {
   }
 };
 
+//Get Single Destination
+const getSingleDestination = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleDestination = await Destination.findById(_id).exec();
+
+    if (singleDestination) {
+      res.status(201).json({
+        error: false,
+        message: "Single Destination Fetched!",
+        response: singleDestination,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Destination Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Destination
 const updateDestination = async (req, res, next) => {
   try {
@@ -132,4 +155,5 @@ module.exports = {
   allDestination,
   updateDestination,
   deleteDestination,
+  getSingleDestination,
 };

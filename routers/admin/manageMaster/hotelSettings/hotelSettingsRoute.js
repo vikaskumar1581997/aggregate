@@ -21,14 +21,29 @@ router.post("/roomAmenity", roomAmenityController.createNewRoomAmenity);
 router.post("/mealPlan", mealPlanController.createNewMealPlan);
 
 router.get("/hotelCategory", hotelCategoryController.getAllHotelCategory);
+router.get(
+  "/hotelCategory/:id",
+  hotelCategoryController.getSingleHotelCategory
+);
 router.get("/hotelType", hotelTypeController.getAllHotelType);
+router.get("/hotelType/:id", hotelTypeController.getSingleHotelType);
 router.get("/occupancyType", occupancyTypeController.getAllOccupancyType);
+router.get(
+  "/occupancyType/:id",
+  occupancyTypeController.getSingleOccupancyType
+);
 router.get("/seasonType", seasonTypeController.getAllSeasonType);
+router.get("/seasonType/:id", seasonTypeController.getSingleSeasonType);
 router.get("/roomCategory", roomCategoryController.getAllRoomCategory);
+router.get("/roomCategory/:id", roomCategoryController.getSingleRoomCategory);
 router.get("/roomType", roomTypeController.getAllRoomType);
+router.get("/roomType/:id", roomTypeController.getSingleRoomType);
 router.get("/hotelAmenity", hotelAmenityController.getAllHotelAmenity);
+router.get("/hotelAmenity/:id", hotelAmenityController.getSingleHotelAmenity);
 router.get("/roomAmenity", roomAmenityController.getAllRoomAmenity);
+router.get("/roomAmenity/:id", roomAmenityController.getSingleRoomAmenity);
 router.get("/mealPlan", mealPlanController.getAllMealPlan);
+router.get("/mealPlan/:id", mealPlanController.getSingleMealPlan);
 
 router.put("/hotelCategory/:id", hotelCategoryController.updateHotelCategory);
 router.put("/hotelType/:id", hotelTypeController.updateHotelType);

@@ -48,6 +48,29 @@ const getAllAgentCategory = async (req, res, next) => {
   }
 };
 
+//Get Single Agent Category
+const getSingleAgentCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleAgentCategory = await AgentCategory.findById(_id).exec();
+
+    if (singleAgentCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single Agent Category Fetched!",
+        response: singleAgentCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Agent Category Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Agent Category
 const updateAgentCategory = async (req, res, next) => {
   try {
@@ -99,6 +122,7 @@ const deleteAgentCategory = async (req, res, next) => {
 
 module.exports = {
   getAllAgentCategory,
+  getSingleAgentCategory,
   createNewAgentCategory,
   updateAgentCategory,
   deleteAgentCategory,

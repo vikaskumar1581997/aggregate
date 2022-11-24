@@ -9,8 +9,14 @@ router.post("/houseboatRoomCategory", HBTRCController.createNewHBTRCategory);
 router.post("/houseboatRoomType", HBRTController.createNewHBRT);
 
 router.get("/houseboatType", houseBoatTypeController.getAllHouseBoatType);
+router.get(
+  "/houseboatType/:id",
+  houseBoatTypeController.getSingleHouseBoatType
+);
 router.get("/houseboatRoomCategory", HBTRCController.getAllHBTRCategory);
+router.get("/houseboatRoomCategory/:id", HBTRCController.getSingleHBTRCategory);
 router.get("/houseboatRoomType", HBRTController.getAllHBRT);
+router.get("/houseboatRoomType/:id", HBRTController.getSingleHouseBoatRoomType);
 
 router.put("/houseboatType/:id", houseBoatTypeController.updateHouseBoatType);
 router.put("/houseboatRoomCategory/:id", HBTRCController.updateHBTRCategory);

@@ -57,6 +57,29 @@ const getAllHBTRCategory = async (req, res, next) => {
   }
 };
 
+//Get Single HBTRCategory
+const getSingleHBTRCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHBTRCategory = await HBTRCategory.findById(_id).exec();
+
+    if (singleHBTRCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single HBTRCategory Fetched!",
+        response: singleHBTRCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HBTRCategory Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a HBTRCategory
 const updateHBTRCategory = async (req, res, next) => {
   try {
@@ -123,6 +146,7 @@ const deleteHBTRCategory = async (req, res, next) => {
 module.exports = {
   createNewHBTRCategory,
   getAllHBTRCategory,
+  getSingleHBTRCategory,
   updateHBTRCategory,
   deleteHBTRCategory,
 };

@@ -50,6 +50,29 @@ const getAllCurrencies = async (req, res, next) => {
   }
 };
 
+//Get Single Currency
+const getSingleCurrency = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleCurrency = await Currency.findById(_id).exec();
+
+    if (singleCurrency) {
+      res.status(201).json({
+        error: false,
+        message: "Single Currency Fetched!",
+        response: singleCurrency,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Currency Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a currency
 const updateCurrency = async (req, res, next) => {
   try {
@@ -106,4 +129,5 @@ module.exports = {
   getAllCurrencies,
   updateCurrency,
   deleteCurrency,
+  getSingleCurrency,
 };

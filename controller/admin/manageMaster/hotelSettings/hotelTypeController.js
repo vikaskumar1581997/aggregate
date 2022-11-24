@@ -48,6 +48,29 @@ const getAllHotelType = async (req, res, next) => {
   }
 };
 
+//Get Single HotelType
+const getSingleHotelType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHotelType = await HotelType.findById(_id).exec();
+
+    if (singleHotelType) {
+      res.status(201).json({
+        error: false,
+        message: "Single HotelType Fetched!",
+        response: singleHotelType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HotelType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Hotel Type
 const updateHotelType = async (req, res, next) => {
   try {
@@ -105,4 +128,5 @@ module.exports = {
   getAllHotelType,
   updateHotelType,
   deleteHotelType,
+  getSingleHotelType,
 };
