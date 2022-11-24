@@ -4,6 +4,15 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const port = process.env.PORT || 3000;
+const passport = require("passport");
+const passportStrategy = require("./controller/passport");
+
+
+const session = require("express-session");
+// After you declare "app"
+app.use(session({ secret: "melody hensley is my spirit animal" }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Database connection
 require("./config/db");
