@@ -48,10 +48,34 @@ const getAllOccupancyType = async (req, res, next) => {
   }
 };
 
+//Get Single OccupancyType
+const getSingleOccupancyType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleOccupancyType = await OccupancyType.findById(_id).exec();
+
+    if (singleOccupancyType) {
+      res.status(201).json({
+        error: false,
+        message: "Single OccupancyType Fetched!",
+        response: singleOccupancyType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single OccupancyType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Occupancy Type
 const updateOccupancyType = async (req, res, next) => {
   try {
-    const { _id, occupancyType } = req.body;
+    const { id: _id } = req.params;
+    const { occupancyType } = req.body;
 
     const finalOccupancyType = await OccupancyType.findById(_id).exec();
 
@@ -79,7 +103,7 @@ const updateOccupancyType = async (req, res, next) => {
 //Delete Occupancy Type
 const deleteOccupancyType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await OccupancyType.findByIdAndDelete(_id);
 
     if (deleteType) {
@@ -102,6 +126,7 @@ const deleteOccupancyType = async (req, res, next) => {
 module.exports = {
   createOccupancyType,
   getAllOccupancyType,
+  getSingleOccupancyType,
   updateOccupancyType,
   deleteOccupancyType,
 };

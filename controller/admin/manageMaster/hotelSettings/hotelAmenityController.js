@@ -51,10 +51,34 @@ const getAllHotelAmenity = async (req, res, next) => {
   }
 };
 
+//Get Single HotelAmenity
+const getSingleHotelAmenity = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHotelAmenity = await HotelAmenity.findById(_id).exec();
+
+    if (singleHotelAmenity) {
+      res.status(201).json({
+        error: false,
+        message: "Single HotelAmenity Fetched!",
+        response: singleHotelAmenity,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HotelAmenity Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update an Amenity
 const updateHotelAmenity = async (req, res, next) => {
   try {
-    const { _id, amenityName, amenityIcon } = req.body;
+    const { id: _id } = req.params;
+    const { amenityName, amenityIcon } = req.body;
 
     const finalHotelAmenity = await HotelAmenity.findById(_id).exec();
 
@@ -84,7 +108,7 @@ const updateHotelAmenity = async (req, res, next) => {
 //Delete an Amenity
 const deleteHotelAmenity = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteAmenity = await HotelAmenity.findByIdAndDelete(_id);
 
     if (deleteAmenity) {
@@ -109,4 +133,5 @@ module.exports = {
   getAllHotelAmenity,
   updateHotelAmenity,
   deleteHotelAmenity,
+  getSingleHotelAmenity,
 };

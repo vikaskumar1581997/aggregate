@@ -61,11 +61,35 @@ const allDestination = async (req, res, next) => {
   }
 };
 
+//Get Single Destination
+const getSingleDestination = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleDestination = await Destination.findById(_id).exec();
+
+    if (singleDestination) {
+      res.status(201).json({
+        error: false,
+        message: "Single Destination Fetched!",
+        response: singleDestination,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Destination Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Destination
 const updateDestination = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       country,
       province,
       destinationCode,
@@ -106,7 +130,8 @@ const updateDestination = async (req, res, next) => {
 //Delete a destination
 const deleteDestination = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
+
     const deleteDestination = await Destination.findByIdAndDelete(_id);
     if (deleteDestination) {
       res.status(201).json({
@@ -130,4 +155,5 @@ module.exports = {
   allDestination,
   updateDestination,
   deleteDestination,
+  getSingleDestination,
 };

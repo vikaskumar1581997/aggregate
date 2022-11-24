@@ -65,11 +65,35 @@ const getAllRoomType = async (req, res, next) => {
   }
 };
 
+//Get Single RoomType
+const getSingleRoomType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleRoomType = await RoomType.findById(_id).exec();
+
+    if (singleRoomType) {
+      res.status(201).json({
+        error: false,
+        message: "Single RoomType Fetched!",
+        response: singleRoomType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single RoomType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Room Type
 const updateRoomType = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       code,
       tagLine,
       selfValue,
@@ -114,7 +138,7 @@ const updateRoomType = async (req, res, next) => {
 //Delete Room Type
 const deleteRoomType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteType = await RoomType.findByIdAndDelete(_id);
 
     if (deleteType) {
@@ -137,6 +161,7 @@ const deleteRoomType = async (req, res, next) => {
 module.exports = {
   createNewRoomType,
   getAllRoomType,
+  getSingleRoomType,
   updateRoomType,
   deleteRoomType,
 };

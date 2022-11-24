@@ -76,11 +76,35 @@ const getAllEmployee = async (req, res, next) => {
   }
 };
 
+//Get Single Employee
+const getSingleEmployee = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleEmployee = await Employee.findById(_id).exec();
+
+    if (singleEmployee) {
+      res.status(201).json({
+        error: false,
+        message: "Single Employee Fetched!",
+        response: singleEmployee,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Employee Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update an Employee
 const updateEmployee = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       employeeCode,
       firstName,
       lastName,
@@ -135,7 +159,7 @@ const updateEmployee = async (req, res, next) => {
 //Delete an Employee
 const deleteEmployee = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteEmp = await Employee.findByIdAndDelete(_id);
 
     if (deleteEmp) {
@@ -158,6 +182,7 @@ const deleteEmployee = async (req, res, next) => {
 module.exports = {
   createNewEmployee,
   getAllEmployee,
+  getSingleEmployee,
   updateEmployee,
   deleteEmployee,
 };

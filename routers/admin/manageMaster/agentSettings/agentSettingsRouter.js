@@ -4,7 +4,14 @@ const agentCategoryController = require("../../../../controller/admin/manageMast
 
 router.post("/agentCategory", agentCategoryController.createNewAgentCategory);
 router.get("/agentCategory", agentCategoryController.getAllAgentCategory);
-router.put("/agentCategory", agentCategoryController.updateAgentCategory);
-router.delete("/:_id", agentCategoryController.deleteAgentCategory);
+router.get(
+  "/agentCategory/:id",
+  agentCategoryController.getSingleAgentCategory
+);
+router.put("/agentCategory/:id", agentCategoryController.updateAgentCategory);
+router.delete(
+  "/agentCategory/:id",
+  agentCategoryController.deleteAgentCategory
+);
 
 module.exports = router;

@@ -236,11 +236,33 @@ const getAllAssignMenu = async (req, res, next) => {
   }
 };
 
+//Get Single Assign Menu
+const getSingleAssignMenu = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleAssignMenu = await AssignMenu.findById(_id).exec();
+
+    if (singleAssignMenu) {
+      res.status(201).json({
+        error: false,
+        message: "Single AssignMenu Fetched!",
+        response: singleAssignMenu,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single AssignMenu Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update all Assign
 const updateAllAssignMenu = async (req, res, next) => {
   try {
     var {
-      id,
       roleName,
       dashboard,
       masterManager: {
@@ -329,6 +351,8 @@ const updateAllAssignMenu = async (req, res, next) => {
       },
     } = req.body;
 
+    const { id } = req.params;
+
     const updatedAAM = await AssignMenu.findByIdAndUpdate(
       { _id: id },
       req.body
@@ -356,7 +380,7 @@ const updateAllAssignMenu = async (req, res, next) => {
 
 const deleteAllAssignMenu = async (req, res, next) => {
   try {
-    const { _id } = req.body;
+    const { id: _id } = req.params;
     const deleteAllAssignMenu = await AssignMenu.findByIdAndDelete(_id);
     if (deleteAllAssignMenu) {
       res.status(201).json({
@@ -380,4 +404,5 @@ module.exports = {
   getAllAssignMenu,
   updateAllAssignMenu,
   deleteAllAssignMenu,
+  getSingleAssignMenu,
 };

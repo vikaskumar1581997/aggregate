@@ -50,10 +50,35 @@ const getAllCountry = async (req, res, next) => {
   }
 };
 
+//Get Single Country
+const getSingleCountry = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleCountry = await Country.findById(_id).exec();
+
+    if (singleCountry) {
+      res.status(201).json({
+        error: false,
+        message: "Single Country Fetched!",
+        response: singleCountry,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Country Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a country
 const updateCountry = async (req, res, next) => {
   try {
-    const { _id, marketType, region, countryCode, countryName } = req.body;
+    const { id: _id } = req.params;
+
+    const { marketType, region, countryCode, countryName } = req.body;
 
     const finalCountry = await Country.findById(_id).exec();
 
@@ -85,7 +110,7 @@ const updateCountry = async (req, res, next) => {
 //Delete a country
 const deleteCountry = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteCountry = await Country.findByIdAndDelete(_id);
     if (deleteCountry) {
       res.status(201).json({
@@ -109,4 +134,5 @@ module.exports = {
   getAllCountry,
   updateCountry,
   deleteCountry,
+  getSingleCountry,
 };

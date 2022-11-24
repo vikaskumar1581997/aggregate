@@ -46,10 +46,35 @@ const getAllRegion = async (req, res, next) => {
   }
 };
 
+//Get Single Region
+const getSingleRegion = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleRegion = await Region.findById(_id).exec();
+
+    if (singleRegion) {
+      res.status(201).json({
+        error: false,
+        message: "Single Region Fetched!",
+        response: singleRegion,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Region Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Region
 const updateRegion = async (req, res, next) => {
   try {
-    const { _id, region } = req.body;
+    const { id: _id } = req.params;
+
+    const { region } = req.body;
 
     const finalRegion = await Region.findById(_id).exec();
     finalRegion.region = region;
@@ -77,7 +102,7 @@ const updateRegion = async (req, res, next) => {
 //Delete a Region
 const deleteRegion = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteRegion = await Region.findByIdAndDelete(_id);
     if (deleteRegion) {
       res.status(201).json({
@@ -101,4 +126,5 @@ module.exports = {
   getAllRegion,
   updateRegion,
   deleteRegion,
+  getSingleRegion,
 };

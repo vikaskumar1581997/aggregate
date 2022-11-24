@@ -75,11 +75,35 @@ const getAllCoupon = async (req, res, next) => {
   }
 };
 
+//Get Single Coupon
+const getSingleCoupon = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleCoupon = await Coupon.findById(_id).exec();
+
+    if (singleCoupon) {
+      res.status(201).json({
+        error: false,
+        message: "Single Coupon Fetched!",
+        response: singleCoupon,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Coupon Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Coupon
 const updateCoupon = async (req, res, next) => {
   try {
+    const { id: _id } = req.params;
+
     const {
-      _id,
       couponCode,
       couponType,
       allHotels,
@@ -137,7 +161,7 @@ const updateCoupon = async (req, res, next) => {
 //Delete a Coupon
 const deleteCoupon = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const delCoupon = await Coupon.findByIdAndDelete({ _id });
 
@@ -158,4 +182,10 @@ const deleteCoupon = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewCoupon, getAllCoupon, updateCoupon, deleteCoupon };
+module.exports = {
+  createNewCoupon,
+  getAllCoupon,
+  updateCoupon,
+  deleteCoupon,
+  getSingleCoupon,
+};

@@ -50,10 +50,34 @@ const getAllCurrencies = async (req, res, next) => {
   }
 };
 
+//Get Single Currency
+const getSingleCurrency = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleCurrency = await Currency.findById(_id).exec();
+
+    if (singleCurrency) {
+      res.status(201).json({
+        error: false,
+        message: "Single Currency Fetched!",
+        response: singleCurrency,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single Currency Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a currency
 const updateCurrency = async (req, res, next) => {
   try {
-    const { _id, currency, currencyCode, value } = req.body;
+    const { id: _id } = req.params;
+    const { currency, currencyCode, value } = req.body;
     const finalCurrency = await Currency.findById(_id).exec();
 
     finalCurrency.currency = currency;
@@ -81,7 +105,7 @@ const updateCurrency = async (req, res, next) => {
 //Delete a Currency
 const deleteCurrency = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteCurrency = await Currency.findByIdAndDelete(_id);
     if (deleteCurrency) {
       res.status(201).json({
@@ -105,4 +129,5 @@ module.exports = {
   getAllCurrencies,
   updateCurrency,
   deleteCurrency,
+  getSingleCurrency,
 };

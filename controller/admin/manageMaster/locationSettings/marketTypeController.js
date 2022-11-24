@@ -46,10 +46,35 @@ const getAllMarketType = async (req, res, next) => {
   }
 };
 
+//Get Single MarketType
+const getSingleMarketType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleMarketType = await MarketType.findById(_id).exec();
+
+    if (singleMarketType) {
+      res.status(201).json({
+        error: false,
+        message: "Single MarketType Fetched!",
+        response: singleMarketType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single MarketType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a MarketType
 const updateMarketType = async (req, res, next) => {
   try {
-    const { _id, marketType } = req.body;
+    const { id: _id } = req.params;
+
+    const { marketType } = req.body;
 
     const finalMarketType = await MarketType.findById(_id).exec();
     finalMarketType.marketType = marketType;
@@ -77,7 +102,8 @@ const updateMarketType = async (req, res, next) => {
 //Delete a MarketType
 const deleteMarketType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
+
     const deleteMarketType = await MarketType.findByIdAndDelete(_id);
     if (deleteMarketType) {
       res.status(201).json({
@@ -101,4 +127,5 @@ module.exports = {
   getAllMarketType,
   updateMarketType,
   deleteMarketType,
+  getSingleMarketType,
 };

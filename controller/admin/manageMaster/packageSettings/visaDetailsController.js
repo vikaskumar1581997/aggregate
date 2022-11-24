@@ -53,11 +53,35 @@ const getAllVisaModel = async (req, res, next) => {
   }
 };
 
+//Get Single Visa Model
+const getSingleVisaModel = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleVisaDetails = await VisaDetails.findById(_id).exec();
+
+    if (singleVisaDetails) {
+      res.status(201).json({
+        error: false,
+        message: "Single VisaDetails Fetched!",
+        response: singleVisaDetails,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single VisaDetails Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Visa Model
 const updateVisaModel = async (req, res, next) => {
   try {
-    const { _id, passportCountry, country, passportCode, description } =
-      req.body;
+    const { id: _id } = req.params;
+
+    const { passportCountry, country, passportCode, description } = req.body;
     const finalVisaModel = await VisaDetails.findById(_id);
 
     finalVisaModel.passportCountry = passportCountry;
@@ -88,7 +112,7 @@ const updateVisaModel = async (req, res, next) => {
 //Delete Visa Model
 const deleteVisaModel = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteModel = await VisaDetails.findByIdAndDelete(_id);
 
@@ -112,6 +136,7 @@ const deleteVisaModel = async (req, res, next) => {
 module.exports = {
   createNewVisaModel,
   getAllVisaModel,
+  getSingleVisaModel,
   updateVisaModel,
   deleteVisaModel,
 };

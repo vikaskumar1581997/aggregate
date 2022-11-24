@@ -11,13 +11,14 @@ router.post(
 );
 
 router.get("/agentSettings", agentController.getAllAgent);
+router.get("/agentSettings/:id", agentController.getSingleAgentModel);
 
 router.put(
-  "/agentSettings",
+  "/agentSettings/:id",
   upload.single("companyLogo"),
   agentController.updateAgent
 );
 
-router.delete("/:_id", agentController.deleteAgent);
+router.delete("/agentSettings/:id", agentController.deleteAgent);
 
 module.exports = router;

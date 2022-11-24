@@ -13,21 +13,26 @@ router.post("/province", provinceController.createNewProvince);
 router.post("/destination", destinationController.createNewDestination);
 
 router.get("/marketType", marketTypeController.getAllMarketType);
+router.get("/marketType/:id", marketTypeController.getSingleMarketType);
 router.get("/region", regionController.getAllRegion);
+router.get("/region/:id", regionController.getSingleRegion);
 router.get("/country", countryController.getAllCountry);
+router.get("/country/:id", countryController.getSingleCountry);
 router.get("/province", provinceController.getAllProvince);
+router.get("/province/:id", provinceController.getSingleProvince);
 router.get("/destination", destinationController.allDestination);
+router.get("/destination/:id", destinationController.getSingleDestination);
 
-router.put("/marketType"), marketTypeController.updateMarketType;
-router.put("/region", regionController.updateRegion);
-router.put("/country", countryController.updateCountry);
-router.put("/province", provinceController.updateProvince);
-router.put("/destination", destinationController.updateDestination);
+router.put("/marketType/:id"), marketTypeController.updateMarketType;
+router.put("/region/:id", regionController.updateRegion);
+router.put("/country/:id", countryController.updateCountry);
+router.put("/province/:id", provinceController.updateProvince);
+router.put("/destination/:id", destinationController.updateDestination);
 
-router.delete("/:_id", marketTypeController.deleteMarketType);
-router.delete("/:_id", regionController.deleteRegion);
-router.delete("/:_id", countryController.deleteCountry);
-router.delete("/:_id", provinceController.deleteProvince);
-router.delete("/:_id", destinationController.deleteDestination);
+router.delete("/marketType/:id", marketTypeController.deleteMarketType);
+router.delete("/region/:id", regionController.deleteRegion);
+router.delete("/country/:id", countryController.deleteCountry);
+router.delete("/province/:id", provinceController.deleteProvince);
+router.delete("/destination/:id", destinationController.deleteDestination);
 
 module.exports = router;

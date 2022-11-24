@@ -23,19 +23,31 @@ router.post(
 );
 
 router.get("/packageCategory", packageCategoryController.getAllPackageCategory);
+router.get(
+  "/packageCategory/:id",
+  packageCategoryController.getSinglePackageCategory
+);
 router.get("/packageType", packageTypeController.getAllPackageType);
+router.get("/packageType/:id", packageTypeController.getSinglePackageType);
 router.get("/dayActivity", dayActivityController.getAllDayActivity);
+router.get("/dayActivity/:id", dayActivityController.getSingleDayActivity);
 router.get("/visaDetails", visaDetailsController.getAllVisaModel);
+router.get("/visaDetails/:id", visaDetailsController.getSingleVisaModel);
 router.get("/termsConditions", termsConditionsController.getAllTAndC);
+router.get("/termsConditions/:id", termsConditionsController.getSingleTAndC);
 router.get("/itineary", itinearyController.getAllItineary);
+router.get("/itineary/:id", itinearyController.getSingleItineary);
 
-router.put("/packageCategory", packageCategoryController.updatePackageCategory);
-router.put("/packageType", packageTypeController.updatePackageType);
-router.put("/dayActivity", dayActivityController.updateDayActivity);
-router.put("/visaDetails", visaDetailsController.updateVisaModel);
-router.put("/termsConditions", termsConditionsController.updateTAndC);
 router.put(
-  "/itineary",
+  "/packageCategory/:id",
+  packageCategoryController.updatePackageCategory
+);
+router.put("/packageType/:id", packageTypeController.updatePackageType);
+router.put("/dayActivity/:id", dayActivityController.updateDayActivity);
+router.put("/visaDetails/:id", visaDetailsController.updateVisaModel);
+router.put("/termsConditions/:id", termsConditionsController.updateTAndC);
+router.put(
+  "/itineary/:id",
   upload.single("itinearyImage"),
   itinearyController.updateItineary
 );
@@ -44,10 +56,10 @@ router.delete(
   "/packageCategory",
   packageCategoryController.deletePackageCategory
 );
-router.delete("/:_id", packageTypeController.deletePackageType);
-router.delete("/:_id", dayActivityController.deleteDayActivity);
-router.delete("/:_id", visaDetailsController.deleteVisaModel);
-router.delete("/:_id", termsConditionsController.deleteTAndC);
-router.delete("/:_id", itinearyController.deleteItineary);
+router.delete("/packageType/:id", packageTypeController.deletePackageType);
+router.delete("/dayActivity/:id", dayActivityController.deleteDayActivity);
+router.delete("/visaDetails/:id", visaDetailsController.deleteVisaModel);
+router.delete("/termsConditions/:id", termsConditionsController.deleteTAndC);
+router.delete("/itineary/:id", itinearyController.deleteItineary);
 
 module.exports = router;

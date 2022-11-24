@@ -50,10 +50,35 @@ const getAllHouseBoatType = async (req, res, next) => {
   }
 };
 
+//Get Single HouseBoatType
+const getSingleHouseBoatType = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleHouseBoatType = await HouseBoatType.findById(_id).exec();
+
+    if (singleHouseBoatType) {
+      res.status(201).json({
+        error: false,
+        message: "Single HouseBoatType Fetched!",
+        response: singleHouseBoatType,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single HouseBoatType Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a HouseBoatType
 const updateHouseBoatType = async (req, res, next) => {
   try {
-    const { _id, boatName, boatCode } = req.body;
+    const { id: _id } = req.params;
+
+    const { boatName, boatCode } = req.body;
 
     const finalHBT = await HouseBoatType.findById({ _id });
 
@@ -83,7 +108,7 @@ const updateHouseBoatType = async (req, res, next) => {
 //Delete a HouseBoatType
 const deleteHouseBoatType = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteHBT = await HouseBoatType.findByIdAndDelete({ _id });
 
     if (deleteHBT) {
@@ -109,4 +134,5 @@ module.exports = {
   getAllHouseBoatType,
   updateHouseBoatType,
   deleteHouseBoatType,
+  getSingleHouseBoatType,
 };

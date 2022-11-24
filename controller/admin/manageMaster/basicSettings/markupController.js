@@ -49,10 +49,34 @@ const getAllMarkups = async (req, res, next) => {
   }
 };
 
+//Get Single MarkUp
+const getSingleMarkUp = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleMarkUp = await MarkUp.findById(_id).exec();
+
+    if (singleMarkUp) {
+      res.status(201).json({
+        error: false,
+        message: "Single MarkUp Fetched!",
+        response: singleMarkUp,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single MarkUp Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Markup
 const updateMarkup = async (req, res, next) => {
   try {
-    const { _id, markupType, markupName, markupValue } = req.body;
+    const { id: _id } = req.params;
+    const { markupType, markupName, markupValue } = req.body;
     const finalMarkup = await MarkUp.findById(_id).exec();
 
     finalMarkup.markupType = markupType;
@@ -82,7 +106,7 @@ const updateMarkup = async (req, res, next) => {
 //Delete a Markup
 const deleteMarkup = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteMarkup = await MarkUp.findByIdAndDelete(_id);
     if (deleteMarkup) {
       res.status(201).json({
@@ -101,4 +125,10 @@ const deleteMarkup = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewMarkup, getAllMarkups, updateMarkup, deleteMarkup };
+module.exports = {
+  createNewMarkup,
+  getAllMarkups,
+  updateMarkup,
+  deleteMarkup,
+  getSingleMarkUp,
+};

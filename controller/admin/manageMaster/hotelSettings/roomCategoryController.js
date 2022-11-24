@@ -52,10 +52,34 @@ const getAllRoomCategory = async (req, res, next) => {
   }
 };
 
+//Get Single RoomCategory
+const getSingleRoomCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleRoomCategory = await RoomCategory.findById(_id).exec();
+
+    if (singleRoomCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single RoomCategory Fetched!",
+        response: singleRoomCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single RoomCategory Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update Room Category
 const updateRoomCategory = async (req, res, next) => {
   try {
-    const { _id, roomCategory, categoryCode, roomArea } = req.body;
+    const { id: _id } = req.params;
+    const { roomCategory, categoryCode, roomArea } = req.body;
 
     const finalRoomCategory = await RoomCategory.findById(_id).exec();
 
@@ -86,7 +110,7 @@ const updateRoomCategory = async (req, res, next) => {
 //Delete Room Category
 const deleteRoomCategory = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
     const deleteCategory = await RoomCategory.findByIdAndDelete(_id);
 
     if (deleteCategory) {
@@ -109,6 +133,7 @@ const deleteRoomCategory = async (req, res, next) => {
 module.exports = {
   createNewRoomCategory,
   getAllRoomCategory,
+  getSingleRoomCategory,
   updateRoomCategory,
   deleteRoomCategory,
 };

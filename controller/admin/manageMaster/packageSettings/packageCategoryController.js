@@ -50,10 +50,35 @@ const getAllPackageCategory = async (req, res, next) => {
   }
 };
 
+//Get Single PackageCategory
+const getSinglePackageCategory = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singlePackageCategory = await PackageCategory.findById(_id).exec();
+
+    if (singlePackageCategory) {
+      res.status(201).json({
+        error: false,
+        message: "Single PackageCategory Fetched!",
+        response: singlePackageCategory,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single PackageCategory Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update a Package Category
 const updatePackageCategory = async (req, res, next) => {
   try {
-    const { _id, packageCategory, categoryCode } = req.body;
+    const { id: _id } = req.params;
+
+    const { packageCategory, categoryCode } = req.body;
 
     const finalPackageCategory = await PackageCategory.findById(_id);
     finalPackageCategory.packageCategory = packageCategory;
@@ -82,7 +107,7 @@ const updatePackageCategory = async (req, res, next) => {
 //Delete a package Category
 const deletePackageCategory = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteCategory = await PackageCategory.findByIdAndDelete(_id);
 
@@ -105,6 +130,7 @@ const deletePackageCategory = async (req, res, next) => {
 
 module.exports = {
   getAllPackageCategory,
+  getSinglePackageCategory,
   createNewPackageCategory,
   updatePackageCategory,
   deletePackageCategory,

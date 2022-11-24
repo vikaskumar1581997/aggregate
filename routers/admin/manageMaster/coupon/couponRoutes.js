@@ -9,13 +9,14 @@ router.post(
 );
 
 router.get("/coupon", couponController.getAllCoupon);
+router.get("/coupon/:id", couponController.getSingleCoupon);
 
 router.put(
-  "/coupon",
+  "/coupon/:id",
   upload.single("couponImage"),
   couponController.updateCoupon
 );
 
-router.delete("/:_id", couponController.deleteCoupon);
+router.delete("/coupon/:id", couponController.deleteCoupon);
 
 module.exports = router;

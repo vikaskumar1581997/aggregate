@@ -56,18 +56,36 @@ const getAllTAndC = async (req, res, next) => {
   }
 };
 
+//Get Single TAndC
+const getSingleTAndC = async (req, res, next) => {
+  try {
+    const { id: _id } = req.params;
+    const singleTermsConditions = await TermsConditions.findById(_id).exec();
+
+    if (singleTermsConditions) {
+      res.status(201).json({
+        error: false,
+        message: "Single TermsConditions Fetched!",
+        response: singleTermsConditions,
+      });
+    } else {
+      res.status(400).json({
+        error: true,
+        message: "Single TermsConditions Not Fetched!",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Update T&C
 const updateTAndC = async (req, res, next) => {
   try {
-    const {
-      _id,
-      descriptionType,
-      tagLine,
-      termsCode,
-      description,
-      country,
-      state,
-    } = req.body;
+    const { id: _id } = req.params;
+
+    const { descriptionType, tagLine, termsCode, description, country, state } =
+      req.body;
 
     const finalTAndC = await TermsConditions.findById(_id);
 
@@ -101,7 +119,7 @@ const updateTAndC = async (req, res, next) => {
 //Delete T&C
 const deleteTAndC = async (req, res, next) => {
   try {
-    const { _id } = req.params;
+    const { id: _id } = req.params;
 
     const deleteTC = await TermsConditions.findByIdAndDelete({ _id });
 
@@ -123,4 +141,10 @@ const deleteTAndC = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewTAndC, updateTAndC, getAllTAndC, deleteTAndC };
+module.exports = {
+  createNewTAndC,
+  updateTAndC,
+  getAllTAndC,
+  deleteTAndC,
+  getSingleTAndC,
+};
