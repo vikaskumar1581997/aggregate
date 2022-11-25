@@ -5,17 +5,49 @@ const shikaraSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  category: {},
-  status: {},
-  description: {},
-  country: {},
-  state: {},
-  place: {},
-  contactPerson: {},
-  contactEmail: {},
-  address: {},
-  contactMobile: {},
-  emiDetails: {},
+  category: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  place: {
+    type: String,
+    required: true,
+  },
+  contactPerson: {
+    type: String,
+    required: true,
+  },
+  contactEmail: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  contactMobile: {
+    type: String,
+    required: true,
+  },
+  emiDetails: {
+    type: String,
+  },
   inclusion: {
     type: [String],
   },

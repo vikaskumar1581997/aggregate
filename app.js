@@ -121,6 +121,11 @@ app.use(
 );
 
 app.use(
+  "/registration/shikaraSettings",
+  require("./routers/admin/registration/shikara/shikaraRoutes")
+);
+
+app.use(
   "/companyProfile",
   require("./routers/admin/companyProfile/comapnyProfileRoutes")
 );
