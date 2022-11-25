@@ -7,7 +7,6 @@ const port = process.env.PORT || 3000;
 const passport = require("passport");
 const passportStrategy = require("./controller/passport");
 
-
 const session = require("express-session");
 // After you declare "app"
 app.use(session({ secret: "melody hensley is my spirit animal" }));
@@ -114,6 +113,16 @@ app.use(
 app.use(
   "/registration/packageSettings",
   require("./routers/admin/registration/package_/packageRoute")
+);
+
+app.use(
+  "/registration/houseboatSettings",
+  require("./routers/admin/registration/houseboat/houseboatRoutes")
+);
+
+app.use(
+  "/companyProfile",
+  require("./routers/admin/companyProfile/comapnyProfileRoutes")
 );
 
 app.listen(port, () => {
