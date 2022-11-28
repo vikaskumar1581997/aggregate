@@ -6,6 +6,8 @@ require("dotenv").config();
 const port = process.env.PORT || 3000;
 const passport = require("passport");
 const passportStrategy = require("./controller/passport");
+var util= require('util');
+var encoder = new util.TextEncoder('utf-8');
 
 const session = require("express-session");
 
