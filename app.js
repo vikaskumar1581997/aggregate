@@ -9,7 +9,13 @@ const passportStrategy = require("./controller/passport");
 
 const session = require("express-session");
 // After you declare "app"
-app.use(session({ secret: "melody hensley is my spirit animal" }));
+app.use(
+  session({
+    secret: "melody hensley is my spirit animal",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

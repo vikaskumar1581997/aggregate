@@ -73,9 +73,13 @@ const updateHouseBoat = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
     const houseboatData = req.body;
-    const upadatedHouseBoat = await findOneAndUpdate(_id, houseboatData, {
-      new: true,
-    });
+    const upadatedHouseBoat = await HouseBoatModel.findOneAndUpdate(
+      _id,
+      houseboatData,
+      {
+        new: true,
+      }
+    );
 
     if (upadatedHouseBoat) {
       res.status(201).json({
