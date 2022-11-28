@@ -21,6 +21,7 @@ const creditLimitCreate = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.log(error);
   }
 };
 
@@ -45,6 +46,7 @@ const singleAgentLimit = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.log(error);
   }
 };
 
@@ -74,6 +76,7 @@ const updateCreditLimit = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.log(error);
   }
 };
 
