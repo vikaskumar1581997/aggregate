@@ -3,12 +3,9 @@ const Country = require("../../../../model/admin/manageMaster/locationSettings/c
 //Create a County
 const createNewCountry = async (req, res, next) => {
   try {
-    const { marketType, region, countryCode, countryName } = req.body;
+    const country = req.body;
     const countryData = await Country.create({
-      marketType,
-      region,
-      countryCode,
-      countryName,
+      country,
     });
     if (countryData) {
       res.status(201).json({
@@ -78,16 +75,11 @@ const updateCountry = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const { marketType, region, countryCode, countryName } = req.body;
+    const country = req.body;
 
-    const finalCountry = await Country.findById(_id).exec();
-
-    finalCountry.marketType = marketType;
-    finalCountry.region = region;
-    finalCountry.countryCode = countryCode;
-    finalCountry.countryName = countryName;
-
-    const updatedCountry = await finalCountry.save();
+    const updatedCountry = await Country.findOneAndUpdate(_id, country, {
+      new: true,
+    });
 
     if (updatedCountry) {
       res.status(201).json({

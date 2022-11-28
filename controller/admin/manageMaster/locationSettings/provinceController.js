@@ -3,14 +3,10 @@ const Province = require("../../../../model/admin/manageMaster/locationSettings/
 //Create a Province
 const createNewProvince = async (req, res, next) => {
   try {
-    const { country, stateCode, stateName, latitude, longitude } = req.body;
-    const provinceData = await Province.create({
-      country,
-      stateCode,
-      stateName,
-      latitude,
-      longitude,
-    });
+    const province = req.body;
+
+    const provinceData = await Province.create(province);
+
     if (provinceData) {
       res.status(201).json({
         error: false,
@@ -79,17 +75,11 @@ const updateProvince = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const { country, stateCode, stateName, latitude, longitude } = req.body;
+    const province = req.body;
 
-    const finalProvince = await Province.findById(_id).exec();
-
-    finalProvince.country = country;
-    finalProvince.stateCode = stateCode;
-    finalProvince.stateName = stateName;
-    finalProvince.latitude = latitude;
-    finalProvince.longitude = longitude;
-
-    const updatedProvince = await finalProvince.save();
+    const updatedProvince = await Province.findOneAndUpdate(_id, province, {
+      new: true,
+    });
 
     if (updatedProvince) {
       res.status(201).json({

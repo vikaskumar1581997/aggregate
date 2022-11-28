@@ -3,17 +3,9 @@ const TermsConditions = require("../../../../model/admin/manageMaster/packageSet
 //Create a new T&C
 const createNewTAndC = async (req, res, next) => {
   try {
-    const { descriptionType, tagLine, termsCode, description, country, state } =
-      req.body;
+    const tAncC = req.body;
 
-    const newTAndC = await TermsConditions.create({
-      descriptionType,
-      tagLine,
-      termsCode,
-      description,
-      country,
-      state,
-    });
+    const newTAndC = await TermsConditions.create(tAncC);
 
     if (newTAndC) {
       res.status(201).json({
@@ -84,19 +76,11 @@ const updateTAndC = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const { descriptionType, tagLine, termsCode, description, country, state } =
-      req.body;
+    const tAncC = req.body;
 
-    const finalTAndC = await TermsConditions.findById(_id);
-
-    finalTAndC.descriptionType = descriptionType;
-    finalTAndC.tagLine = tagLine;
-    finalTAndC.termsCode = termsCode;
-    finalTAndC.description = description;
-    finalTAndC.country = country;
-    finalTAndC.state = state;
-
-    const updatedTAndC = await finalTAndC.save();
+    const updatedTAndC = await TermsConditions.findOneAndUpdate(_id, tAncC, {
+      new: true,
+    });
 
     if (updatedTAndC) {
       res.status(201).json({

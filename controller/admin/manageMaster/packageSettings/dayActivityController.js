@@ -3,16 +3,9 @@ const DayActivity = require("../../../../model/admin/manageMaster/packageSetting
 //Create New Day Activity
 const createNewDayActivity = async (req, res, next) => {
   try {
-    const { country, place, dayActivityName, dayActivityCode, dayDescription } =
-      req.body;
+    const dayActivity = req.body;
 
-    const newDayActivity = await DayActivity.create({
-      country,
-      place,
-      dayActivityName,
-      dayActivityCode,
-      dayDescription,
-    });
+    const newDayActivity = await DayActivity.create(dayActivity);
 
     if (newDayActivity) {
       res.status(201).json({
@@ -83,17 +76,13 @@ const updateDayActivity = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const { country, place, dayActivityName, dayActivityCode, dayDescription } =
-      req.body;
+    const dayActivity = req.body;
 
-    const finalDayActivity = await DayActivity.findById(_id);
-    finalDayActivity.country = country;
-    finalDayActivity.place = place;
-    finalDayActivity.dayActivityName = dayActivityName;
-    finalDayActivity.dayActivityCode = dayActivityCode;
-    finalDayActivity.dayDescription = dayDescription;
-
-    const updatedDayActivity = await finalDayActivity.save();
+    const updatedDayActivity = await DayActivity.findOneAndUpdate(
+      _id,
+      dayActivity,
+      { new: true }
+    );
 
     if (updatedDayActivity) {
       res.status(201).json({

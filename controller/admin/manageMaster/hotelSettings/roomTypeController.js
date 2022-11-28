@@ -3,27 +3,9 @@ const RoomType = require("../../../../model/admin/manageMaster/hotelSettings/roo
 //Create Room Type
 const createNewRoomType = async (req, res, next) => {
   try {
-    const {
-      code,
-      tagLine,
-      selfValue,
-      noMeals,
-      lunch,
-      dinner,
-      fullBoard,
-      halfBoard,
-    } = req.body;
+    const roomType = req.body;
 
-    const roomTypeData = await RoomType.create({
-      code,
-      tagLine,
-      selfValue,
-      noMeals,
-      lunch,
-      dinner,
-      fullBoard,
-      halfBoard,
-    });
+    const roomTypeData = await RoomType.create(roomType);
 
     if (roomTypeData) {
       res.status(201).json({
@@ -93,29 +75,11 @@ const updateRoomType = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const {
-      code,
-      tagLine,
-      selfValue,
-      noMeals,
-      lunch,
-      dinner,
-      fullBoard,
-      halfBoard,
-    } = req.body;
+    const roomType = req.body;
 
-    const finalRoomType = await RoomType.findById(_id).exec();
-
-    finalRoomType.code = code;
-    finalRoomType.tagLine = tagLine;
-    finalRoomType.selfValue = selfValue;
-    finalRoomType.noMeals = noMeals;
-    finalRoomType.lunch = lunch;
-    finalRoomType.dinner = dinner;
-    finalRoomType.fullBoard = fullBoard;
-    finalRoomType.halfBoard = halfBoard;
-
-    const updatedRoomType = await finalRoomType.save();
+    const updatedRoomType = await RoomType.findOneAndUpdate(_id, roomType, {
+      new: true,
+    });
 
     if (updatedRoomType) {
       res.status(201).json({

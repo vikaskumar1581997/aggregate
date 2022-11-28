@@ -3,23 +3,9 @@ const Destination = require("../../../../model/admin/manageMaster/locationSettin
 //Create a Destination
 const createNewDestination = async (req, res, next) => {
   try {
-    const {
-      country,
-      province,
-      destinationCode,
-      destinationName,
-      latitude,
-      longitude,
-    } = req.body;
+    const destination = req.body;
 
-    const destinationData = await Destination.create({
-      country,
-      province,
-      destinationCode,
-      destinationName,
-      latitude,
-      longitude,
-    });
+    const destinationData = await Destination.create(destination);
 
     if (destinationData) {
       res.status(201).json({
@@ -89,25 +75,13 @@ const updateDestination = async (req, res, next) => {
   try {
     const { id: _id } = req.params;
 
-    const {
-      country,
-      province,
-      destinationCode,
-      destinationName,
-      latitude,
-      longitude,
-    } = req.body;
+    const destination = req.body;
 
-    const finalDestination = await Destination.findById(_id).exec();
-
-    finalDestination.country = country;
-    finalDestination.province = province;
-    finalDestination.destinationCode = destinationCode;
-    finalDestination.destinationName = destinationName;
-    finalDestination.latitude = latitude;
-    finalDestination.longitude = longitude;
-
-    const updatedDestination = await finalDestination.save();
+    const updatedDestination = await Destination.findOneAndDelete(
+      _id,
+      destination,
+      { new: true }
+    );
 
     if (updatedDestination) {
       res.status(201).json({
