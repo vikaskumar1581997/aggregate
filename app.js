@@ -6,14 +6,18 @@ require("dotenv").config();
 const port = process.env.PORT || 3000;
 const passport = require("passport");
 const passportStrategy = require("./controller/passport");
-var util= require('util');
-var encoder = new util.TextEncoder('utf-8');
 
 const session = require("express-session");
 
 
 // After you declare "app"
-app.use(session({ secret: "melody hensley is my spirit animal" }));
+app.use(
+  session({
+    secret: "melody hensley is my spirit animal",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -117,6 +121,21 @@ app.use(
 app.use(
   "/registration/packageSettings",
   require("./routers/admin/registration/package_/packageRoute")
+);
+
+app.use(
+  "/registration/houseboatSettings",
+  require("./routers/admin/registration/houseboat/houseboatRoutes")
+);
+
+app.use(
+  "/registration/shikaraSettings",
+  require("./routers/admin/registration/shikara/shikaraRoutes")
+);
+
+app.use(
+  "/companyProfile",
+  require("./routers/admin/companyProfile/comapnyProfileRoutes")
 );
 
 app.listen(port, () => {
