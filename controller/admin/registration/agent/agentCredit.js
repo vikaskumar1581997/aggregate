@@ -4,7 +4,6 @@ const CreditLimit = require("../../../../model/admin/registration/agent/agentAct
 const creditLimitCreate = async (req, res, next) => {
   try {
     const agentData = req.body;
-
     const agentLimit = await CreditLimit.create(agentData);
 
     if (agentLimit) {

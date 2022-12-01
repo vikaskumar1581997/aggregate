@@ -15,4 +15,4 @@ const creditLimitModel = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("CreditLimit", creditLimitModel);
+module.exports = mongoose.model("AgentCreditLimit", creditLimitModel);
