@@ -21,13 +21,31 @@ const empSchema = mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
-  dateOfBirth: { type: String, required: true },
-  email: { type: String, required: true },
-  mobileNumber: { type: String, required: true },
-  zipCode: { type: String, required: true },
-  faxNumber: { type: String },
-  telNumber: { type: String },
-  address: { type: String },
+  dateOfBirth: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  mobileNumber: {
+    type: String,
+    required: true,
+  },
+  zipCode: {
+    type: String,
+    required: true,
+  },
+  faxNumber: {
+    type: String,
+  },
+  telNumber: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Employee", empSchema);

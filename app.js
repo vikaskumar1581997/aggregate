@@ -9,7 +9,6 @@ const passportStrategy = require("./controller/passport");
 
 const session = require("express-session");
 
-
 // After you declare "app"
 app.use(
   session({
