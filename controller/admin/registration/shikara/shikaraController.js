@@ -74,9 +74,13 @@ const updateShikara = async (req, res, next) => {
     const { id: _id } = req.params;
 
     const shikaraData = req.body;
-    const updatedShikara = await findOneAndUpdate(_id, shikaraData, {
-      new: true,
-    });
+    const updatedShikara = await ShikaraModel.findOneAndUpdate(
+      _id,
+      shikaraData,
+      {
+        new: true,
+      }
+    );
 
     if (updatedShikara) {
       res.status(201).json({
