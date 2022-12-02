@@ -7,7 +7,7 @@ passport.use(
       clientID:
         "450325183388-20c9s5nuqmjl4qfjp5bkhpsnjc2gver9.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "/auth/google/callback",
+      callbackURL: "http://localhost:2800/google/callback",
       scope: ["profile", "email"],
     },
     function (accessToken, refreshToken, profile, callback) {

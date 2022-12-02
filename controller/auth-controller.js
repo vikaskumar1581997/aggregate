@@ -2,6 +2,7 @@ const express = require("express");
 const userModel = require("../model/userModel.js");
 const {createJwtToken} = require("../middleware/auth-middleware");
 const {generateOTP,fast2sms} = require("../config/Otp")
+const jwt=require("jsonwebtoken")
 
 const isValid = function (value) {
   if (typeof value === "undefined" || value === null) return false;
@@ -40,9 +41,9 @@ const sendOTP = async function (req, res, next) {
     if (!existingUser) {
       console.log(otp)
       res.setHeader("x-auth-key", token);
-      res.status(403).send({ message: "User not registered",otp:otp });
+      res.status(403).send({ message: "User not registered",otp:otp,token:token });
     } else {
-      res.status(200).send({ message: "sent OTP successfully", otp: otp });
+      res.status(200).send({ message: "sent OTP successfully", otp: otp,token:token });
     }
 
     
@@ -53,17 +54,18 @@ const sendOTP = async function (req, res, next) {
 
 const login = async function (req, res, next) {
   try {
-    const { mob_No, otp_input } = req.body;
+    const {phone,inputOTP } = req.body;
     let token = req.headers.authorization;
     let newtoken = token.split(" ");
     jwt.verify(
       newtoken[1],
       process.env.jwtSecret,
       { ignoreExpiration: true },
-      async function (error, decodedToken) {
-        req.otp = decodedToken.otp;
-        if (otp_input === otp) {
-          const user_Name = await userModel.findOne({ phone: mob_No });
+      async function (error, otp) {
+        req.otp = otp;
+        if (inputOTP === otp) {
+          const user_Name = await userModel.findOne({ phone:phone });
+          console.log(user_Name);
           return res.status(200).send({
             user_Name: user_Name.name,
             message: "OTP matched",
@@ -71,6 +73,7 @@ const login = async function (req, res, next) {
         } else {
           return res.status(401).send({
             message: "wrong OTP input",
+            otp:otp
           });
         }
       }
@@ -84,13 +87,14 @@ const login = async function (req, res, next) {
 
 const signUp = async function (req, res, next) {
   try {
+    //frontend:- //body will have phone name email and header will have token
     let user = req.body;
-
-    if (!isvalidRequest(user)) {
-      return res
-        .status(400)
-        .send({ status: false, message: "please provide required details" });
-    }
+console.log(user)
+    // if (!isvalidRequest(user)) {
+    //   return res
+    //     .status(400)
+    //     .send({ status: false, message: "please provide required details" });
+    // }
     // const { name, email, phone } = req.body;
 
     //============name validation============
@@ -110,7 +114,7 @@ const signUp = async function (req, res, next) {
 
     //========email validation=================
     if (!user.email) {
-      return res.status(400).send({ msg: " Email name is required " });
+      return res.status(400).send({ msg: " Email namefghbd is required " });
     }
     if (!isValid(user.email)) {
       return res.status(400).send({
@@ -134,11 +138,38 @@ const signUp = async function (req, res, next) {
 
     //====================================
 
-    const savedUser = await userModel.create(user);
-    return res.status(201).send({
-      "message": "user registered",
-      "data": savedUser,
-    });
+       let token = req.headers.authorization;
+    let newtoken = token.split(" ");
+    jwt.verify(
+      newtoken[1],
+      process.env.jwtSecret,
+      { ignoreExpiration: true },
+      async function (error, otp) {
+        req.otp = otp;
+        if (user.inputOTP === otp) {
+          const savedUser = await userModel.create(user);
+          return res.status(201).send({
+            message: "user registered",
+            data: savedUser,
+          });
+          
+        } else {
+          return res.status(401).send({
+            message: "wrong OTP input",
+            otp:otp
+          });
+        }
+      })
+
+
+
+
+    //=================
+    // const savedUser = await userModel.create(user);
+    // return res.status(201).send({
+    //   "message": "user registered",
+    //   "data": savedUser,
+    // });
   } catch (err) {
     next(err);
   }

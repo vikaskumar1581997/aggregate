@@ -21,20 +21,40 @@ exports.hotelRegistration = async (req, res, next) => {
   }
 };
 
+
+// exports.hotelRegistration = async (req, res, next) => {
+//   try {
+//     const hotelData = req.body;
+//     if (!hotelData) {
+//       return res.status(400).json({ msg: "data missing" });
+//     }
+
+//     const savedHotel = await hotelModel.create(hotelData);
+
+//     return res.status(201).json({
+//       status: true,
+//       msg: "hotel registered successfully",
+//       data: savedHotel,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 exports.updateHotel = async (req, res, next) => {
   try {
-    const hotelId = req.params.id;
+    const hotelId = req.query.id;
     const hotelData = req.body;
     if (!hotelData) {
       return res.status(400).json({ msg: "data missing" });
     }
-
+    console.log(hotelId)
     const updatedHotel = await hotelModel.findOneAndUpdate(
       { _id: hotelId },
       hotelData,
       { new: true }
     );
-
+      console.log(updatedHotel);
     return res.status(200).json({
       status: true,
       msg: "hotel updated successfully",
@@ -48,9 +68,9 @@ exports.updateHotel = async (req, res, next) => {
 
 exports.deleteHotel = async (req, res, next) => {
   try {
-    const hotelId = req.params.id;
+    const hotelId = req.query.id;
     // const hotelData = req.body;
-    if (!hotelData) {
+    if (!hotelId) {
       return res.status(400).json({ msg: "data missing" });
     }
 
