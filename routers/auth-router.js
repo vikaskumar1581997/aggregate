@@ -7,7 +7,7 @@ const adminAndPartnerControllers = require("../controller/admin/adminloginAndReg
 router.post("/sendOTP", auth_Controllers.sendOTP);
 router.post("/login", auth_Controllers.login);
 router.post("/signUp", auth_Controllers.signUp);
-//router.post("/deletion", auth_Controllers.userDeletion);
+//router.delete("/deletion", auth_Controllers.userDeletion);
 
 //========login with google routes=======================
 router.get("/google", passport.authenticate("google",{scope: ["profile", "email"]}));
@@ -54,12 +54,12 @@ router.post(
 
 router.post("/adminlogin", adminAndPartnerControllers.adminAndPartnerLogin);
 
-router.post(
+router.put(
   "/adminupdation",
   adminAndPartnerControllers.adminAndPartnerUpdation
 );
 
-router.post(
+router.delete(
   "/admindeletion",
   adminAndPartnerControllers.adminAndPartnerDeletion
 );

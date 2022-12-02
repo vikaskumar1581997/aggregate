@@ -22,24 +22,14 @@ exports.hotelRegistration = async (req, res, next) => {
 };
 
 
-// exports.hotelRegistration = async (req, res, next) => {
-//   try {
-//     const hotelData = req.body;
-//     if (!hotelData) {
-//       return res.status(400).json({ msg: "data missing" });
-//     }
 
-//     const savedHotel = await hotelModel.create(hotelData);
-
-//     return res.status(201).json({
-//       status: true,
-//       msg: "hotel registered successfully",
-//       data: savedHotel,
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+exports.getHotelList = async (req, res, next) => {
+  const hotelsList = await hotelModel.find()
+  return res.status(200).json({
+    status: true,
+    List: hotelsList,
+  });
+};
 
 exports.updateHotel = async (req, res, next) => {
   try {

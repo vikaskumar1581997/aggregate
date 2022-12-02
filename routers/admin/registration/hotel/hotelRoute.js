@@ -4,9 +4,11 @@ const hotelControllers = require("../../../../controller/admin/registration/hote
 const hotelImageControllers = require("../../../../controller/admin/registration/hotel/hotelActions/hotelProfilePic");
 const roomImageControllers = require("../../../../controller/admin/registration/hotel/hotelActions/roomImageUpload");
 
+
 router.post("/createHotel", hotelControllers.hotelRegistration);
-router.post("/updateHotel", hotelControllers.updateHotel);
-router.post("/deleteHotel", hotelControllers.deleteHotel);
+router.put("/updateHotel", hotelControllers.updateHotel);
+router.delete("/deleteHotel", hotelControllers.deleteHotel);
+router.get("/getHotelList", hotelControllers.getHotelList);
 
 
 router.post(

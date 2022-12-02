@@ -11,6 +11,7 @@ const isvalidRequest = function (requestBody) {
   return Object.keys(requestBody).length > 0;
 };
 
+//=========================================================
 exports.adminAndPartnerRegistration = async (req, res, next) => {
   try {
     const data = req.body;
@@ -104,13 +105,13 @@ exports.adminAndPartnerLogin = async (req, res, next) => {
   });
 };
 
-//=========================================
+//==========================================================
 
 exports.adminAndPartnerUpdation = async (req, res, next) => {
   try {
     const data = req.body;
     const id = req.query.id;
-    
+
     if (!isvalidRequest(data)) {
       res.status(400).json({
         status: false,
@@ -159,6 +160,15 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
         .status(400)
         .json({ status: false, message: "email Id is invalid" });
     }
+    const emailcheck = await adminAndPartnerModel.findOne({
+      email: req.body.email,
+    });
+    if (emailcheck) {
+      return res.status(400).json({
+        status: false,
+        messgae: "email already in use",
+      });
+    }
 
     const updatedAdmin = await adminAndPartnerModel.findOneAndUpdate(
       { _id: id, isDeleted: false },
@@ -181,6 +191,10 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
     next(err);
   }
 };
+
+
+//======================================================
+
 
 exports.adminAndPartnerDeletion = async (req, res, next) => {
   try {
