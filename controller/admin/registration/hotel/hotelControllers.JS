@@ -1,7 +1,6 @@
 //const express = require("express");
 const hotelModel = require("../../../../model/admin/registration/hotel/hotelModel");
 
-
 exports.hotelRegistration = async (req, res, next) => {
   try {
     const hotelData = req.body;
@@ -14,7 +13,7 @@ exports.hotelRegistration = async (req, res, next) => {
     return res.status(201).json({
       status: true,
       msg: "hotel registered successfully",
-      data:savedHotel
+      data: savedHotel,
     });
   } catch (err) {
     next(err);
@@ -38,13 +37,12 @@ exports.updateHotel = async (req, res, next) => {
     return res.status(200).json({
       status: true,
       msg: "hotel updated successfully",
-      data:updatedHotel
+      data: updatedHotel,
     });
   } catch (err) {
     next(err);
   }
 };
-
 
 exports.deleteHotel = async (req, res, next) => {
   try {
@@ -56,17 +54,15 @@ exports.deleteHotel = async (req, res, next) => {
 
     const deletedHotel = await hotelModel.findOneAndUpdate(
       { _id: hotelId },
-     {isDeleted:true}
+      { isDeleted: true }
     );
 
     return res.status(200).json({
       status: true,
       msg: "hotel deleted successfully",
-      data:deletedHotel
+      data: deletedHotel,
     });
   } catch (err) {
     next(err);
   }
 };
-
-

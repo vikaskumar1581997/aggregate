@@ -68,6 +68,7 @@ const getSingleOccupancyType = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
