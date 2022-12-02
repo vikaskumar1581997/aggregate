@@ -4,29 +4,50 @@ const houseBoatTypeController = require("../../../../controller/admin/manageMast
 const HBTRCController = require("../../../../controller/admin/manageMaster/houseboatSettings/houseboatRoomCategoryController");
 const HBRTController = require("../../../../controller/admin/manageMaster/houseboatSettings/houseBoatRoomTypeController");
 
-router.post("/houseboatType", houseBoatTypeController.createNewHouseBoatType);
-router.post("/houseboatRoomCategory", HBTRCController.createNewHBTRCategory);
-router.post("/houseboatRoomType", HBRTController.createNewHBRT);
+router.post(
+  "/createHouseboatType",
+  houseBoatTypeController.createNewHouseBoatType
+);
+router.post(
+  "/createHouseboatRoomCategory",
+  HBTRCController.createNewHBTRCategory
+);
+router.post("/createHouseboatRoomType", HBRTController.createNewHBRT);
 
-router.get("/houseboatType", houseBoatTypeController.getAllHouseBoatType);
+router.get("/getHouseboatType", houseBoatTypeController.getAllHouseBoatType);
 router.get(
-  "/houseboatType/:id",
+  "/getOneHouseboatType/:id",
   houseBoatTypeController.getSingleHouseBoatType
 );
-router.get("/houseboatRoomCategory", HBTRCController.getAllHBTRCategory);
-router.get("/houseboatRoomCategory/:id", HBTRCController.getSingleHBTRCategory);
-router.get("/houseboatRoomType", HBRTController.getAllHBRT);
-router.get("/houseboatRoomType/:id", HBRTController.getSingleHouseBoatRoomType);
+router.get("/getHouseboatRoomCategory", HBTRCController.getAllHBTRCategory);
+router.get(
+  "/getOneHouseboatRoomCategory/:id",
+  HBTRCController.getSingleHBTRCategory
+);
+router.get("/getHouseboatRoomType", HBRTController.getAllHBRT);
+router.get(
+  "/getOneHouseboatRoomType/:id",
+  HBRTController.getSingleHouseBoatRoomType
+);
 
-router.put("/houseboatType/:id", houseBoatTypeController.updateHouseBoatType);
-router.put("/houseboatRoomCategory/:id", HBTRCController.updateHBTRCategory);
-router.put("/houseboatRoomType/:id", HBRTController.updateHBRT);
+router.put(
+  "/updateHouseboatType/:id",
+  houseBoatTypeController.updateHouseBoatType
+);
+router.put(
+  "/updateHouseboatRoomCategory/:id",
+  HBTRCController.updateHBTRCategory
+);
+router.put("/updateHouseboatRoomType/:id", HBRTController.updateHBRT);
 
 router.delete(
-  "/houseboatType/:id",
+  "/deleteHouseboatType/:id",
   houseBoatTypeController.deleteHouseBoatType
 );
-router.delete("/houseboatRoomCategory/:id", HBTRCController.deleteHBTRCategory);
-router.delete("/houseboatRoomType/:id", HBRTController.deleteHBRT);
+router.delete(
+  "/deleteHouseboatRoomCategory/:id",
+  HBTRCController.deleteHBTRCategory
+);
+router.delete("/deleteHouseboatRoomType/:id", HBRTController.deleteHBRT);
 
 module.exports = router;

@@ -9,7 +9,7 @@ router.post(
 );
 
 router.get("/getEmployee", employeeController.getAllEmployee);
-router.get("/getEmployee/:id", employeeController.getSingleEmployee);
+router.get("/getOneEmployee/:id", employeeController.getSingleEmployee);
 
 router.put(
   "/updateEmployee/:id",

@@ -17,7 +17,7 @@ router.post("/createPackageRate", packageRate.packageRateCreate);
 router.post("/createPackagePromotion", packagePromotion.createPackagePromotion);
 
 router.get("/getPackage", packageController.getAllPackage);
-router.get("/getPackage/:id", packageController.getSinglePackage);
+router.get("/getOnePackage/:id", packageController.getSinglePackage);
 router.get("/getPackageRate/:id", packageRate.getPackageRate);
 router.get("/getPackagePromotion/:id", packagePromotion.getPackagePromotion);
 

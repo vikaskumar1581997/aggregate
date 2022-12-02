@@ -20,7 +20,7 @@ router.post(
 );
 
 router.get("/createHouseboat", HouseBoatController.getAllHouseBoat);
-router.get("/createHouseboat/:id", HouseBoatController.getSingleHouseBoat);
+router.get("/createOneHouseboat/:id", HouseBoatController.getSingleHouseBoat);
 router.get("/createHouseboatContract/:id", HouseboatContract.getSingleContract);
 router.get(
   "/createHouseboatPromotion/:id",
