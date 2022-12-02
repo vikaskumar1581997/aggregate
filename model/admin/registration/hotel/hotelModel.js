@@ -20,7 +20,7 @@ const hotel_Schema = new mongoose.Schema({
     required: true,
   },
   sanitizedStay: {
-    type: String,
+    type: Boolean,
     required: true,
   },
 
