@@ -16,6 +16,8 @@ const isvalidRequest = function (requestBody) {
   return Object.keys(requestBody).length > 0;
 };
 
+
+
 const sendOTP = async function (req, res, next) {
   try {
     const user = req.body;
@@ -176,5 +178,22 @@ const signUp = async function (req, res, next) {
     next(err);
   }
 };
+
+// const userDeletion =async(req,res,next)=>{
+//   try {
+//     id = req.query.id;
+
+//     const deletedUser = await adminAndPartnerModel.findOneAndUpdate(
+//       { _id: id },
+//       { isDeleted: true }
+//     );
+
+//     return res.status(201).send({
+//       message: "user deleted",
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// }
 
 module.exports = { sendOTP, login, signUp };

@@ -4,8 +4,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const port = process.env.PORT || 3000;
-const passport = require("passport");
-const passportStrategy = require("./controller/passport");
+
+const passport=require("passport")
+
 
 const session = require("express-session");
 
@@ -65,19 +66,6 @@ const auth = require("./routers/auth-router");
 // API's
 app.use("/api/auth", auth);
 
-app.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    // successRedirect: "/login/success",
-    function(req, res) {
-      console.log("error");
-    },
-    // failureRedirect: "/login/failed",
-    function(req, res) {
-      console.log("done");
-    },
-  })
-);
 
 app.get("/", (req, res) => {
   res.send("Gods Own Country");
@@ -158,9 +146,9 @@ app.use(
   require("./routers/admin/companyProfile/comapnyProfileRoutes")
 );
 
-//app.use(express.static(__dirname));
+
 app.use(express.static(__dirname));
-//app.use("/app/uploads", express.static("uploads"));
+
 
 app.listen(port, () => {
   console.log(`App running on ${port}`);

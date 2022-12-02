@@ -70,11 +70,11 @@ exports.adminAndPartnerRegistration = async (req, res, next) => {
         .send({ status: false, message: "this EmailId already exist" });
     }
 
-    const savedAdmin = await adminAndPartnerModel.create(data);
+    const updatedAdmin = await adminAndPartnerModel.create(data);
 
     return res.status(201).send({
       message: "user registered",
-      data: savedAdmin,
+      data: updatedAdmin,
     });
   } catch (err) {
     next(err);
@@ -160,16 +160,16 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
         .json({ status: false, message: "email Id is invalid" });
     }
 
-    const savedAdmin = await adminAndPartnerModel.findOneAndUpdate(
+    const updatedAdmin = await adminAndPartnerModel.findOneAndUpdate(
       { _id: id, isDeleted: false },
       data,
       { new: true }
     );
 
-    if (savedAdmin) {
+    if (updatedAdmin) {
       return res.status(200).json({
         message: "user updated success",
-        data: savedAdmin,
+        data: updatedAdmin,
       });
     } else {
       return res.status(404).json({
@@ -186,7 +186,7 @@ exports.adminAndPartnerDeletion = async (req, res, next) => {
   try {
     id = req.query.id;
 
-    const savedAdmin = await adminAndPartnerModel.findOneAndUpdate(
+    const deletedAdmin = await adminAndPartnerModel.findOneAndUpdate(
       { _id: id },
       { isDeleted: true }
     );

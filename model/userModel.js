@@ -14,20 +14,22 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
-   
-
     email: {
       type: String,
       required: true,
       trim: true,
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
     // password: {
     //   type: String,
     //   trim: true,
     // },
 
-  //   phoneOtp: String,
-   },
+    //   phoneOtp: String,
+  },
   { timestamps: true }
 );
 

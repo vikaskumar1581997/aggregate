@@ -36,7 +36,7 @@ const hotelSchema = new mongoose.Schema(
       required: true,
     },
     sanitizedStay: {
-      type: String,
+      type: Boolean,
       required: true,
     },
 
@@ -299,4 +299,4 @@ const hotelSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model( "hotels", hotelSchema );
+module.exports = mongoose.model("hotels", hotelSchema);
