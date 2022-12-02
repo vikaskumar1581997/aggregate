@@ -7,23 +7,23 @@ const upload = require("../../../../helper/multer/multer");
 const agentCredit = require("../../../../controller/admin/registration/agent/agentCredit");
 
 router.post(
-  "/agentSettings",
+  "/createAgentSettings",
   upload.single("companyLogo"),
   agentController.createNewAgent
 );
-router.post("/agentCredit", agentCredit.creditLimitCreate);
+router.post("/createAgentCredit", agentCredit.creditLimitCreate);
 
-router.get("/agentSettings", agentController.getAllAgent);
-router.get("/agentSettings/:id", agentController.getSingleAgentModel);
-router.get("/agentCredit/:id", agentCredit.singleAgentLimit);
+router.get("/getAgentSettings", agentController.getAllAgent);
+router.get("/getAgentSettings/:id", agentController.getSingleAgentModel);
+router.get("/getAgentCredit/:id", agentCredit.singleAgentLimit);
 
 router.put(
-  "/agentSettings/:id",
+  "/updateAgentSettings/:id",
   upload.single("companyLogo"),
   agentController.updateAgent
 );
-router.put("/agentCredit/:id", agentCredit.updateCreditLimit);
+router.put("/updateAgentCredit/:id", agentCredit.updateCreditLimit);
 
-router.delete("/agentSettings/:id", agentController.deleteAgent);
+router.delete("/deleteAgentSettings/:id", agentController.deleteAgent);
 
 module.exports = router;
