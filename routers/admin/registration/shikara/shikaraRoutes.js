@@ -11,7 +11,7 @@ router.post("/createShikaraContract", shikaraContract.createNewContract);
 router.post("/createShikaraPromotion", shikaraPromotion.createPromotion);
 
 router.get("/getShikara", shikaraControllers.getAllShikara);
-router.get("/getShikara/:id", shikaraControllers.getSingleShikara);
+router.get("/getOneShikara/:id", shikaraControllers.getSingleShikara);
 router.get("/getShikaraContract/:id", shikaraContract.getSingleContract);
 router.get("/getShikaraPromotion/:id", shikaraPromotion.getSinglePromotion);
 

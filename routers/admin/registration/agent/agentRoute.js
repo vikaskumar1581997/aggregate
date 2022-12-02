@@ -14,7 +14,7 @@ router.post(
 router.post("/createAgentCredit", agentCredit.creditLimitCreate);
 
 router.get("/getAgentSettings", agentController.getAllAgent);
-router.get("/getAgentSettings/:id", agentController.getSingleAgentModel);
+router.get("/getOneAgentSettings/:id", agentController.getSingleAgentModel);
 router.get("/getAgentCredit/:id", agentCredit.singleAgentLimit);
 
 router.put(
