@@ -2,14 +2,55 @@ const router = require("express").Router();
 
 const HouseBoatController = require("../../../../controller/admin/registration/houseboat/houseboatController");
 
-router.post("/houseboat", HouseBoatController.createNewHouseBoat);
+const HouseboatContract = require("../../../../controller/admin/registration/houseboat/houseboatContract");
 
-router.get("/houseboat", HouseBoatController.getAllHouseBoat);
+const HouseboatPromotion = require("../../../../controller/admin/registration/houseboat/houseboatPromotion");
 
-router.get("/houseboat/:id", HouseBoatController.getSingleHouseBoat);
+const HouseboatPolicy = require("../../../../controller/admin/registration/houseboat/houseboatPolicy");
 
-router.put("/houseboat/:id", HouseBoatController.updateHouseBoat);
+const HBRoomAvailability = require("../../../../controller/admin/registration/houseboat/houseboatRoomAvailability");
 
-router.delete("/houseboat/:id", HouseBoatController.deleteHouseBoat);
+router.post("/createHouseboat", HouseBoatController.createNewHouseBoat);
+router.post("/createHouseboatContract", HouseboatContract.createNewContract);
+router.post("/createHouseboatPromotion", HouseboatPromotion.createPromotion);
+router.post("/createHouseboatPolicy", HouseboatPolicy.createPolicy);
+router.post(
+  "/createRoomAvailability",
+  HBRoomAvailability.createRoomAvailability
+);
+
+router.get("/createHouseboat", HouseBoatController.getAllHouseBoat);
+router.get("/createOneHouseboat/:id", HouseBoatController.getSingleHouseBoat);
+router.get("/createHouseboatContract/:id", HouseboatContract.getSingleContract);
+router.get(
+  "/createHouseboatPromotion/:id",
+  HouseboatPromotion.getSinglePromotion
+);
+router.get("/createHouseboatPolicy/:id", HouseboatPolicy.getSinglePolicy);
+router.get(
+  "/createRoomAvailability/:id",
+  HBRoomAvailability.getRoomAvailabilityByID
+);
+
+router.put("/updateHouseboat/:id", HouseBoatController.updateHouseBoat);
+router.put("/updateHouseboatContract/:id", HouseboatContract.updateContract);
+router.put("/updateHouseboatPromotion/:id", HouseboatPromotion.updatePromotion);
+router.put("/updateHouseboatPolicy/:id", HouseboatPolicy.updatePolicy);
+router.put(
+  "/updateRoomAvailability/:id",
+  HBRoomAvailability.updateRoomAvailability
+);
+
+router.delete("/deleteHouseboat/:id", HouseBoatController.deleteHouseBoat);
+router.delete("/deleteHouseboatContract/:id", HouseboatContract.deleteContract);
+router.delete(
+  "/deleteHouseboatPromotion/:id",
+  HouseboatPromotion.deletePromotion
+);
+router.delete("/deleteHouseboatPolicy/:id", HouseboatPolicy.deletePolicy);
+router.delete(
+  "/deleteRoomAvailability/:id",
+  HBRoomAvailability.deleteRoomAvailability
+);
 
 module.exports = router;

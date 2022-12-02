@@ -3,20 +3,20 @@ const employeeController = require("../../../../controller/admin/registration/em
 const upload = require("../../../../helper/multer/multer");
 
 router.post(
-  "/employee",
+  "/createEmployee",
   upload.single("profileImage"),
   employeeController.createNewEmployee
 );
 
-router.get("/employee", employeeController.getAllEmployee);
-router.get("/employee/:id", employeeController.getSingleEmployee);
+router.get("/getEmployee", employeeController.getAllEmployee);
+router.get("/getOneEmployee/:id", employeeController.getSingleEmployee);
 
 router.put(
-  "/employee/:id",
+  "/updateEmployee/:id",
   upload.single("profileImage"),
   employeeController.updateEmployee
 );
 
-router.delete("/employee/:id", employeeController.deleteEmployee);
+router.delete("/deleteEmployee/:id", employeeController.deleteEmployee);
 
 module.exports = router;

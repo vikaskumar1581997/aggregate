@@ -3,20 +3,20 @@ const couponController = require("../../../../controller/admin/manageMaster/coup
 const upload = require("../../../../helper/multer/multer");
 
 router.post(
-  "/coupon",
+  "/createCoupon",
   upload.single("couponImage"),
   couponController.createNewCoupon
 );
 
-router.get("/coupon", couponController.getAllCoupon);
-router.get("/coupon/:id", couponController.getSingleCoupon);
+router.get("/getCoupon", couponController.getAllCoupon);
+router.get("/getOneCoupon/:id", couponController.getSingleCoupon);
 
 router.put(
-  "/coupon/:id",
+  "/updateCoupon/:id",
   upload.single("couponImage"),
   couponController.updateCoupon
 );
 
-router.delete("/coupon/:id", couponController.deleteCoupon);
+router.delete("/deleteCoupon/:id", couponController.deleteCoupon);
 
 module.exports = router;
