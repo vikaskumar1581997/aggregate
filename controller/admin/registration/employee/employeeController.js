@@ -6,7 +6,7 @@ const createNewEmployee = async (req, res, next) => {
     const {
       employeeCode,
       firstName,
-      lastName,
+      lastName,  
       designation,
       dateOfBirth,
       email,

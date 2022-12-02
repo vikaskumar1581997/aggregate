@@ -21,20 +21,30 @@ exports.hotelRegistration = async (req, res, next) => {
   }
 };
 
+
+
+exports.getHotelList = async (req, res, next) => {
+  const hotelsList = await hotelModel.find()
+  return res.status(200).json({
+    status: true,
+    List: hotelsList,
+  });
+};
+
 exports.updateHotel = async (req, res, next) => {
   try {
-    const hotelId = req.params.id;
+    const hotelId = req.query.id;
     const hotelData = req.body;
     if (!hotelData) {
       return res.status(400).json({ msg: "data missing" });
     }
-
+    console.log(hotelId)
     const updatedHotel = await hotelModel.findOneAndUpdate(
       { _id: hotelId },
       hotelData,
       { new: true }
     );
-
+      console.log(updatedHotel);
     return res.status(200).json({
       status: true,
       msg: "hotel updated successfully",
@@ -48,9 +58,9 @@ exports.updateHotel = async (req, res, next) => {
 
 exports.deleteHotel = async (req, res, next) => {
   try {
-    const hotelId = req.params.id;
+    const hotelId = req.query.id;
     // const hotelData = req.body;
-    if (!hotelData) {
+    if (!hotelId) {
       return res.status(400).json({ msg: "data missing" });
     }
 
