@@ -81,7 +81,7 @@ exports.adminAndPartnerRegistration = async (req, res, next) => {
   }
 };
 
-//==================================================
+//================================================
 
 exports.adminAndPartnerLogin = async (req, res, next) => {
   const data = req.body;
@@ -110,6 +110,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
   try {
     const data = req.body;
     const id = req.query.id;
+    
     if (!isvalidRequest(data)) {
       res.status(400).json({
         status: false,
@@ -127,7 +128,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
     if (/\d/g.test(req.body.name)) {
       return res
         .status(400)
-        .send({ status: false, message: "Number is not allowed in name" });
+        .json({ status: false, message: "Number is not allowed in name" });
     }
 
     if (!isValid(req.body.phone)) {
@@ -144,10 +145,10 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
       });
 
     if (!req.body.email) {
-      return res.status(400).send({ msg: " Email name is required " });
+      return res.status(400).json({ msg: " Email name is required " });
     }
     if (!isValid(req.body.email)) {
-      return res.status(400).send({
+      return res.status(400).json({
         status: false,
         message: "please provide  email in string format",
       });
@@ -156,7 +157,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
     if (!/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(req.body.email)) {
       return res
         .status(400)
-        .send({ status: false, message: "email Id is invalid" });
+        .json({ status: false, message: "email Id is invalid" });
     }
 
     const savedAdmin = await adminAndPartnerModel.findOneAndUpdate(

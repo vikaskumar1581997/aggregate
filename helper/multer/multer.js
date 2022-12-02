@@ -40,6 +40,7 @@ var upload = multer({
     if (
       file.mimetype == "image/png" ||
       file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg" ||
       file.mimetype.split("/")[1] === "pdf"
     ) {
       callback(null, true);

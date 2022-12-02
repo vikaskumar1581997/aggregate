@@ -1,14 +1,19 @@
 const express = require("express");
 const userModel = require("../model/userModel.js");
-const {createJwtToken} = require("../middleware/auth-middleware");
-const {generateOTP,fast2sms} = require("../config/Otp")
-const jwt=require("jsonwebtoken")
+const { createJwtToken } = require("../middleware/auth-middleware");
+const { generateOTP, fast2sms } = require("../config/Otp");
+const jwt = require("jsonwebtoken");
 
 const isValid = function (value) {
   if (typeof value === "undefined" || value === null) return false;
   if (typeof value === "string" && value.trim().length === 0) return false;
   if (typeof value === "number") return false;
   return true;
+};
+
+
+const isvalidRequest = function (requestBody) {
+  return Object.keys(requestBody).length > 0;
 };
 
 const sendOTP = async function (req, res, next) {
@@ -27,7 +32,7 @@ const sendOTP = async function (req, res, next) {
       });
 
     const otp = generateOTP(6);
-    
+
     // await fast2sms({
     //   message: `Your OTP is ${otp}`,
     //   contactNumber: user.phone,
@@ -35,18 +40,20 @@ const sendOTP = async function (req, res, next) {
 
     const token = createJwtToken(otp);
 
-    const existingUser =await userModel.findOne({ phone: user.phone });
-    
-    console.log(existingUser,"db")
-    if (!existingUser) {
-      console.log(otp)
-      res.setHeader("x-auth-key", token);
-      res.status(403).send({ message: "User not registered",otp:otp,token:token });
-    } else {
-      res.status(200).send({ message: "sent OTP successfully", otp: otp,token:token });
-    }
+    const existingUser = await userModel.findOne({ phone: user.phone });
 
-    
+    console.log(existingUser, "db");
+    if (!existingUser) {
+      console.log(otp);
+      res.setHeader("x-auth-key", token);
+      res
+        .status(403)
+        .send({ message: "User not registered", otp: otp, token: token });
+    } else {
+      res
+        .status(200)
+        .send({ message: "sent OTP successfully", otp: otp, token: token });
+    }
   } catch (err) {
     next(err);
   }
@@ -54,7 +61,7 @@ const sendOTP = async function (req, res, next) {
 
 const login = async function (req, res, next) {
   try {
-    const {phone,inputOTP } = req.body;
+    const { phone, inputOTP } = req.body;
     let token = req.headers.authorization;
     let newtoken = token.split(" ");
     jwt.verify(
@@ -64,7 +71,7 @@ const login = async function (req, res, next) {
       async function (error, otp) {
         req.otp = otp;
         if (inputOTP === otp) {
-          const user_Name = await userModel.findOne({ phone:phone });
+          const user_Name = await userModel.findOne({ phone: phone });
           console.log(user_Name);
           return res.status(200).send({
             user_Name: user_Name.name,
@@ -73,7 +80,7 @@ const login = async function (req, res, next) {
         } else {
           return res.status(401).send({
             message: "wrong OTP input",
-            otp:otp
+            otp: otp,
           });
         }
       }
@@ -83,18 +90,16 @@ const login = async function (req, res, next) {
   }
 };
 
-
-
 const signUp = async function (req, res, next) {
   try {
     //frontend:- //body will have phone name email and header will have token
     let user = req.body;
-console.log(user)
-    // if (!isvalidRequest(user)) {
-    //   return res
-    //     .status(400)
-    //     .send({ status: false, message: "please provide required details" });
-    // }
+    console.log(user);
+    if (!isvalidRequest(user)) {
+      return res
+        .status(400)
+        .send({ status: false, message: "please provide required details" });
+    }
     // const { name, email, phone } = req.body;
 
     //============name validation============
@@ -138,7 +143,7 @@ console.log(user)
 
     //====================================
 
-       let token = req.headers.authorization;
+    let token = req.headers.authorization;
     let newtoken = token.split(" ");
     jwt.verify(
       newtoken[1],
@@ -152,17 +157,14 @@ console.log(user)
             message: "user registered",
             data: savedUser,
           });
-          
         } else {
           return res.status(401).send({
             message: "wrong OTP input",
-            otp:otp
+            otp: otp,
           });
         }
-      })
-
-
-
+      }
+    );
 
     //=================
     // const savedUser = await userModel.create(user);
@@ -175,7 +177,4 @@ console.log(user)
   }
 };
 
-
 module.exports = { sendOTP, login, signUp };
-
-
