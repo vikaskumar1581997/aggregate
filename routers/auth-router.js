@@ -1,20 +1,16 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const passport = require("passport");
-const auth_Controllers=require("../controller/auth-controller")
-
+const passportStrategy = require("../controller/passport");
+const auth_Controllers = require("../controller/auth-controller");
+const adminAndPartnerControllers = require("../controller/admin/adminloginAndRegistration/adminregistration");
 
 router.post("/sendOTP", auth_Controllers.sendOTP);
 router.post("/login", auth_Controllers.login);
 router.post("/signUp", auth_Controllers.signUp);
-
-
-
-
-
-
+//router.delete("/deletion", auth_Controllers.userDeletion);
 
 //========login with google routes=======================
-router.get("/google", passport.authenticate("google", ["profile", "email"]));
+router.get("/google", passport.authenticate("google",{scope: ["profile", "email"]}));
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
@@ -49,8 +45,23 @@ router.get(
   })
 );
 
+//=======================Admin and partner auth route=====================
 
-//============================================
+router.post(
+  "/adminregistration",
+  adminAndPartnerControllers.adminAndPartnerRegistration
+);
 
+router.post("/adminlogin", adminAndPartnerControllers.adminAndPartnerLogin);
+
+router.put(
+  "/adminupdation",
+  adminAndPartnerControllers.adminAndPartnerUpdation
+);
+
+router.delete(
+  "/admindeletion",
+  adminAndPartnerControllers.adminAndPartnerDeletion
+);
 
 module.exports = router;
