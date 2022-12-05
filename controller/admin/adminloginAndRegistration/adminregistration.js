@@ -110,7 +110,7 @@ exports.adminAndPartnerLogin = async (req, res, next) => {
 exports.adminAndPartnerUpdation = async (req, res, next) => {
   try {
     const data = req.body;
-    const id = req.query.id;
+    const id = req.params.id;
 
     if (!isvalidRequest(data)) {
       res.status(400).json({
@@ -198,7 +198,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
 
 exports.adminAndPartnerDeletion = async (req, res, next) => {
   try {
-    id = req.query.id;
+    id = req.params.id;
 
     const deletedAdmin = await adminAndPartnerModel.findOneAndUpdate(
       { _id: id },

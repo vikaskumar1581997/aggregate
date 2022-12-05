@@ -6,19 +6,19 @@ const roomImageControllers = require("../../../../controller/admin/registration/
 
 
 router.post("/createHotel", hotelControllers.hotelRegistration);
-router.put("/updateHotel", hotelControllers.updateHotel);
-router.delete("/deleteHotel", hotelControllers.deleteHotel);
+router.put("/updateHotel/:id", hotelControllers.updateHotel);
+router.delete("/deleteHote/:id", hotelControllers.deleteHotel);
 router.get("/getHotelList", hotelControllers.getHotelList);
 
 
 router.post(
-  "/hotelImageUpload",
-  upload.array("profilePicture"),
+  "/hotelImageUpload/:id",
+  upload.array("profilePicture"),      
   hotelImageControllers.hotelProfileImageUpload
 );
 
 router.post(
-  "/roomImageUpload",
+  "/roomImageUpload/:id",
   upload.array("gallery"),
   roomImageControllers.roomImageUpload
 );

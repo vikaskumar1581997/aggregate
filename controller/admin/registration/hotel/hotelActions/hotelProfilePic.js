@@ -2,7 +2,7 @@ const hotelModel = require("../../../../../model/admin/registration/hotel/hotelM
 
 exports.hotelProfileImageUpload = async (req, res, next) => {
   try {
-    const hotelId = req.query.id;
+    const hotelId = req.params.id;
     //console.log(req.files,"multi")
 
     const url = req.protocol + "://" + req.get("host");
