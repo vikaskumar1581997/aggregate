@@ -2,15 +2,21 @@ const router = require("express").Router();
 
 const agentCategoryController = require("../../../../controller/admin/manageMaster/agentSettings/agentCategoryController");
 
-router.post("/agentCategory", agentCategoryController.createNewAgentCategory);
-router.get("/agentCategory", agentCategoryController.getAllAgentCategory);
+router.post(
+  "/createAgentCategory",
+  agentCategoryController.createNewAgentCategory
+);
+router.get("/getAgentCategory", agentCategoryController.getAllAgentCategory);
 router.get(
-  "/agentCategory/:id",
+  "/getOneAgentCategory/:id",
   agentCategoryController.getSingleAgentCategory
 );
-router.put("/agentCategory/:id", agentCategoryController.updateAgentCategory);
+router.put(
+  "/updateAgentCategory/:id",
+  agentCategoryController.updateAgentCategory
+);
 router.delete(
-  "/agentCategory/:id",
+  "/deleteAgentCategory/:id",
   agentCategoryController.deleteAgentCategory
 );
 

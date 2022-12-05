@@ -1,49 +1,52 @@
 const mongoose = require("mongoose");
 
-const policy = mongoose.Schema({
-  houseboatID: {
-    type: String,
-    required: true,
-  },
-  policyCode: {
-    type: String,
-    required: true,
-  },
-  marketType: {
-    asia: {
-      type: Boolean,
+const policy = mongoose.Schema(
+  {
+    houseboatID: {
+      type: String,
+      required: true,
     },
-  },
-  remarks: {
-    type: String,
-  },
-  validityList: {
-    validityFrom: {
-      type: Date,
+    policyCode: {
+      type: String,
+      required: true,
     },
-    validityTo: {
-      type: Date,
+    marketType: {
+      asia: {
+        type: Boolean,
+      },
     },
-  },
-  cancellationPolicy: {
-    cancellationFee: {
+    remarks: {
       type: String,
     },
-    priorHours: {
-      type: Number,
+    validityList: {
+      validityFrom: {
+        type: Date,
+      },
+      validityTo: {
+        type: Date,
+      },
     },
-  },
-  amendmentPolicy: {
-    amendmentFee: {
+    cancellationPolicy: {
+      cancellationFee: {
+        type: String,
+      },
+      priorHours: {
+        type: Number,
+      },
+    },
+    amendmentPolicy: {
+      amendmentFee: {
+        type: String,
+      },
+      priorHours: {
+        type: Number,
+      },
+    },
+    childPolicy: {
       type: String,
     },
-    priorHours: {
-      type: Number,
-    },
   },
-  childPolicy: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("HouseboatPolicy", policy);

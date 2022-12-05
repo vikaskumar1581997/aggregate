@@ -6,7 +6,7 @@ const createNewEmployee = async (req, res, next) => {
     const {
       employeeCode,
       firstName,
-      lastName,
+      lastName,  
       designation,
       dateOfBirth,
       email,
@@ -96,6 +96,7 @@ const getSingleEmployee = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 

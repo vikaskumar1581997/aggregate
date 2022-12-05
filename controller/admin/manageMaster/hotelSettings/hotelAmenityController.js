@@ -71,6 +71,7 @@ const getSingleHotelAmenity = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 

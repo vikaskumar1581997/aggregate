@@ -6,21 +6,31 @@ const shikaraContract = require("../../../../controller/admin/registration/shika
 
 const shikaraPromotion = require("../../../../controller/admin/registration/shikara/shikaraPromotion");
 
-router.post("/shikara", shikaraControllers.createNewShikara);
-router.post("/shikaraContract", shikaraContract.createNewContract);
-router.post("/shikaraPromotion", shikaraPromotion.createPromotion);
+const shikaraImage = require("../../../../controller/admin/registration/shikara/shikaraImage");
 
-router.get("/shikara", shikaraControllers.getAllShikara);
-router.get("/shikara/:id", shikaraControllers.getSingleShikara);
-router.get("/shikaraContract/:id", shikaraContract.getSingleContract);
-router.get("/shikaraPromotion/:id", shikaraPromotion.getSinglePromotion);
+const upload = require("../../../../helper/multer/multer");
 
-router.put("/shikara/:id", shikaraControllers.updateShikara);
-router.put("/shikaraContract/:id", shikaraContract.updateContract);
-router.put("/shikaraPromotion/:id", shikaraPromotion.updatePromotion);
+router.post("/createShikara", shikaraControllers.createNewShikara);
+router.post("/createShikaraContract", shikaraContract.createNewContract);
+router.post("/createShikaraPromotion", shikaraPromotion.createPromotion);
+router.post(
+  "/imageUpload",
+  upload.array("imageCreate"),
+  shikaraImage.uploadImage
+);
 
-router.delete("/shikara/:id", shikaraControllers.deleteShikara);
-router.delete("/shikaraContract/:id", shikaraContract.deleteContract);
-router.delete("/shikaraPromotion/:id", shikaraPromotion.deletePromotion);
+router.get("/getShikara", shikaraControllers.getAllShikara);
+router.get("/getOneShikara/:id", shikaraControllers.getSingleShikara);
+router.get("/getShikaraContract/:id", shikaraContract.getSingleContract);
+router.get("/getShikaraPromotion/:id", shikaraPromotion.getSinglePromotion);
+
+router.put("/updateShikara/:id", shikaraControllers.updateShikara);
+router.put("/updateShikaraContract/:id", shikaraContract.updateContract);
+router.put("/updateShikaraPromotion/:id", shikaraPromotion.updatePromotion);
+
+router.delete("/deleteShikara/:id", shikaraControllers.deleteShikara);
+router.delete("/deleteShikaraContract/:id", shikaraContract.deleteContract);
+router.delete("/deleteShikaraPromotion/:id", shikaraPromotion.deletePromotion);
+router.delete("/deleteImage/:id", shikaraImage.deleteImage);
 
 module.exports = router;

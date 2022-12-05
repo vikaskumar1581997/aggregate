@@ -6,33 +6,39 @@ const countryController = require("../../../../controller/admin/manageMaster/loc
 const provinceController = require("../../../../controller/admin/manageMaster/locationSettings/provinceController");
 const destinationController = require("../../../../controller/admin/manageMaster/locationSettings/destinationController");
 
-router.post("/marketType", marketTypeController.createNewMarketType);
-router.post("/region", regionController.createNewRegion);
-router.post("/country", countryController.createNewCountry);
-router.post("/province", provinceController.createNewProvince);
-router.post("/destination", destinationController.createNewDestination);
+router.post("/createMarketType", marketTypeController.createNewMarketType);
+router.post("/createRegion", regionController.createNewRegion);
+router.post("/createCountry", countryController.createNewCountry);
+router.post("/createProvince", provinceController.createNewProvince);
+router.post("/createDestination", destinationController.createNewDestination);
 
-router.get("/marketType", marketTypeController.getAllMarketType);
-router.get("/marketType/:id", marketTypeController.getSingleMarketType);
-router.get("/region", regionController.getAllRegion);
-router.get("/region/:id", regionController.getSingleRegion);
-router.get("/country", countryController.getAllCountry);
-router.get("/country/:id", countryController.getSingleCountry);
-router.get("/province", provinceController.getAllProvince);
-router.get("/province/:id", provinceController.getSingleProvince);
-router.get("/destination", destinationController.allDestination);
-router.get("/destination/:id", destinationController.getSingleDestination);
+router.get("/getMarketType", marketTypeController.getAllMarketType);
+router.get("/getOneMarketType/:id", marketTypeController.getSingleMarketType);
+router.get("/getRegion", regionController.getAllRegion);
+router.get("/getOneRegion/:id", regionController.getSingleRegion);
+router.get("/getCountry", countryController.getAllCountry);
+router.get("/getOneCountry/:id", countryController.getSingleCountry);
+router.get("/getProvince", provinceController.getAllProvince);
+router.get("/getOneProvince/:id", provinceController.getSingleProvince);
+router.get("/getDestination", destinationController.allDestination);
+router.get(
+  "/getOneDestination/:id",
+  destinationController.getSingleDestination
+);
 
-router.put("/marketType/:id"), marketTypeController.updateMarketType;
-router.put("/region/:id", regionController.updateRegion);
-router.put("/country/:id", countryController.updateCountry);
-router.put("/province/:id", provinceController.updateProvince);
-router.put("/destination/:id", destinationController.updateDestination);
+router.put("/updateMarketType/:id"), marketTypeController.updateMarketType;
+router.put("/updateRegion/:id", regionController.updateRegion);
+router.put("/updateCountry/:id", countryController.updateCountry);
+router.put("/updateProvince/:id", provinceController.updateProvince);
+router.put("/updateDestination/:id", destinationController.updateDestination);
 
-router.delete("/marketType/:id", marketTypeController.deleteMarketType);
-router.delete("/region/:id", regionController.deleteRegion);
-router.delete("/country/:id", countryController.deleteCountry);
-router.delete("/province/:id", provinceController.deleteProvince);
-router.delete("/destination/:id", destinationController.deleteDestination);
+router.delete("/deleteMarketType/:id", marketTypeController.deleteMarketType);
+router.delete("/deleteRegion/:id", regionController.deleteRegion);
+router.delete("/deleteCountry/:id", countryController.deleteCountry);
+router.delete("/deleteProvince/:id", provinceController.deleteProvince);
+router.delete(
+  "/deleteDestination/:id",
+  destinationController.deleteDestination
+);
 
 module.exports = router;
