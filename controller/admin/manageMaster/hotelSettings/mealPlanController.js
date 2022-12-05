@@ -73,6 +73,7 @@ const getSingleMealPlan = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 

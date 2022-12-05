@@ -1,36 +1,39 @@
 const mongoose = require("mongoose");
 
-const promotionModel = mongoose.Schema({
-  houseboatID: {
-    type: String,
-    required: true,
-  },
-  validityList: {
-    validityFrom: {
-      type: Date,
-    },
-    validityTo: {
-      type: Date,
-    },
-  },
-  promotionList: {
-    promotionType: {
-      amount: {
-        type: Boolean,
-      },
-      percentage: {
-        type: Boolean,
-      },
-    },
-    value: {
+const promotionModel = mongoose.Schema(
+  {
+    houseboatID: {
       type: String,
+      required: true,
     },
-    promotionFor: {
-      houseboat: {
-        type: Boolean,
+    validityList: {
+      validityFrom: {
+        type: Date,
+      },
+      validityTo: {
+        type: Date,
+      },
+    },
+    promotionList: {
+      promotionType: {
+        amount: {
+          type: Boolean,
+        },
+        percentage: {
+          type: Boolean,
+        },
+      },
+      value: {
+        type: String,
+      },
+      promotionFor: {
+        houseboat: {
+          type: Boolean,
+        },
       },
     },
   },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("HouseboatPromotion", promotionModel);

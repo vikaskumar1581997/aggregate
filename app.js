@@ -43,9 +43,6 @@ app.use(bodyParser.json());
 // app.use(express.static(__dirname));
 
 //Swagger
-// const swaggerUi = require("swagger-ui-express");
-// const swaggerDocument = require("./swagger.json");
-
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 // cors middleware
@@ -152,6 +149,15 @@ app.use(
 
 app.use("/guest", require("./routers/admin/bookingMaster/guestDetailsRouters"));
 
+//error handling middleware
+app.use((err, req, res, next) => {
+	console.error(err);
+  res.status(500).json({
+      error: true,
+      message: "Internal Server Error",
+      details: err,
+  });
+});
 app.use(express.static(__dirname));
 
 
