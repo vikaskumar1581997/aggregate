@@ -13,6 +13,23 @@ const getGuestDetailsSwagger = {
   },
 };
 
+const getGuestDetailsById = {
+  tags: ["Guest"],
+  description: "Get Particular Guest Details",
+  summary: "Use this API to Get Particular Guest Details",
+  operationId: "getGuestDetailsById",
+  parameters: [
+    parameters.guestId,
+  ],
+  produces: ["application/json"],
+  responses: {
+    200: {
+      description: "Successfully triggered the Get Guest Details By Id API",
+    },
+  },
+};
+
+
 const requestBody1 = {
   type: "object",
   properties: {
@@ -60,7 +77,7 @@ const addGuestDetailsSwagger = {
   description: "Create Guest Details",
   summary: "Use this API to create a new Guest",
   operationId: "createNewGuest",
-  // consumes: ["application/json"],
+  consumes: ["application/json"],
   produces: ["application/json"],
   requestBody: {
     content: {
@@ -178,4 +195,5 @@ module.exports = {
   getGuestDetailsSwagger,
   updateGuestDetailsSwagger,
   deleteGuestDetailsSwagger,
+  getGuestDetailsById,
 };

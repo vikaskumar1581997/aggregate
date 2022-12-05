@@ -1,3 +1,4 @@
+const adminlogin = require("./admin/adminloginAndRegistration/adminregistrationSwagger");
 const getGuestDetails = require("./admin/bookingMaster/guestDetailsSwagger");
 const agent = require("./admin/registration/agent/agentSwagger");
 const agentCredit = require("./admin/registration/agent/agentCreditSwagger");
@@ -20,6 +21,9 @@ const swaggerDocumentation = {
 	basePath: "/",
 	tags: [
 		{
+			name: "AdminLogin",
+		},
+		{
 			name: "Guest",
 		},
 		{
@@ -36,6 +40,9 @@ const swaggerDocumentation = {
 		},
 	],
 	paths: {
+		"/guest/guest/{id}": {
+			get: getGuestDetails.getGuestDetailsById,
+		},
 		"/guest/list": {
 			get: getGuestDetails.getGuestDetailsSwagger,
 		},

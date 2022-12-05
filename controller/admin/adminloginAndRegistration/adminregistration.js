@@ -20,7 +20,7 @@ exports.adminAndPartnerRegistration = async (req, res, next) => {
         status: false,
         message: "body can't be empty",
       });
-    }
+    } 
 
     if (!isValid(req.body.name)) {
       res.status(400).json({
