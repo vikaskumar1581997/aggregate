@@ -4,13 +4,15 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const port = process.env.PORT || 3000;
-const passport = require("passport");
-const passportStrategy = require("./controller/passport");
+
+const passport=require("passport")
+
 
 const swaggerUi = require("swagger-ui-express");
 const openApiDocumentation = require("./swagger/document");
 
 const session = require("express-session");
+
 
 // After you declare "app"
 app.use(
@@ -36,7 +38,9 @@ app.use(
 app.use(bodyParser.json());
 
 //Static
-app.use(express.static("public"));
+//app.use(express.static("public"));
+
+// app.use(express.static(__dirname));
 
 //Swagger
 // const swaggerUi = require("swagger-ui-express");
@@ -65,6 +69,7 @@ const auth = require("./routers/auth-router");
 
 // API's
 app.use("/api/auth", auth);
+
 
 app.get("/", (req, res) => {
 	res.send("Gods Own Country");
@@ -136,11 +141,20 @@ app.use(
 );
 
 app.use(
+  "/registration/hotel",
+  require("./routers/admin/registration/hotel/hotelRoute")
+);
+
+app.use(
 	"/companyProfile",
 	require("./routers/admin/companyProfile/comapnyProfileRoutes")
 );
 
 app.use("/guest", require("./routers/admin/bookingMaster/guestDetailsRouters"));
+
+app.use(express.static(__dirname));
+
+
 app.listen(port, () => {
 	console.log(`App running on ${port}`);
 });

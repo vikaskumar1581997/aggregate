@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+const adminAndPartnerSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -19,18 +19,22 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    password: {
+      type: String,
+      trim: true,
+    },
+    role: {
+      type: String,
+      default: "partner",
+    },
     isDeleted: {
       type: Boolean,
       default: false,
     },
-    // password: {
-    //   type: String,
-    //   trim: true,
-    // },
 
     //   phoneOtp: String,
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("adminAndPartner", adminAndPartnerSchema);
