@@ -55,12 +55,12 @@ router.post(
 router.post("/adminlogin", adminAndPartnerControllers.adminAndPartnerLogin);
 
 router.put(
-  "/adminupdation",
+  "/adminupdation/:id",
   adminAndPartnerControllers.adminAndPartnerUpdation
 );
 
 router.delete(
-  "/admindeletion",
+  "/admindeletion/:id",
   adminAndPartnerControllers.adminAndPartnerDeletion
 );
 

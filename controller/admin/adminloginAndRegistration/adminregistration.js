@@ -47,6 +47,16 @@ exports.adminAndPartnerRegistration = async (req, res, next) => {
         status: false,
         message: "Phone No is invalid. +91 is not required",
       });
+    let phone = await adminAndPartnerModel.findOne({
+      phone: req.body.phone,
+    });
+    if (phone) {
+      return res
+        .status(409)
+        .send({ status: false, message: "this phone no. already exist" });
+    }
+
+
 
     if (!req.body.email) {
       return res.status(400).send({ msg: " Email name is required " });
@@ -70,6 +80,8 @@ exports.adminAndPartnerRegistration = async (req, res, next) => {
         .status(409)
         .send({ status: false, message: "this EmailId already exist" });
     }
+
+
 
     const updatedAdmin = await adminAndPartnerModel.create(data);
 
@@ -110,7 +122,7 @@ exports.adminAndPartnerLogin = async (req, res, next) => {
 exports.adminAndPartnerUpdation = async (req, res, next) => {
   try {
     const data = req.body;
-    const id = req.query.id;
+    const id = req.params.id;
 
     if (!isvalidRequest(data)) {
       res.status(400).json({
@@ -145,6 +157,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
         message: "Phone No is invalid. +91 is not required",
       });
 
+
     if (!req.body.email) {
       return res.status(400).json({ msg: " Email name is required " });
     }
@@ -160,15 +173,7 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
         .status(400)
         .json({ status: false, message: "email Id is invalid" });
     }
-    const emailcheck = await adminAndPartnerModel.findOne({
-      email: req.body.email,
-    });
-    if (emailcheck) {
-      return res.status(400).json({
-        status: false,
-        messgae: "email already in use",
-      });
-    }
+
 
     const updatedAdmin = await adminAndPartnerModel.findOneAndUpdate(
       { _id: id, isDeleted: false },
@@ -192,18 +197,22 @@ exports.adminAndPartnerUpdation = async (req, res, next) => {
   }
 };
 
-
 //======================================================
-
 
 exports.adminAndPartnerDeletion = async (req, res, next) => {
   try {
-    id = req.query.id;
+    id = req.params.id;
 
     const deletedAdmin = await adminAndPartnerModel.findOneAndUpdate(
-      { _id: id },
+      { _id: id, isDeleted: false },
       { isDeleted: true }
     );
+
+    if (!deletedAdmin) {
+      return res.status(404).send({
+        message: "user not found",
+      });
+    }
 
     return res.status(201).send({
       message: "user deleted",

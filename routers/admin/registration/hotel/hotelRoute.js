@@ -10,15 +10,15 @@ router.delete("/deleteHotel/:id", hotelControllers.deleteHotel);
 router.get("/getHotelList", hotelControllers.getHotelList);
 
 router.post(
-	"/hotelImageUpload",
-	upload.array("profilePicture"),
-	hotelImageControllers.hotelProfileImageUpload
+  "/hotelImageUpload/:id",
+  upload.array("profilePicture"),      
+  hotelImageControllers.hotelProfileImageUpload
 );
 
 router.post(
-	"/roomImageUpload",
-	upload.array("gallery"),
-	roomImageControllers.roomImageUpload
+  "/roomImageUpload/:id",
+  upload.array("gallery"),
+  roomImageControllers.roomImageUpload
 );
 
 module.exports = router;
