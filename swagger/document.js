@@ -23,17 +23,17 @@ const swaggerDocumentation = {
 			name: "Guest",
 		},
 		{
-			name: "Agent"
+			name: "Agent",
 		},
 		{
-			name: "AgentCredit"
+			name: "AgentCredit",
 		},
 		{
-			name: "Employee"
+			name: "Employee",
 		},
 		{
-			name: "Hotel"
-		}
+			name: "Hotel",
+		},
 	],
 	paths: {
 		"/guest/list": {

@@ -1,5 +1,7 @@
 //const parameters = require("../../parameters");
 
+const { array } = require("../../../../helper/multer/multer");
+
 const getHotelSwagger = {
 	tags: ["Hotel"],
 	description: "Get Available Hotel ",
@@ -17,329 +19,345 @@ const requestBody1 = {
 	type: "object",
 	properties: {
 		hotelName: {
-			type: String,
+			type: "string",
 			example: "Friends Vibes",
 		},
 		currency: {
-			type: String,
+			type: "String",
 			example: "INR",
 		},
 		hotelCategory: {
-			type: String,
+			type: "String",
 			example: "Clasic Clasic Bolcony",
 		},
 		hotelType: {
-			type: String,
+			type: "String",
 			example: "5 Star",
 		},
 		markupType: {
-			type: String,
-			example: "",
+			type: "String",
+			example: "pppp",
 		},
 		status: {
-			type: String,
+			type: "String",
 			example: "Active Inactive",
 		},
 		coupleFriendlyHotel: {
-			type: Boolean,
-			example: "True",
+			type: "Boolean",
+			example: "yes",
 		},
 		sanitizedStay: {
-			type: Boolean,
-			example: "Yes",
+			type: "Boolean",
+			example: "yes",
 		},
 
 		region: {
-			type: String,
+			type: "String",
 			example: "Jayanagar",
 		},
 		country: {
-			type: String,
+			type: "String",
 			example: "India",
 		},
 		state: {
-			type: String,
+			type: "String",
 			example: "Karnataka",
 		},
 		place: {
-			type: String,
+			type: "String",
 			example: "Bengalore",
 		},
 		location: {
-			type: String,
+			type: "String",
 			example: "J P Nagar",
 		},
 		zipCode: {
-			type: String,
+			type: "String",
 			example: "560089",
 		},
 		latitude: {
-			type: String,
+			type: "String",
 			example: "41564754",
 		},
 		longitude: {
-			type: String,
+			type: "String",
 			example: "4551954",
 		},
 		hotelAddress: {
-			type: String,
+			type: "String",
 			example: "address of hotel",
 		},
 		gsttax: {
-			type: String,
+			type: "String",
 			example: "GST4546",
 		},
 		contactType: {
-			type: String,
-			example: "",
+			type: "String",
+			example: "qqqq",
 		},
 		contactPerson: {
-			type: String,
+			type: "String",
 			example: "Neelakanth",
 		},
 		mobile: {
-			type: String,
+			type: "String",
 			example: "784536945",
 		},
 		email: {
-			type: String,
+			type: "String",
 			example: "friendsvibes@gmail.com",
 		},
 		nearByAttraction: {
-			place: {
-				type: String,
-				example: "Iskon Temple",
-			},
-			kilometers: {
-				type: String,
-				example: "3KM",
+			type: "object",
+			properties: {
+				place: {
+					type: "String",
+					example: "Iskon Temple",
+				},
+				kilometers: {
+					type: "String",
+					example: "3KM",
+				},
 			},
 		},
 		hotelDescription: {
-			type: String,
+			type: "String",
 			example: "very good place to have food, highly rated",
 		},
 		childComplimentaryAge: {
-			min: {
-				type: Number,
-				example: "1",
-			},
-			max: {
-				type: Number,
-				example: "5",
+			type: "object",
+			properties: {
+				min: {
+					type: "Number",
+					example: "1",
+				},
+				max: {
+					type: "Number",
+					example: "5",
+				},
 			},
 		},
 		childChargeableAge: {
-			min: {
-				type: Number,
-				example: "1",
-			},
-			max: {
-				type: Number,
-				example: "3",
+			type: "object",
+			properties: {
+				min: {
+					type: "Number",
+					example: "1",
+				},
+				max: {
+					type: "Number",
+					example: "3",
+				},
 			},
 		},
 		hotelAmenities: {
 			wifi: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			restaurant: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			power: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			ac: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			laundry: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			swimmingPool: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			housekeeping: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			minibar: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			petFriendly: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			sauna: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			Balcony: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			steamRoom: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			liftService: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			fan: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			bed: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			roomBed: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			bar: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			escalator: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			fullTimeRoomService: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			hairDryer: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			towel: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 		},
 		weekDays: {
-			sunday: {
-				type: Boolean,
-				example: "yes",
-			},
-			monday: {
-				type: Boolean,
-				example: "yes",
-			},
-			tuesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			wednesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			thursday: {
-				type: Boolean,
-				example: "yes",
-			},
-			friday: {
-				type: Boolean,
-				example: "yes",
-			},
-			saturday: {
-				type: Boolean,
-				example: "yes",
+			type: "object",
+			properties: {
+				sunday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				monday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				tuesday: {
+					type: "Boolean",
+					example: "no",
+				},
+				wednesday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				thursday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				friday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				saturday: {
+					type: "Boolean",
+					example: "yes",
+				},
 			},
 		},
 		weekEndDays: {
-			sunday: {
-				type: Boolean,
-				example: "yes",
-			},
-			monday: {
-				type: Boolean,
-				example: "yes",
-			},
-			tuesday: {
-				type: Boolean,
-				example: "no",
-			},
-			wednesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			thursday: {
-				type: Boolean,
-				example: "yes",
-			},
-			friday: {
-				type: Boolean,
-				example: "yes",
-			},
-			saturday: {
-				type: Boolean,
-				example: "yes",
+			type: "object",
+			properties: {
+				sunday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				monday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				tuesday: {
+					type: "Boolean",
+					example: "no",
+				},
+				wednesday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				thursday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				friday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				saturday: {
+					type: "Boolean",
+					example: "yes",
+				},
 			},
 		},
-		bank: {
-			bankName: {
-				type: String,
-				example: "SBI",
-			},
-			accountNumber: {
-				type: String,
-				example: "41546765666656",
-			},
-			bankAddress: {
-				type: String,
-				example: "JP Nagar Bengalore",
-			},
-			iban: {
-				type: String,
-				example: "565jhj",
-			},
-			faxNumber: {
-				type: String,
-				example: "145413",
-			},
-			swiftCode: {
-				type: String,
-				example: "656641645",
-			},
-			telephone: {
-				type: String,
-				example: "08524369555",
-			},
-			contactPerson: {
-				type: String,
-				example: "Sharan",
+		bankDetails: {
+			type: "object",
+			properties: {
+				bankName: {
+					type: "String",
+					example: "SBI",
+				},
+				accountNumber: {
+					type: "String",
+					example: "41546765666656",
+				},
+				bankAddress: {
+					type: "String",
+					example: "JP Nagar Bengalore",
+				},
+				iban: {
+					type: "String",
+					example: "565jhj",
+				},
+				faxNumber: {
+					type: "String",
+					example: "145413",
+				},
+				swiftCode: {
+					type: "String",
+					example: "656641645",
+				},
+				telephone: {
+					type: "String",
+					example: "08524369555",
+				},
+				contactPerson: {
+					type: "String",
+					example: "Sharan",
+				},
 			},
 		},
 
-		room: [
-			{
-				roomCategory: {
-					type: String,
-					example: "Single Double",
-				},
-				roomType: {
-					type: [String],
-					example: "AC NonAC",
+		room: {
+			type: "array",
+			items: {
+				type: "object",
+				example: {
+					roomCategory: "classic",
+					roomType: ["room only", "room with breakfast"],
 				},
 			},
-		],
+		},
 
 		termsAndConditions: {
-			type: String,
+			type: "String",
 			example: "need to provide a valid Id card",
 		},
 
 		isDeleted: {
-			type: Boolean,
+			type: "Boolean",
 			example: "0",
 		},
 	},
@@ -350,7 +368,7 @@ const addHotelSwagger = {
 	description: "Create Hotel ",
 	summary: "Use this API to create a new Hotel",
 	operationId: "hotelRegistration",
-	// consumes: ["application/json"],
+	consumes: ["application/json"],
 	produces: ["application/json"],
 	requestBody: {
 		content: {
@@ -371,334 +389,349 @@ const updRequestBody = {
 	type: "object",
 	properties: {
 		hotelName: {
-			type: String,
+			type: "string",
 			example: "Friends Vibes",
 		},
 		currency: {
-			type: String,
+			type: "String",
 			example: "INR",
 		},
 		hotelCategory: {
-			type: String,
+			type: "String",
 			example: "Clasic Clasic Bolcony",
 		},
 		hotelType: {
-			type: String,
+			type: "String",
 			example: "5 Star",
 		},
 		markupType: {
-			type: String,
-			example: "",
+			type: "String",
+			example: "pppp",
 		},
 		status: {
-			type: String,
+			type: "String",
 			example: "Active Inactive",
 		},
 		coupleFriendlyHotel: {
-			type: Boolean,
-			example: "True",
+			type: "Boolean",
+			example: "yes",
 		},
 		sanitizedStay: {
-			type: Boolean,
-			example: "Yes",
+			type: "Boolean",
+			example: "yes",
 		},
 
 		region: {
-			type: String,
+			type: "String",
 			example: "Jayanagar",
 		},
 		country: {
-			type: String,
+			type: "String",
 			example: "India",
 		},
 		state: {
-			type: String,
+			type: "String",
 			example: "Karnataka",
 		},
 		place: {
-			type: String,
+			type: "String",
 			example: "Bengalore",
 		},
 		location: {
-			type: String,
+			type: "String",
 			example: "J P Nagar",
 		},
 		zipCode: {
-			type: String,
+			type: "String",
 			example: "560089",
 		},
 		latitude: {
-			type: String,
+			type: "String",
 			example: "41564754",
 		},
 		longitude: {
-			type: String,
+			type: "String",
 			example: "4551954",
 		},
 		hotelAddress: {
-			type: String,
+			type: "String",
 			example: "address of hotel",
 		},
 		gsttax: {
-			type: String,
+			type: "String",
 			example: "GST4546",
 		},
 		contactType: {
-			type: String,
-			example: "",
+			type: "String",
+			example: "qqqq",
 		},
 		contactPerson: {
-			type: String,
+			type: "String",
 			example: "Neelakanth",
 		},
 		mobile: {
-			type: String,
+			type: "String",
 			example: "784536945",
 		},
 		email: {
-			type: String,
+			type: "String",
 			example: "friendsvibes@gmail.com",
 		},
 		nearByAttraction: {
-			place: {
-				type: String,
-				example: "Iskon Temple",
-			},
-			kilometers: {
-				type: String,
-				example: "3KM",
+			type: "object",
+			properties: {
+				place: {
+					type: "String",
+					example: "Iskon Temple",
+				},
+				kilometers: {
+					type: "String",
+					example: "3KM",
+				},
 			},
 		},
 		hotelDescription: {
-			type: String,
+			type: "String",
 			example: "very good place to have food, highly rated",
 		},
 		childComplimentaryAge: {
-			min: {
-				type: Number,
-				example: "1",
-			},
-			max: {
-				type: Number,
-				example: "5",
+			type: "object",
+			properties: {
+				min: {
+					type: "Number",
+					example: "1",
+				},
+				max: {
+					type: "Number",
+					example: "5",
+				},
 			},
 		},
 		childChargeableAge: {
-			min: {
-				type: Number,
-				example: "1",
-			},
-			max: {
-				type: Number,
-				example: "3",
+			type: "object",
+			properties: {
+				min: {
+					type: "Number",
+					example: "1",
+				},
+				max: {
+					type: "Number",
+					example: "3",
+				},
 			},
 		},
 		hotelAmenities: {
 			wifi: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			restaurant: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			power: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			ac: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			laundry: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			swimmingPool: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			housekeeping: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			minibar: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			petFriendly: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			sauna: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			Balcony: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			steamRoom: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			liftService: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			fan: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			bed: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			roomBed: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			bar: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			escalator: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			fullTimeRoomService: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			hairDryer: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 			towel: {
-				type: Boolean,
+				type: "Boolean",
 				example: "yes",
 			},
 		},
 		weekDays: {
-			sunday: {
-				type: Boolean,
-				example: "yes",
-			},
-			monday: {
-				type: Boolean,
-				example: "yes",
-			},
-			tuesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			wednesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			thursday: {
-				type: Boolean,
-				example: "yes",
-			},
-			friday: {
-				type: Boolean,
-				example: "yes",
-			},
-			saturday: {
-				type: Boolean,
-				example: "yes",
+			type: "object",
+			properties: {
+				sunday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				monday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				tuesday: {
+					type: "Boolean",
+					example: "no",
+				},
+				wednesday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				thursday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				friday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				saturday: {
+					type: "Boolean",
+					example: "yes",
+				},
 			},
 		},
 		weekEndDays: {
-			sunday: {
-				type: Boolean,
-				example: "yes",
-			},
-			monday: {
-				type: Boolean,
-				example: "yes",
-			},
-			tuesday: {
-				type: Boolean,
-				example: "no",
-			},
-			wednesday: {
-				type: Boolean,
-				example: "yes",
-			},
-			thursday: {
-				type: Boolean,
-				example: "yes",
-			},
-			friday: {
-				type: Boolean,
-				example: "yes",
-			},
-			saturday: {
-				type: Boolean,
-				example: "yes",
+			type: "object",
+			properties: {
+				sunday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				monday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				tuesday: {
+					type: "Boolean",
+					example: "no",
+				},
+				wednesday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				thursday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				friday: {
+					type: "Boolean",
+					example: "yes",
+				},
+				saturday: {
+					type: "Boolean",
+					example: "yes",
+				},
 			},
 		},
-		bank: {
-			bankName: {
-				type: String,
-				example: "SBI",
-			},
-			accountNumber: {
-				type: String,
-				example: "41546765666656",
-			},
-			bankAddress: {
-				type: String,
-				example: "JP Nagar Bengalore",
-			},
-			iban: {
-				type: String,
-				example: "565jhj",
-			},
-			faxNumber: {
-				type: String,
-				example: "145413",
-			},
-			swiftCode: {
-				type: String,
-				example: "656641645",
-			},
-			telephone: {
-				type: String,
-				example: "08524369555",
-			},
-			contactPerson: {
-				type: String,
-				example: "Sharan",
+		bankDetails: {
+			type: "object",
+			properties: {
+				bankName: {
+					type: "String",
+					example: "SBI",
+				},
+				accountNumber: {
+					type: "String",
+					example: "41546765666656",
+				},
+				bankAddress: {
+					type: "String",
+					example: "JP Nagar Bengalore",
+				},
+				iban: {
+					type: "String",
+					example: "565jhj",
+				},
+				faxNumber: {
+					type: "String",
+					example: "145413",
+				},
+				swiftCode: {
+					type: "String",
+					example: "656641645",
+				},
+				telephone: {
+					type: "String",
+					example: "08524369555",
+				},
+				contactPerson: {
+					type: "String",
+					example: "Sharan",
+				},
 			},
 		},
 
-		room: [
-			{
-				roomCategory: {
-					type: String,
-					example: "Single Double",
-				},
-				roomType: {
-					type: [String],
-					example: "AC NonAC",
+		room: {
+			type: "array",
+			items: {
+				type: "object",
+				example: {
+					roomCategory: "classic",
+					roomType: ["room only", "room with breakfast"],
 				},
 			},
-		],
+		},
 
 		termsAndConditions: {
-			type: String,
+			type: "String",
 			example: "need to provide a valid Id card",
 		},
 
 		isDeleted: {
-			type: Boolean,
+			type: "Boolean",
 			example: "0",
 		},
 	},
 };
-
 const updateHotelSwagger = {
 	tags: ["Hotel"],
 	description: "Update Hotel Detaisl",
