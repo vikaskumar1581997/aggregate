@@ -86,7 +86,7 @@ app.use(
 );
 
 app.use(
-	"/master/master/hotelSettings",
+	"/master/hotelSettings",
 	require("./routers/admin/manageMaster/hotelSettings/hotelSettingsRoute")
 );
 

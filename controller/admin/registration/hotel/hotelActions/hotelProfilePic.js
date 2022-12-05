@@ -1,3 +1,4 @@
+const { ReturnDocument } = require("mongodb");
 const hotelModel = require("../../../../../model/admin/registration/hotel/hotelModel");
 
 exports.hotelProfileImageUpload = async (req, res, next) => {
@@ -11,12 +12,20 @@ exports.hotelProfileImageUpload = async (req, res, next) => {
     //console.log(image,"image")
 
     const profilePicture = await hotelModel.findOneAndUpdate(
-      { _id: hotelId },
+      { _id: hotelId, isDeleted: false },
       { imageUpload: image },
       { new: true }
     );
 
-    res.send(profilePicture);
+    if (!profilePicture) {
+      return res.status(200).json({
+        status: false,
+        message: "hotel does not exist",
+      });
+    }
+
+    return res.status(200).json(profilePicture);
+
   } catch (err) {
     next(err);
   }
