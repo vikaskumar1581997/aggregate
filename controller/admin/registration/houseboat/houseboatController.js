@@ -20,6 +20,7 @@ const createNewHouseBoat = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -42,6 +43,7 @@ const getAllHouseBoat = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -65,6 +67,7 @@ const getSingleHouseBoat = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -95,6 +98,7 @@ const updateHouseBoat = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -117,6 +121,7 @@ const deleteHouseBoat = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
