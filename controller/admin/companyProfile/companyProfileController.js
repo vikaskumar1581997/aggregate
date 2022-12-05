@@ -55,6 +55,7 @@ const createCompanyProfile = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -118,6 +119,7 @@ const updateCompanyProfile = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 

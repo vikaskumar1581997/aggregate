@@ -1,93 +1,96 @@
 const mongoose = require("mongoose");
 
-const hbContractModel = mongoose.Schema({
-  houseboatID: {
-    type: String,
-    required: true,
-  },
-  rateCode: {
-    type: String,
-    required: true,
-  },
-  time: {
-    halfDay: {
-      type: Boolean,
-    },
-    fullDay: {
-      type: Boolean,
-    },
-  },
-  market: {
-    allMarket: {
-      type: Boolean,
-    },
-    asia: {
-      type: Boolean,
-    },
-  },
-  days: {
-    allDays: {
-      type: Boolean,
-    },
-    weekDays: {
-      type: Boolean,
-    },
-    weekend: {
-      type: Boolean,
-    },
-  },
-  validityList: {
-    validityFrom: {
-      type: Date,
-    },
-    validityTo: {
-      type: Date,
-    },
-  },
-  premium2BedRoom: {
-    isNeeded: {
-      yes: {
-        type: Boolean,
-      },
-      no: {
-        type: Boolean,
-      },
-    },
-    roomType: {
+const hbContractModel = mongoose.Schema(
+  {
+    houseboatID: {
       type: String,
+      required: true,
     },
-    roomRate: {
-      type: Number,
-    },
-    extraBedAdult: {
-      type: Number,
-    },
-    extraBedChild: {
-      type: Number,
-    },
-  },
-  premium3BedRoom: {
-    isNeeded: {
-      yes: {
-        type: Boolean,
-      },
-      no: {
-        type: Boolean,
-      },
-    },
-    roomType: {
+    rateCode: {
       type: String,
+      required: true,
     },
-    roomRate: {
-      type: Number,
+    time: {
+      halfDay: {
+        type: Boolean,
+      },
+      fullDay: {
+        type: Boolean,
+      },
     },
-    extraBedAdult: {
-      type: Number,
+    market: {
+      allMarket: {
+        type: Boolean,
+      },
+      asia: {
+        type: Boolean,
+      },
     },
-    extraBedChild: {
-      type: Number,
+    days: {
+      allDays: {
+        type: Boolean,
+      },
+      weekDays: {
+        type: Boolean,
+      },
+      weekend: {
+        type: Boolean,
+      },
+    },
+    validityList: {
+      validityFrom: {
+        type: Date,
+      },
+      validityTo: {
+        type: Date,
+      },
+    },
+    premium2BedRoom: {
+      isNeeded: {
+        yes: {
+          type: Boolean,
+        },
+        no: {
+          type: Boolean,
+        },
+      },
+      roomType: {
+        type: String,
+      },
+      roomRate: {
+        type: Number,
+      },
+      extraBedAdult: {
+        type: Number,
+      },
+      extraBedChild: {
+        type: Number,
+      },
+    },
+    premium3BedRoom: {
+      isNeeded: {
+        yes: {
+          type: Boolean,
+        },
+        no: {
+          type: Boolean,
+        },
+      },
+      roomType: {
+        type: String,
+      },
+      roomRate: {
+        type: Number,
+      },
+      extraBedAdult: {
+        type: Number,
+      },
+      extraBedChild: {
+        type: Number,
+      },
     },
   },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("HouseboatContract", hbContractModel);

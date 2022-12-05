@@ -68,6 +68,7 @@ const getSingleSeasonType = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 

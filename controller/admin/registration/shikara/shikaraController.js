@@ -20,6 +20,7 @@ const createNewShikara = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -42,6 +43,7 @@ const getAllShikara = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -65,6 +67,7 @@ const getSingleShikara = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -96,6 +99,7 @@ const updateShikara = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
@@ -118,6 +122,7 @@ const deleteShikara = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+    console.error(error);
   }
 };
 
