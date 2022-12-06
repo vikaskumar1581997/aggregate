@@ -1,4 +1,4 @@
-//const parameters = require("../../parameters");
+const parameters = require("../../../parameters");
 
 const { array } = require("../../../../helper/multer/multer");
 
@@ -14,6 +14,7 @@ const getHotelSwagger = {
 		},
 	},
 };
+
 
 const requestBody1 = {
 	type: "object",
@@ -739,15 +740,7 @@ const updateHotelSwagger = {
 	operationId: "updateHotel",
 	consumes: ["application/json"],
 	produces: ["application/json"],
-	parameters: [
-		{
-			name: "id",
-			in: "path",
-			description: "Hotel id that needs to be Updated",
-			required: true,
-			type: "string",
-		},
-	],
+	parameters: [parameters.hotelId],
 	requestBody: {
 		content: {
 			"application/json": {

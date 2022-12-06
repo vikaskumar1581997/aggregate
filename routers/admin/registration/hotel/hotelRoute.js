@@ -9,6 +9,7 @@ router.put("/updateHotel/:id", hotelControllers.updateHotel);
 router.delete("/deleteHotel/:id", hotelControllers.deleteHotel);
 router.get("/getHotelList", hotelControllers.getHotelList);
 
+
 router.post(
   "/hotelImageUpload/:id",
   upload.array("profilePicture"),      
