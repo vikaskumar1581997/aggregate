@@ -74,7 +74,7 @@ const getGuestDetailsList = async (req, res, next) => {
 //Get Single HotelAmenity
 const getGuestDetailsById = async (req, res, next) => {
 	try {
-		const guestId = req.params.id;
+		const guestId = req.params.guestId;
 		const guestData = await GuestDetails.findById(guestId).exec();
 
 		if (guestData) {
@@ -97,7 +97,7 @@ const getGuestDetailsById = async (req, res, next) => {
 //Update an Amenity
 const updateGuestDetails = async (req, res, next) => {
 	try {
-		const guestId = req.params.id;
+		const guestId = req.params.guestId;
 		const {
 			title,
 			firstName,
@@ -145,7 +145,7 @@ const updateGuestDetails = async (req, res, next) => {
 //Delete an Amenity
 const deleteGuestDetails = async (req, res, next) => {
 	try {
-		const guestId = req.params.id;
+		const guestId = req.params.guestId;
 		const deleteGuest = await GuestDetails.findByIdAndDelete(guestId);
 		if (deleteGuest) {
 			res.status(201).json({

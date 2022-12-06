@@ -1,7 +1,7 @@
 module.exports = parameters = {
 	guestId: {
 		in: "path",
-		name: "id",
+		name: "guestId",
 		description: "Guest Info To Search.",
 		type: "number",
 		example: "1",
@@ -13,4 +13,33 @@ module.exports = parameters = {
 		required: true,
 		type: "string",
 	},
+	houseboatId: {
+		name: "houseboatId",
+		in: "path",
+		description: "Houseboat Info To Search",
+		required: true,
+		type: "string",
+	},
+	agentCategoryId: {
+		name: "agentCategoryId",
+		in: "path",
+		description: "AgentCategory Info To Search",
+		required: true,
+		type: "string",
+	},
+	bankId: {
+		name: "bankId",
+		in: "path",
+		description: "Bank Info To Search",
+		required: true,
+		type: "string",
+	},
+	contactTypeId: {
+		name: "contactTypeId",
+		in: "path",
+		description: "ContentTypr Info To Search",
+		required: true,
+		type: "string",
+	}
+	
 };

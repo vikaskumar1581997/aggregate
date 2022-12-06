@@ -8,15 +8,15 @@ router.post(
 );
 router.get("/getAgentCategory", agentCategoryController.getAllAgentCategory);
 router.get(
-  "/getOneAgentCategory/:id",
+  "/getOneAgentCategory/:agentCategoryId",
   agentCategoryController.getSingleAgentCategory
 );
 router.put(
-  "/updateAgentCategory/:id",
+  "/updateAgentCategory/:agentCategoryId",
   agentCategoryController.updateAgentCategory
 );
 router.delete(
-  "/deleteAgentCategory/:id",
+  "/deleteAgentCategory/:agentCategoryId",
   agentCategoryController.deleteAgentCategory
 );
 
