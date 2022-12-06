@@ -2,7 +2,7 @@
 const hotelModel = require("../../../../model/admin/registration/hotel/hotelModel");
 
 exports.hotelRegistration = async (req, res, next) => {
-  try {
+  try { 
     const hotelData = req.body;
     if (!hotelData) {
       return res.status(400).json({ msg: "data missing" });
