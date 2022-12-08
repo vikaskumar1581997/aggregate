@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const loginSchema = new mongoose.model(
+const partnerloginSchema = new mongoose.Schema(
   {
     hotelId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +15,6 @@ const loginSchema = new mongoose.model(
       required: true,
     },
   },
-  { timestamps: true }
+  {timestamps:true}
 );
-module.exports = mongoose.model("logindetails", loginSchema);
+module.exports = mongoose.model("PartnersloginCredentials", partnerloginSchema);

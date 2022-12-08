@@ -26,7 +26,7 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    validityList: [[Date]],
+    validityList: [[String]],
   },
   { timestamp: true }
 );

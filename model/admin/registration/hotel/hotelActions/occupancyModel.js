@@ -1,34 +1,46 @@
 const mongoose = require("mongoose");
 
-const occupancySchema = new mongoose.Schema({
-  hotelId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
+const occupancySchema = new mongoose.Schema(
+  {
+    hotelId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    marketType: {
+      type: String,
+    },
+    status: {
+      type: String,
+      default : "notLive"
+    },
+    validityList: {
+      type: [[String]],
+    },
+    occupencyDetails: {
+      type: [
+        {
+          roomCategory: String,
+          occupancy: [
+            {
+              occupancyType: String,
+              totalAdult: Number,
+              totalChild: Number,
+              extraAdult: Number,
+              extraChild: Number,
+            },
+          ],
+        },
+      ],
+      required: true,
+    },
+    // priority:{
+    //   type:Number
+    // }
   },
-  marketType: {
-    type: String,
-  },
-  status:String,
-  validityList: {
-    type: [[date]],
-  },
-  occupencyDetails: {
-    type: [
-      {
-        roomCategory: String,
-        occupancy: [
-          {
-            occupancyType: String,
-            totalAdult: Number,
-            totalChild: Number,
-            extraAdult: Number,
-            extraChild: Number,
-          },
-        ],
-      },
-    ],
-    required: true,
-  },
-},{timestamp:true});
+  { timestamp: true }
+);
 
-module.exports = momgoose.model("hoteloccupancy", occupancySchema);
+module.exports = mongoose.model("hoteloccupancy", occupancySchema);
+
+
+//priority in contract rate and occupancy and minimum length

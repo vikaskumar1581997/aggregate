@@ -39,7 +39,6 @@ app.use(bodyParser.json());
 
 //Static
 //app.use(express.static("public"));
-
 // app.use(express.static(__dirname));
 
 //Swagger
