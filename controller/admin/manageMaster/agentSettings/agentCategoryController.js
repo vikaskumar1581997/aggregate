@@ -51,7 +51,7 @@ const getAllAgentCategory = async (req, res, next) => {
 //Get Single Agent Category
 const getSingleAgentCategory = async (req, res, next) => {
   try {
-    const { id: _id } = req.params;
+    const { agentCategoryId: _id } = req.params;
     const singleAgentCategory = await AgentCategory.findById(_id).exec();
 
     if (singleAgentCategory) {
@@ -75,7 +75,7 @@ const getSingleAgentCategory = async (req, res, next) => {
 //Update Agent Category
 const updateAgentCategory = async (req, res, next) => {
   try {
-    const { id: _id } = req.params;
+    const { agentCategoryId: _id } = req.params;
     const { agentCategory } = req.body;
     const finalAgentCategory = await AgentCategory.findById(_id).exec();
     finalAgentCategory.agentCategory = agentCategory;
@@ -102,7 +102,7 @@ const updateAgentCategory = async (req, res, next) => {
 //Delete Agent Category
 const deleteAgentCategory = async (req, res, next) => {
   try {
-    const { id: _id } = req.params;
+    const {agentCategoryId: _id } = req.params;
     const deleteCategory = await AgentCategory.findByIdAndDelete(_id);
     if (deleteCategory) {
       res.status(201).json({

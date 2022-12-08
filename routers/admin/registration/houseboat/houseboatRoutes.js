@@ -19,47 +19,53 @@ router.post("/createHouseboatContract", HouseboatContract.createNewContract);
 router.post("/createHouseboatPromotion", HouseboatPromotion.createPromotion);
 router.post("/createHouseboatPolicy", HouseboatPolicy.createPolicy);
 router.post(
-  "/createRoomAvailability",
-  HBRoomAvailability.createRoomAvailability
+	"/createRoomAvailability",
+	HBRoomAvailability.createRoomAvailability
 );
 router.post(
-  "/imageUpload",
-  upload.array("imageCreate"),
-  HBImageUpload.uploadHBImage
+	"/imageUpload",
+	upload.array("imageCreate"),
+	HBImageUpload.uploadHBImage
 );
 
-router.get("/createHouseboat", HouseBoatController.getAllHouseBoat);
-router.get("/createOneHouseboat/:id", HouseBoatController.getSingleHouseBoat);
-router.get("/createHouseboatContract/:id", HouseboatContract.getSingleContract);
+router.get("/getHouseboat", HouseBoatController.getAllHouseBoat);
 router.get(
-  "/createHouseboatPromotion/:id",
-  HouseboatPromotion.getSinglePromotion
+	"/getOneHouseboat/:houseboatId",
+	HouseBoatController.getSingleHouseBoat
 );
-router.get("/createHouseboatPolicy/:id", HouseboatPolicy.getSinglePolicy);
+router.get("/getHouseboatContract/:id", HouseboatContract.getSingleContract);
+router.get("/getHouseboatPromotion/:id", HouseboatPromotion.getSinglePromotion);
+router.get("/getHouseboatPolicy/:id", HouseboatPolicy.getSinglePolicy);
 router.get(
-  "/createRoomAvailability/:id",
-  HBRoomAvailability.getRoomAvailabilityByID
+	"/getRoomAvailability/:id",
+	HBRoomAvailability.getRoomAvailabilityByID
 );
 
-router.put("/updateHouseboat/:id", HouseBoatController.updateHouseBoat);
+router.put(
+	"/updateHouseboat/:houseboatId",
+	HouseBoatController.updateHouseBoat
+);
 router.put("/updateHouseboatContract/:id", HouseboatContract.updateContract);
 router.put("/updateHouseboatPromotion/:id", HouseboatPromotion.updatePromotion);
 router.put("/updateHouseboatPolicy/:id", HouseboatPolicy.updatePolicy);
 router.put(
-  "/updateRoomAvailability/:id",
-  HBRoomAvailability.updateRoomAvailability
+	"/updateRoomAvailability/:id",
+	HBRoomAvailability.updateRoomAvailability
 );
 
-router.delete("/deleteHouseboat/:id", HouseBoatController.deleteHouseBoat);
+router.delete(
+	"/deleteHouseboat/:houseboatId",
+	HouseBoatController.deleteHouseBoat
+);
 router.delete("/deleteHouseboatContract/:id", HouseboatContract.deleteContract);
 router.delete(
-  "/deleteHouseboatPromotion/:id",
-  HouseboatPromotion.deletePromotion
+	"/deleteHouseboatPromotion/:id",
+	HouseboatPromotion.deletePromotion
 );
 router.delete("/deleteHouseboatPolicy/:id", HouseboatPolicy.deletePolicy);
 router.delete(
-  "/deleteRoomAvailability/:id",
-  HBRoomAvailability.deleteRoomAvailability
+	"/deleteRoomAvailability/:id",
+	HBRoomAvailability.deleteRoomAvailability
 );
 router.delete("/deleteImage/:id", HBImageUpload.deleteHBImage);
 
