@@ -40,6 +40,26 @@ module.exports = parameters = {
 		description: "ContentTypr Info To Search",
 		required: true,
 		type: "string",
-	}
-	
+	},
+	assignMenuId: {
+		name: "assignMenuId",
+		in: "path",
+		description: "AssignMenu Info To Search",
+		required: true,
+		type: "string",
+	},
+	currencyId: {
+		name: "currencyId",
+		in: "path",
+		description: "Currency Info To Search",
+		required: true,
+		type: "string",
+	},
+	designationId: {
+		name: "designationId",
+		in: "path",
+		description: "Designation Info To Search",
+		required: true,
+		type: "string",
+	},
 };

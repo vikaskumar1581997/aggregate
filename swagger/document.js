@@ -9,6 +9,9 @@ const houseBoatContract = require("./admin/registration/houseboat/houseboatContr
 const agentCategory = require("./admin/manageMaster/agentSettingsSwagger");
 const bank = require("./admin/manageMaster/basicSettings/bankSwagger");
 const contactType = require("./admin/manageMaster/basicSettings/contactTypeSwagger");
+const assignMenu = require("./admin/manageMaster/basicSettings/assignMenuSwagger");
+const currency = require("./admin/manageMaster/basicSettings/currencySwagger");
+const designation = require("./admin/manageMaster/basicSettings/designationSwagger");
 
 const swaggerDocumentation = {
 	openapi: "3.0.0",
@@ -54,6 +57,15 @@ const swaggerDocumentation = {
 		},
 		{
 			name: "ContactType",
+		},
+		{
+			name: "AssignMenu",
+		},
+		{
+			name: "Currency",
+		},
+		{
+			name: "Designation",
 		},
 	],
 	paths: {
@@ -205,6 +217,54 @@ const swaggerDocumentation = {
 		},
 		"/master/basicSettings/deleteContactType/{contactTypeId}": {
 			delete: contactType.deleteContactTypeSwagger,
+		},
+
+		"/master/basicSettings/getAssignMenu": {
+			get: assignMenu.getAllAssignMenusSwagger,
+		},
+		"/master/basicSettings/getOneAssignMenu/{assignMenuId}": {
+			get: assignMenu.getSingleAssignMenuSwagger,
+		},
+		"/master/basicSettings/createAssignMenu": {
+			post: assignMenu.createNewAssignMenuSwagger,
+		},
+		"/master/basicSettings/updateAssignMenu/{assignMenuId}": {
+			put: assignMenu.updateAssignMenuSwagger,
+		},
+		"/master/basicSettings/deleteAssignMenu/{assignMenuId}": {
+			delete: assignMenu.deleteAssignMenuSwagger,
+		},
+
+		"/master/basicSettings/getCurrency": {
+			get: currency.getAllCurrencysSwagger,
+		},
+		"/master/basicSettings/getOneCurrency/{currencyId}": {
+			get: currency.getSingleCurrencySwagger,
+		},
+		"/master/basicSettings/createCurrency": {
+			post: currency.createNewCurrencySwagger,
+		},
+		"/master/basicSettings/updateCurrency/{currencyId}": {
+			put: currency.updateCurrencySwagger,
+		},
+		"/master/basicSettings/deleteCurrency/{currencyId}": {
+			delete: currency.deleteCurrencySwagger,
+		},
+
+		"/master/basicSettings/getDesignation": {
+			get: designation.getAllDesignationsSwagger,
+		},
+		"/master/basicSettings/getOneDesignation/{designationId}": {
+			get: designation.getSingleDesignationSwagger,
+		},
+		"/master/basicSettings/createDesignation": {
+			post: designation.createNewDesignationSwagger,
+		},
+		"/master/basicSettings/updateDesignation/{designationId}": {
+			put: designation.updateDesignationSwagger,
+		},
+		"/master/basicSettings/deleteDesignation/{designationId}": {
+			delete: designation.deleteDesignationSwagger,
 		},
 	},
 };

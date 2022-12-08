@@ -16,11 +16,11 @@ router.post("/createAssignMenu", assignMenuController.createNewAssignMenu);
 
 router.get("/getDesignation", designationController.getAllDesignations);
 router.get(
-	"/getOneDesignation/:id",
+	"/getOneDesignation/:designationId",
 	designationController.getSingleDesignation
 );
 router.get("/getCurrency", currencyController.getAllCurrencies);
-router.get("/getOneCurrency/:id", currencyController.getSingleCurrency);
+router.get("/getOneCurrency/:currencyId", currencyController.getSingleCurrency);
 router.get("/getMarkup", markupController.getAllMarkups);
 router.get("/getOneMarkup/:id", markupController.getSingleMarkUp);
 router.get("/getContactType", contactTypeController.getAllContactTypes);
@@ -31,23 +31,32 @@ router.get(
 router.get("/getBank", bankController.getAllBanks);
 router.get("/getOneBank/:bankId", bankController.getSingleBank);
 router.get("/getAssignMenu", assignMenuController.getAllAssignMenu);
-router.get("/getOneAssignMenu/:id", assignMenuController.getSingleAssignMenu);
+router.get(
+	"/getOneAssignMenu/:assignMenuId",
+	assignMenuController.getSingleAssignMenu
+);
 
-router.put("/updateDesignation/:id", designationController.updateDesignation);
-router.put("/updateCurrency/:id", currencyController.updateCurrency);
+router.put(
+	"/updateDesignation/:designationId",
+	designationController.updateDesignation
+);
+router.put("/updateCurrency/:currencyId", currencyController.updateCurrency);
 router.put("/updateMarkup/:id", markupController.updateMarkup);
 router.put(
 	"/updateContactType/:contactTypeId",
 	contactTypeController.updateContactType
 );
 router.put("/updateBank/:bankId", bankController.updateBank);
-router.put("/updateAssignMenu/:id", assignMenuController.updateAllAssignMenu);
+router.put(
+	"/updateAssignMenu/:assignMenuId",
+	assignMenuController.updateAllAssignMenu
+);
 
 router.delete(
-	"/deleteDesignation/:id",
+	"/deleteDesignation/:designationId",
 	designationController.deleteDesignation
 );
-router.delete("/deleteCurrency/:id", currencyController.deleteCurrency);
+router.delete("/deleteCurrency/:currencyId", currencyController.deleteCurrency);
 router.delete("/deleteMarkup/:id", markupController.deleteMarkup);
 router.delete(
 	"/deleteContactType/:contactTypeId",
@@ -55,7 +64,7 @@ router.delete(
 );
 router.delete("/deleteBank/:bankId", bankController.deleteBank);
 router.delete(
-	"/deleteAssignMenu/:id",
+	"/deleteAssignMenu/:assignMenuId",
 	assignMenuController.deleteAllAssignMenu
 );
 

@@ -51,7 +51,7 @@ const getAllBanks = async (req, res, next) => {
 //Get Single Bank
 const getSingleBank = async (req, res, next) => {
 	try {
-		const { id: _id } = req.params;
+		const { bankId: _id } = req.params;
 		const singleBank = await Bank.findById(_id).exec();
 
 		if (singleBank) {
@@ -75,7 +75,7 @@ const getSingleBank = async (req, res, next) => {
 //Update a bank
 const updateBank = async (req, res, next) => {
 	try {
-		const { id: _id } = req.params;
+		const { bankId: _id } = req.params;
 		const { bank } = req.body;
 		const finalBank = await Bank.findById(_id).exec();
 
@@ -103,7 +103,7 @@ const updateBank = async (req, res, next) => {
 //Delete a Bank
 const deleteBank = async (req, res, next) => {
 	try {
-		const { id: _id } = req.params;
+		const { bankId: _id } = req.params;
 		const deleteBank = await Bank.findByIdAndDelete(_id);
 		if (deleteBank) {
 			res.status(201).json({
