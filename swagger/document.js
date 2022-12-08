@@ -22,9 +22,10 @@ const swaggerDocumentation = {
 	},
 	servers: [
 		{
+			// description: "Local Server",
 			// url: "http://localhost:2800/",
+			description: "Dev Server",
 			url: "http://10.10.30.20:2800/",
-			description: "Local dev",
 		},
 	],
 	basePath: "/",
