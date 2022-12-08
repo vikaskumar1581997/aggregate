@@ -62,4 +62,11 @@ module.exports = parameters = {
 		required: true,
 		type: "string",
 	},
+	markUpId: {
+		name: "markUpId",
+		in: "path",
+		description: "MarkUp Info To Search",
+		required: true,
+		type: "string",
+	},
 };

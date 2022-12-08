@@ -12,6 +12,7 @@ const contactType = require("./admin/manageMaster/basicSettings/contactTypeSwagg
 const assignMenu = require("./admin/manageMaster/basicSettings/assignMenuSwagger");
 const currency = require("./admin/manageMaster/basicSettings/currencySwagger");
 const designation = require("./admin/manageMaster/basicSettings/designationSwagger");
+const markUp = require("./admin/manageMaster/basicSettings/markUpSwagger");
 
 const swaggerDocumentation = {
 	openapi: "3.0.0",
@@ -66,6 +67,9 @@ const swaggerDocumentation = {
 		},
 		{
 			name: "Designation",
+		},
+		{
+			name: "MarkUp",
 		},
 	],
 	paths: {
@@ -265,6 +269,22 @@ const swaggerDocumentation = {
 		},
 		"/master/basicSettings/deleteDesignation/{designationId}": {
 			delete: designation.deleteDesignationSwagger,
+		},
+
+		"/master/basicSettings/getMarkUp": {
+			get: markUp.getAllMarkUpsSwagger
+		},
+		"/master/basicSettings/getOneMarkUp/{markUpId}": {
+			get: markUp.getSingleMarkUpSwagger
+		},
+		"/master/basicSettings/createMarkUp": {
+			post: markUp.createNewMarkUpSwagger
+		},
+		"/master/basicSettings/updateMarkUp/{markUpId}": {
+			put: markUp.updateMarkUpSwagger
+		},
+		"/master/basicSettings/deleteMarkUp/{markUpId}": {
+			delete: markUp.deleteMarkUpSwagger
 		},
 	},
 };
