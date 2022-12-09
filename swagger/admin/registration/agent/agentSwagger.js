@@ -1,5 +1,8 @@
 //const parameters = require("../../parameters");
 
+const { array } = require("../../../../helper/multer/multer");
+const { schema } = require("../../../../model/userModel");
+
 const getAgentSwagger = {
 	tags: ["Agent"],
 	description: "Get Available Agent Details",
@@ -13,111 +16,126 @@ const getAgentSwagger = {
 	},
 };
 
+
 const requestBody1 = {
 	type: "object",
 	properties: {
 		companyName: {
+			in: "formData",
 			type: "String",
 			example: "testyantra",
 		},
 		shortName: {
+			in: "formData",
 			type: "String",
 			example: "TY",
 		},
-		businessType: {
-			type: "String",
-			example: "software",
-		},
-		companyType: {
-			type: "String",
-			example: "IT",
-		},
+		businessType: { in: "formData", type: "String", example: "software" },
+		companyType: { in: "formData", type: "String", example: "IT" },
+
 		companyCode: {
+			in: "formData",
 			type: "String",
 			example: "TY123",
 		},
 		agentUrl: {
+			in: "formData",
 			type: "String",
 			example: "https://www.testyantra.com/",
 		},
 		authorizedPerson_firstName: {
+			in: "formData",
 			type: "String",
 			example: "Girish",
 		},
 		authorizedPerson_lastName: {
+			in: "formData",
 			type: "String",
 			example: "patil",
 		},
 		agentEmail: {
+			in: "formData",
 			type: "String",
 			example: "girisg@ty.in",
 		},
 		zipCode: {
+			in: "formData",
 			type: "String",
 			example: "560089",
 		},
 		mobileNumber: {
+			in: "formData",
 			type: "Number",
 			example: "8904532145",
 		},
 		contactPerson: {
+			in: "formData",
 			type: "String",
 			example: "Praveen",
 		},
 		faxNumber: {
+			in: "formData",
 			type: "Number",
 			example: "124647654",
 		},
 		telNumber: {
+			in: "formData",
 			type: "Number",
 			example: "08482698597",
 		},
 		country: {
+			in: "formData",
 			type: "String",
 			example: "India",
 		},
 		province: {
+			in: "formData",
 			type: "String",
 			example: "area name",
 		},
 		city: {
+			in: "formData",
 			type: "String",
 			example: "Bengalore",
 		},
 		address: {
+			in: "formData",
 			type: "String",
 			example: "jayanagar 4th block",
 		},
 		markupType: {
+			in: "formData",
 			type: "String",
 			example: "land mark",
 		},
 		currency: {
+			in: "formData",
 			type: "String",
 			example: "INR",
 		},
 		status: {
+			in: "formData",
 			type: "String",
 			example: "Active",
 		},
-        companyLogo: {
-            data: "Buffer",
-            contentType: "String", 
-        },
+		companyLogo: {
+			in: "formData",
+			type: "file",
+			data: "Buffer",
+		},
 	},
 };
-     
 
 const addAgentSwagger = {
 	tags: ["Agent"],
 	description: "Create Agent Details",
 	summary: "Use this API to create a new Agent",
 	operationId: "createNewAgent",
-	// consumes: ["application/json"],
+	consumes: ["multipart/form-data"],
 	produces: ["application/json"],
 	requestBody: {
 		content: {
-			"application/json": {
+			"multipart/form-data:": {
 				schema: requestBody1,
 			},
 		},
@@ -217,10 +235,10 @@ const updRequestBody = {
 			type: "String",
 			example: "Active",
 		},
-        companyLogo: {
-            data: "Buffer",
-            contentType: "String", 
-        },
+		companyLogo: {
+			data: "Buffer",
+			contentType: "String",
+		},
 	},
 };
 
@@ -285,87 +303,59 @@ module.exports = {
 	deleteAgentSwagger,
 };
 
-// companyName: {
-//     type: "String",
-//     example: "testyantra",
+// "/employee/add-employee": {
+// 	"post": {
+// 		"tags": ["Employee"],
+// 		"parameters": [{
+// 				"in": "formData",
+// 				"name": "employeeID",
+// 				"type": "string",
+// 				"required": true,
+// 				"description": "Enter Employee ID"
+// 			},
+// 			{
+// 				"in": "formData",
+// 				"name": "employeeName",
+// 				"type": "string",
+// 				"required": true,
+// 				"description": "Enter Employee Name"
+// 			},
+// 			{
+// 				"in": "formData",
+// 				"name": "emailId",
+// 				"type": "string",
+// 				"required": true,
+// 				"description": "Enter Employee Email Id"
+// 			},
+// 			{
+// 				"in": "formData",
+// 				"name": "designation",
+// 				"type": "string",
+// 				"required": true,
+// 				"description": "Enter Employee Designation"
+// 			},
+// 			{
+// 				"in": "formData",
+// 				"name": "imagePath",
+// 				"type": "file",
+// 				"required": true,
+// 				"description": "The file to upload"
+// 			}
+// 		],
+// 		"summary": "Add new Employee",
+// 		"responses": {
+// 			"200": {
+// 				"description": "Ok"
+// 			},
+// 			"400": {
+// 				"description": "Bad request"
+// 			},
+// 			"404": {
+// 				"description": "Page Not Found or File Not Found"
+// 			},
+// 			"401": {
+// 				"description": "Unauthorized Client"
+// 			}
+// 		}
+// 	}
 // },
-// shortName:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// businessType:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// companyType:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// companyCode:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// agentUrl:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// authorizedPerson_firstName:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// authorizedPerson_lastName:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// agentEmail:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// zipCode:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// mobileNumber:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// contactPerson:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// faxNumber:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// telNumber:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// country:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// province:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// city:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// address:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// markupType:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// currency:  {
-//     type: "String",
-//     example: "testyantra",
-// },
-// status: {
-//     type: "String",
-//     example: "Active"
-// }

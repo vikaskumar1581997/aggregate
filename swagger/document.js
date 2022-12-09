@@ -6,13 +6,17 @@ const employee = require("./admin/registration/employee/employeeSwagger");
 const hotel = require("./admin/registration/hotel/hotelSwagger");
 const houseBoat = require("./admin/registration/houseboat/houseboatSwagger");
 const houseBoatContract = require("./admin/registration/houseboat/houseboatContractSwagger");
-const agentCategory = require("./admin/manageMaster/agentSettingsSwagger");
+const agentCategory = require("./admin/manageMaster/agentCategorySwagger");
 const bank = require("./admin/manageMaster/basicSettings/bankSwagger");
 const contactType = require("./admin/manageMaster/basicSettings/contactTypeSwagger");
 const assignMenu = require("./admin/manageMaster/basicSettings/assignMenuSwagger");
 const currency = require("./admin/manageMaster/basicSettings/currencySwagger");
 const designation = require("./admin/manageMaster/basicSettings/designationSwagger");
 const markUp = require("./admin/manageMaster/basicSettings/markUpSwagger");
+const coupon = require("./admin/manageMaster/couponSwagger");
+const houseboatType = require("./admin/manageMaster/houseboatSettings/houseboatTypeSwagger");
+const houseboatRoomCategory = require("./admin/manageMaster/houseboatSettings/houseboatRoomCategorySwagger");
+const houseboatRoomType = require("./admin/manageMaster/houseboatSettings/houseboatRoomTypeSwagger");
 
 const swaggerDocumentation = {
 	openapi: "3.0.0",
@@ -73,6 +77,21 @@ const swaggerDocumentation = {
 		{
 			name: "MarkUp",
 		},
+		{
+			name: "AgentCategory",
+		},
+		{
+			name: "Coupon",
+		},
+		{
+			name: "HouseBoatType",
+		},
+		{
+			name: "HouseBoatRoomCategory",
+		},
+		{
+			name: "HouseBoatRoomType",
+		},
 	],
 	paths: {
 		"/api/auth/adminlogin": {
@@ -87,7 +106,7 @@ const swaggerDocumentation = {
 		"/api/auth/admindeletion/{id}": {
 			delete: adminlogin.deleteAdminloginSwagger,
 		},
-		"/guest/guest/{id}": {
+		"/guest/guest/{guestId}": {
 			get: getGuestDetails.getGuestDetailsById,
 		},
 		"/guest/list": {
@@ -96,13 +115,13 @@ const swaggerDocumentation = {
 		"/guest/create": {
 			post: getGuestDetails.addGuestDetailsSwagger,
 		},
-		"/guest/update/{id}": {
+		"/guest/update/{guestId}": {
 			put: getGuestDetails.updateGuestDetailsSwagger,
 		},
-		"/guest/delete/{id}": {
+		"/guest/delete/{guestId}": {
 			delete: getGuestDetails.deleteGuestDetailsSwagger,
 		},
-		"/registration/agent/agentSettings": {
+		"/registration/agent/getAgentSettings": {
 			get: agent.getAgentSwagger,
 		},
 		"/registration/agent/createAgentSettings": {
@@ -152,7 +171,7 @@ const swaggerDocumentation = {
 			get: houseBoat.getHouseboatSwagger,
 		},
 		"/registration/houseboatSettings/getOneHouseboat/{houseboatId}": {
-			get: getGuestDetails.getGuestDetailsById,
+			get: houseBoat.getHouseboatById,
 		},
 		"/registration/houseboatSettings/createHouseboat": {
 			post: houseBoat.addHouseboatSwagger,
@@ -274,20 +293,90 @@ const swaggerDocumentation = {
 		},
 
 		"/master/basicSettings/getMarkUp": {
-			get: markUp.getAllMarkUpsSwagger
+			get: markUp.getAllMarkUpsSwagger,
 		},
 		"/master/basicSettings/getOneMarkUp/{markUpId}": {
-			get: markUp.getSingleMarkUpSwagger
+			get: markUp.getSingleMarkUpSwagger,
 		},
 		"/master/basicSettings/createMarkUp": {
-			post: markUp.createNewMarkUpSwagger
+			post: markUp.createNewMarkUpSwagger,
 		},
 		"/master/basicSettings/updateMarkUp/{markUpId}": {
-			put: markUp.updateMarkUpSwagger
+			put: markUp.updateMarkUpSwagger,
 		},
 		"/master/basicSettings/deleteMarkUp/{markUpId}": {
-			delete: markUp.deleteMarkUpSwagger
+			delete: markUp.deleteMarkUpSwagger,
 		},
+
+		"/master/couponSettings/getCoupon": {
+			get: coupon.getAllCouponSwagger,
+		},
+		"/master/couponSettings/getOneCoupon/{couponId}": {
+			get: coupon.getSingleCouponSwagger,
+		},
+		"/master/couponSettings/createCoupon": {
+			post: coupon.createNewCouponSwagger,
+		},
+		"/master/couponSettings/updateCoupon/{couponId}": {
+			put: coupon.updateCouponSwagger,
+		},
+		"/master/couponSettings/deleteCoupon/{couponId}": {
+			delete: coupon.deleteCouponSwagger,
+		},
+
+		"/master/houseboatSettings/getHouseboatType": {
+			get: houseboatType.getAllHouseBoatTypeSwagger,
+		},
+		"/master/houseboatSettings/getOneHouseboatType/{houseboatTypeId}": {
+			get: houseboatType.getSingleHouseBoatTypewagger,
+		},
+		"/master/houseboatSettings/createHouseboatType": {
+			post: houseboatType.createNewHouseBoatTypeSwagger,
+		},
+		"/master/houseboatSettings/updateHouseboatType/{houseboatTypeId}": {
+			put: houseboatType.updateHouseBoatTypewagger,
+		},
+		"/master/houseboatSettings/deleteHouseboatType/{houseboatTypeId}": {
+			delete: houseboatType.deleteHouseBoatTypewagger,
+		},
+
+		"/master/houseboatSettings/getHouseboatRoomCategory": {
+			get: houseboatRoomCategory.getAllHouseBoatRoomCategorysSwagger,
+		},
+		"/master/houseboatSettings/getOneHouseboatRoomCategory/{houseboatRoomCategoryId}":
+			{
+				get: houseboatRoomCategory.getSingleHouseBoatRoomCategorySwagger,
+			},
+		"/master/houseboatSettings/createHouseboatRoomCategory": {
+			post: houseboatRoomCategory.createNewHouseBoatRoomCategorySwagger,
+		},
+		"/master/houseboatSettings/updateHouseboatRoomCategory/{houseboatRoomCategoryId}":
+			{
+				put: houseboatRoomCategory.updateHouseBoatRoomCategorySwagger,
+			},
+		"/master/houseboatSettings/deleteHouseboatRoomCategory/{houseboatRoomCategoryId}":
+			{
+				delete: houseboatRoomCategory.deleteHouseBoatRoomCategorySwagger,
+			},
+
+		"/master/houseboatSettings/getHouseboatRoomType": {
+			get: houseboatRoomType.getAllHouseBoatRoomTypeSwagger,
+		},
+		"/master/houseboatSettings/getOneHouseboatRoomType/{houseboatRoomTypeId}":
+			{
+				get: houseboatRoomType.getSingleHouseBoatRoomTypewagger,
+			},
+		"/master/houseboatSettings/createHouseboatRoomType": {
+			post: houseboatRoomType.createNewHouseBoatRoomTypeSwagger,
+		},
+		"/master/houseboatSettings/updateHouseboatRoomType/{houseboatRoomTypeId}":
+			{
+				put: houseboatRoomType.updateHouseBoatRoomTypewagger,
+			},
+		"/master/houseboatSettings/deleteHouseboatRoomType/{houseboatRoomTypeId}":
+			{
+				delete: houseboatRoomType.deleteHouseBoatRoomTypewagger,
+			},
 	},
 };
 

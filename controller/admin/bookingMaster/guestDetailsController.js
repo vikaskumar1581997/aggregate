@@ -95,52 +95,38 @@ const getGuestDetailsById = async (req, res, next) => {
 };
 
 //Update an Amenity
+
 const updateGuestDetails = async (req, res, next) => {
 	try {
 		const guestId = req.params.guestId;
-		const {
-			title,
-			firstName,
-			middleName,
-			lastName,
-			nativeCountry,
-			contactNumber,
-			emailId,
-			dob,
-			passportNumber,
-		} = req.body;
-
-		const guestData = await GuestDetails.findById(guestId).exec();
-
-		guestData.title = title;
-		guestData.firstName = firstName;
-		guestData.middleName = middleName;
-		guestData.lastName = lastName;
-		guestData.nativeCountry = nativeCountry;
-		guestData.contactNumber = contactNumber;
-		guestData.emailId = emailId;
-		guestData.dob = dob;
-		guestData.passportNumber = passportNumber;
-
-		const updateguest = await guestData.save();
-
-		if (updateguest) {
-			res.status(201).json({
-				error: false,
-				message: "Guest Details Updated",
-				response: updateguest,
-			});
-		} else {
-			res.status(400).json({
-				error: true,
-				message: "Guest not found",
+		const guestData = req.body;
+		console.log(guestId);
+		if (!guestData) {
+			res.status(400).json({ message: "data missing" });
+		}
+		const updateGuest = await GuestDetails.findOneAndUpdate(
+			{
+				_id: guestId,
+			},
+			guestData,
+			{ new: true }
+		);
+		if (!updateGuest) {
+			return res.status(400).json({
+				status: "true",
+				message: "guest not found",
 			});
 		}
+		return res.status(200).json({
+			status: true,
+			msg: "Guest updated successfully",
+			data: updateGuest,
+		});
 	} catch (error) {
 		next(error);
-		console.error(error);
 	}
 };
+
 
 //Delete an Amenity
 const deleteGuestDetails = async (req, res, next) => {
