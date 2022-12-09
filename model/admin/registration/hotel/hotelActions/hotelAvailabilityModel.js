@@ -6,6 +6,7 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
+     
     availabilityType: {
       type: String,
       required: true,

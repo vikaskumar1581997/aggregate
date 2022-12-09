@@ -3,12 +3,17 @@ const partnerLogincredentialsModel = require("../../../../../model/admin/registr
 const createPartnerLoginCredentials = async (req, res, next) => {
   try {
     const data = req.body; //body will contain hotelId also
-    const credentialCreated = await partnerLogincredentialsModel.updateOne(
-        {_id:partnerLoginOid},
-        data,
-        {upsert:true},
-        {new:true}
-        );
+
+    const userExist = await partnerLogincredentialsModel.findOne({
+      userName: data.userName,
+    });
+    if (userExist) {
+      return res.status(400).json({
+        error: true,
+        message: "username already exist",
+      });
+    }
+    const credentialCreated = await partnerLogincredentialsModel.create(data);
 
     return res.status(201).json({
       status: true,
@@ -20,4 +25,27 @@ const createPartnerLoginCredentials = async (req, res, next) => {
   }
 };
 
-module.exports = { createPartnerLoginCredentials };
+const updatePartnerLoginCredentials = async (req, res, next) => {
+  try {
+    const data = req.body; //body will contain hotelId also
+    const credentialUpdated = await partnerLogincredentialsModel.updateOne(
+      { _id: partnerLoginOid },
+      data,
+      { upsert: true },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      status: true,
+      msg: "partner credential updated successfully",
+      data: credentialUpdated,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = {
+  createPartnerLoginCredentials,
+  updatePartnerLoginCredentials,
+};

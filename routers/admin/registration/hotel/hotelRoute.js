@@ -47,16 +47,30 @@ router.put(
   occupancyMinimumLengthControllers.setStatusLive
 );
 
+
+router.post(
+  "/createminimumLengthStay",
+  occupancyMinimumLengthControllers.createminimumLengthStay
+);
+
+
+router.put(
+  "/updateminimumLengthStay",
+  occupancyMinimumLengthControllers.updateminimumLengthStay
+);
 //===================mailcenter=======================
 
 router.post("/mailCenter/:hotelId", mailCenterControllers.createMailCenter);
 
 
 //====================partnerLogin Credentials===========================
-
-router.put(
-  "/partnerCredentials",
+router.post(
+  "/createPartnerCredentials",
   partnerCredentialsControllers.createPartnerLoginCredentials
+);
+router.put(
+  "/updatePartnerCredentials",
+  partnerCredentialsControllers.updatePartnerLoginCredentials
 );
 
 module.exports = router;

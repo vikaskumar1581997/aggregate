@@ -1,10 +1,10 @@
 const occupancyModel = require("../../../../../model/admin/registration/hotel/hotelActions/occupancyModel");
-const minimumLengthStayModel = require("../../../../../model/admin/registration/hotel/hotelActions/minimunLength");
+const minimumLengthStayModel = require("../../../../../model/admin/registration/hotel/hotelActions/minimunLengthModel");
 
 const createOccupancy = async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const data = req.body;
+    //const id = req.params.id;
+    const data = req.body; //give hotelId in body
 
     const occupancyCreated = await occupancyModel.create(data);
 
@@ -24,25 +24,27 @@ const deleteOccupancy = async (req, res, next) => {
       _id: occupancyId,
     });
 
+    //console.log(deletedOccupancy);
     return res.status(201).json({
       message: "occupancy deleted",
     });
   } catch (err) {
     next(err);
   }
-}
+};
 const updateOccupancy = async (req, res, next) => {
   try {
     const occupancyId = req.params.occupancyId;
-    const data=req.body
-    console.log(data)
+    const data = req.body;
+    console.log(data);
     const updatedOccupancy = await occupancyModel.findOneAndUpdate(
-      {_id: occupancyId},
+      { _id: occupancyId },
       data,
-      {new:true}
+      { new: true }
     );
+    //console.log(updatedOccupancy);
     if (updatedOccupancy) {
-      return res.status(201).json({
+      return res.status(200).json({
         message: "occupancy updated",
         data: updatedOccupancy,
       });
@@ -56,11 +58,11 @@ const updateOccupancy = async (req, res, next) => {
   }
 };
 
-const setStatusLive=async(req,res,next)=>{
+const setStatusLive = async (req, res, next) => {
   const occupancyId = req.params.occupancyId;
   const LiveOccupancy = await occupancyModel.findOneAndUpdate(
     { _id: occupancyId },
-    {status:"live"},
+    { status: "live" },
     { new: true }
   );
   if (LiveOccupancy) {
@@ -73,12 +75,56 @@ const setStatusLive=async(req,res,next)=>{
       message: "no such occupancy exist",
     });
   }
-}
+};
+
+
+
+const createminimumLengthStay = async (req, res, next) => {
+  try {
+    // const id = req.params.id;
+    const data = req.body; //give hotelId in body
+
+    const minimumLengthStay = await minimumLengthStayModel.create(data);
+
+    return res.status(201).json({
+      error: false,
+      message: "min length stay created",
+      data: minimumLengthStay,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateminimumLengthStay = async (req, res, next) => {
+  try {
+    const minLengthStayid = req.params.minLengthStayid;
+    const data = req.body; //give hotelId in body
+
+    const minimumLengthStay = await minimumLengthStayModel.findOneAndUpdate(
+    {  _id: minLengthStayid},
+    data,
+    {new:true}
+    );
+
+    return res.status(201).json({
+      error: false,
+      message: "min length stay updated",
+      data: minimumLengthStay,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
 
 module.exports = {
   createOccupancy,
   deleteOccupancy,
   updateOccupancy,
   setStatusLive,
+  createminimumLengthStay,
+  updateminimumLengthStay,
 };
-
