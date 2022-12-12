@@ -1,4 +1,6 @@
-const partnerLogincredentialsModel = require("../../../../../model/admin/registration/hotel/hotelActions/loginCredentials");
+const partnerLogincredentialsModel = require("../../../../../model/admin/registration/hotel/hotelActions/partnerLoginCredentials");
+const bcrypt = require("bcrypt");
+
 
 const createPartnerLoginCredentials = async (req, res, next) => {
   try {
@@ -13,6 +15,12 @@ const createPartnerLoginCredentials = async (req, res, next) => {
         message: "username already exist",
       });
     }
+
+    
+    const salt = await bcrypt.genSalt(10);
+    data.password = await bcrypt.hash(data.password, salt);
+    console.log(data.password);
+
     const credentialCreated = await partnerLogincredentialsModel.create(data);
 
     return res.status(201).json({
@@ -28,10 +36,18 @@ const createPartnerLoginCredentials = async (req, res, next) => {
 const updatePartnerLoginCredentials = async (req, res, next) => {
   try {
     const data = req.body; //body will contain hotelId also
-    const credentialUpdated = await partnerLogincredentialsModel.updateOne(
+    const partnerLoginOid=req.params.partnerLoginOid
+    
+    console.log(partnerLoginOid);
+
+    const salt = await bcrypt.genSalt(10);
+    data.password = await bcrypt.hash(data.password, salt);
+    console.log(data.password);
+
+    const credentialUpdated = await partnerLogincredentialsModel.findOneAndUpdate(
       { _id: partnerLoginOid },
       data,
-      { upsert: true },
+  
       { new: true }
     );
 

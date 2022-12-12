@@ -35,6 +35,7 @@ const occupancySchema = new mongoose.Schema(
     },
     priority:{
       type:Number
+    
     }
   },
   { timestamp: true }

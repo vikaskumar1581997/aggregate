@@ -19,7 +19,7 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    noOFRooms: {
+    noOfRooms: {
       type: Number,
       required: true,
     },

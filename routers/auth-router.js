@@ -45,23 +45,20 @@ router.get(
   })
 );
 
-//=======================Admin and partner auth route=====================
+//=======================Admin  auth route=====================
 
 router.post(
   "/adminregistration",
-  adminAndPartnerControllers.adminAndPartnerRegistration
+  adminAndPartnerControllers.adminRegistration
 );
 
-router.post("/adminlogin", adminAndPartnerControllers.adminAndPartnerLogin);
+router.post("/adminlogin", adminAndPartnerControllers.adminLogin);
 
-router.put(
-  "/adminupdation/:id",
-  adminAndPartnerControllers.adminAndPartnerUpdation
-);
+router.put("/adminupdation/:adminId", adminAndPartnerControllers.adminUpdation);
 
 router.delete(
-  "/admindeletion/:id",
-  adminAndPartnerControllers.adminAndPartnerDeletion
+  "/admindeletion/:adminId",
+  adminAndPartnerControllers.adminDeletion
 );
 
 module.exports = router;

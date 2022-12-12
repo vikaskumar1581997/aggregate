@@ -25,7 +25,7 @@ const deleteOccupancy = async (req, res, next) => {
     });
 
     //console.log(deletedOccupancy);
-    return res.status(201).json({
+    return res.status(200).json({
       message: "occupancy deleted",
     });
   } catch (err) {
@@ -78,10 +78,12 @@ const setStatusLive = async (req, res, next) => {
 };
 
 
+//-===========================MIN LENGTH STAY==================================
+
 
 const createminimumLengthStay = async (req, res, next) => {
   try {
-    // const id = req.params.id;
+   
     const data = req.body; //give hotelId in body
 
     const minimumLengthStay = await minimumLengthStayModel.create(data);
@@ -102,12 +104,12 @@ const updateminimumLengthStay = async (req, res, next) => {
     const data = req.body; //give hotelId in body
 
     const minimumLengthStay = await minimumLengthStayModel.findOneAndUpdate(
-    {  _id: minLengthStayid},
-    data,
-    {new:true}
+      { _id: minLengthStayid },
+      data,
+      { new: true }
     );
 
-    return res.status(201).json({
+    return res.status(200).json({
       error: false,
       message: "min length stay updated",
       data: minimumLengthStay,
@@ -117,9 +119,49 @@ const updateminimumLengthStay = async (req, res, next) => {
   }
 };
 
+const deleteminimumLengthStay = async (req, res, next) => {
+  try {
+    const minLengthStayid = req.params.minLengthStayid;
+   
+
+    const minimumLengthStay = await minimumLengthStayModel.deleteOne({
+      _id: minLengthStayid,
+    });
+
+    return res.status(200).json({
+      error: false,
+      message: "min length stay deleted",
+    
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 
 
+const setStatusLiveOfLength = async (req, res, next) => {
+  try {   
+    const minLengthStayid = req.params.minLengthStayid;
+    const MinLengthStay = await occupancyModel.findOneAndUpdate(
+      { _id: minLengthStayid },
+      { status: "live" },
+      { new: true }
+    );
+    if (LiveOccupancy) {
+      return res.status(201).json({
+        message: "occupancy status set live",
+        data: MinLengthStay,
+      });
+    } else {
+      return res.status(404).json({
+        message: "no such occupancy exist",
+      });
+    }
+  } catch (error) {
+    next(error)
+};
+}
 module.exports = {
   createOccupancy,
   deleteOccupancy,
@@ -127,4 +169,6 @@ module.exports = {
   setStatusLive,
   createminimumLengthStay,
   updateminimumLengthStay,
+  deleteminimumLengthStay,
+  setStatusLiveOfLength
 };

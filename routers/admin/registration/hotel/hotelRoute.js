@@ -58,6 +58,18 @@ router.put(
   "/updateminimumLengthStay",
   occupancyMinimumLengthControllers.updateminimumLengthStay
 );
+
+
+router.delete(
+  "/updateminimumLengthStay",
+  occupancyMinimumLengthControllers.deleteminimumLengthStay
+);
+
+
+router.delete(
+  "/updateminimumLengthStay",
+  occupancyMinimumLengthControllers.setStatusLiveOfLength
+);
 //===================mailcenter=======================
 
 router.post("/mailCenter/:hotelId", mailCenterControllers.createMailCenter);
@@ -69,7 +81,7 @@ router.post(
   partnerCredentialsControllers.createPartnerLoginCredentials
 );
 router.put(
-  "/updatePartnerCredentials",
+  "/updatePartnerCredentials/:partnerLoginOid",
   partnerCredentialsControllers.updatePartnerLoginCredentials
 );
 

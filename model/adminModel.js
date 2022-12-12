@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const adminAndPartnerSchema = new mongoose.Schema(
+const adminSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -23,10 +23,10 @@ const adminAndPartnerSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    role: {
-      type: String,
-      default: "partner",
-    },
+    // role: {
+    //   type: String,
+    //   default: "partner",
+    // },
     isDeleted: {
       type: Boolean,
       default: false,
@@ -37,4 +37,4 @@ const adminAndPartnerSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("adminAndPartner", adminAndPartnerSchema);
+module.exports = mongoose.model("adminCredentials", adminSchema);

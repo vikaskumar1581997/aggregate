@@ -20,6 +20,10 @@ const occupancyMinimumLengthSchema = new mongoose.Schema(
     validityList: {
       type: [[String]],
     },
+
+    priority: {
+      type: Number,
+    },
   },
   { timestamp: true }
 );
