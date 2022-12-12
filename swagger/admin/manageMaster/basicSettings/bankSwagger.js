@@ -5,7 +5,7 @@ const getAllBanksSwagger = {
 	tags: ["Bank"],
 	description: "Get Available Bank",
 	summary: "Use this API to Get Available Bank",
-	operationId: "getAllAgent",
+	operationId: "getAllBank",
 	produces: ["application/json"],
 	responses: {
 		200: {
@@ -42,8 +42,8 @@ const requestBody1 = {
 const createNewBankSwagger = {
 	tags: ["Bank"],
 	description: "Create Bank",
-	summary: "Use this API to create a new Agent",
-	operationId: "createNewAgent",
+	summary: "Use this API to create a new Bank",
+	operationId: "createNewBank",
 	// consumes: ["application/json"],
 	produces: ["application/json"],
 	requestBody: {
@@ -73,16 +73,16 @@ const updRequestBody = {
 
 const updateBankSwagger = {
 	tags: ["Bank"],
-	description: "Update Agent Detaisl",
+	description: "Update Bank Detaisl",
 	summary: "Use this API to update Bank",
-	operationId: "updateAgent",
+	operationId: "updateBank",
 	consumes: ["application/json"],
 	produces: ["application/json"],
 	parameters: [
 		{
 			name: "BankId",
 			in: "path",
-			description: "Agent id that needs to be Updated",
+			description: "Bank id that needs to be Updated",
 			required: true,
 			type: "string",
 		},
