@@ -19,7 +19,7 @@ const createPartnerLoginCredentials = async (req, res, next) => {
     
     const salt = await bcrypt.genSalt(10);
     data.password = await bcrypt.hash(data.password, salt);
-    console.log(data.password);
+   // console.log(data.password);
 
     const credentialCreated = await partnerLogincredentialsModel.create(data);
 
@@ -38,11 +38,11 @@ const updatePartnerLoginCredentials = async (req, res, next) => {
     const data = req.body; //body will contain hotelId also
     const partnerLoginOid=req.params.partnerLoginOid
     
-    console.log(partnerLoginOid);
+    //console.log(partnerLoginOid);
 
     const salt = await bcrypt.genSalt(10);
     data.password = await bcrypt.hash(data.password, salt);
-    console.log(data.password);
+    //console.log(data.password);
 
     const credentialUpdated = await partnerLogincredentialsModel.findOneAndUpdate(
       { _id: partnerLoginOid },

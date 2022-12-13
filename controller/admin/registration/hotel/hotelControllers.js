@@ -2,12 +2,22 @@
 const hotelModel = require("../../../../model/admin/registration/hotel/hotelModel");
 
 exports.hotelRegistration = async (req, res, next) => {
-  try { 
+  try {
     const hotelData = req.body;
     if (!hotelData) {
       return res.status(400).json({ msg: "data missing" });
     }
 
+    const isNameExist = await hotelModel.findOne({
+      "basicDetails.hotelName": hotelData.basicDetails.hotelName,
+    });
+    // console.log(hotelData,"data");
+    if (isNameExist) {
+      return res.status(400).json({
+        error: true,
+        mesaage: "enter another hotel name",
+      });
+    }
     const savedHotel = await hotelModel.create(hotelData);
 
     return res.status(201).json({
@@ -85,5 +95,30 @@ exports.deleteHotel = async (req, res, next) => {
     });
   } catch (err) {
     next(err);
+  }
+};
+
+exports.getHotelByName = async (req, res, next) => {
+  try {
+    const name = req.params.hotelName;
+    const hotel = await hotelModel.findOne({
+      "basicDetails.hotelName": name,
+    });
+    console.log(hotel);
+    if (hotel) {
+      return res.status(200).json({
+        error: false,
+
+        data: hotel,
+      });
+    } else {
+      return res.status(200).json({
+        error: true,
+
+        messgae: "no such hotel exist",
+      });
+    }
+  } catch (error) {
+    next(error);
   }
 };

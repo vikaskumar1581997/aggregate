@@ -9,7 +9,7 @@ exports.roomImageUpload = async (req, res, next) => {
 
     const url = req.protocol + "://" + req.get("host");
     //console.log(url)
-    let image = url + "/public/images/" + req.files[0].filename;
+   // let image = url + "/public/images/" + req.files[0].filename;
     //console.log(image, "image");
 
     const morefiles = req.files;

@@ -6,7 +6,7 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
-     
+
     availabilityType: {
       type: String,
       required: true,
@@ -26,6 +26,10 @@ const hotelAvailabilitySchema = new mongoose.Schema(
     releaseDay: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      default: "notLive",
     },
     validityList: [[String]],
   },

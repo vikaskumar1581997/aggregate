@@ -11,6 +11,7 @@ router.post("/createHotel", hotelControllers.hotelRegistration);
 router.put("/updateHotel/:id", hotelControllers.updateHotel);
 router.delete("/deleteHotel/:id", hotelControllers.deleteHotel);
 router.get("/getHotelList", hotelControllers.getHotelList);
+router.get("/getHotelByName/:hotelName", hotelControllers.getHotelByName);
 
 
 router.post(
@@ -44,7 +45,7 @@ router.put(
 
 router.put(
   "/setStatusLive/:occupancyId",
-  occupancyMinimumLengthControllers.setStatusLive
+  occupancyMinimumLengthControllers.setStatusLiveOccupancy
 );
 
 
@@ -55,19 +56,19 @@ router.post(
 
 
 router.put(
-  "/updateminimumLengthStay",
+  "/updateminimumLengthStay/:minLengthStayid",
   occupancyMinimumLengthControllers.updateminimumLengthStay
 );
 
 
 router.delete(
-  "/updateminimumLengthStay",
+  "/updateminimumLengthStay/:minLengthStayid",
   occupancyMinimumLengthControllers.deleteminimumLengthStay
 );
 
 
-router.delete(
-  "/updateminimumLengthStay",
+router.put(
+  "/setStatusLive/:MinLengthStay",
   occupancyMinimumLengthControllers.setStatusLiveOfLength
 );
 //===================mailcenter=======================
@@ -84,5 +85,34 @@ router.put(
   "/updatePartnerCredentials/:partnerLoginOid",
   partnerCredentialsControllers.updatePartnerLoginCredentials
 );
+
+
+//===========================hotel Availability===================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
