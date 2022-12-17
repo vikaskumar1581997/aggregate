@@ -27,17 +27,6 @@
 //===============================
 
 
-// let n=5;
-
-// function fib(n){
-//     if(n<=1) return n
-  
-//     return fib(n-1)+fib(n-2)
-
-// } 
-// let res1=fib(n);
-// console.log(res1)
-
 
 
 
@@ -61,23 +50,23 @@
 
 //====================================
 
-// const jds=(()=>{
-// tags={
-//     a:"jhkdc",
-//     b:"udguiw"
-// }
+const jds=()=>{
+tags={
+    a:"jhkdc",
+    b:"udguiw"
+}
 
-//  for(ele in tags){
-//     console.log(ele);
-//     console.log(tags[ele])
-//  }
-// })
+ for(ele in tags){
+    console.log(ele);
+    console.log(tags[ele])
+ }
+}
 
-// jds()
+jds()
 
 //==================== ***FIBONACCI**** ====================================
 
-//const a=9;
+const num=9;
 
 // function fib(n){
 //     if(n<=1){
@@ -89,45 +78,22 @@
 // const res=fib(a);
 // console.log(res)
 
-// function dpfib(n){
-//     let f=new Array(n+2)
-//     f[0]=0;
-//     f[1]=1;
 
-//     for(let i=2;i<=n;i++){
+function dpfib(n){
+    let f=new Array(n+2)
+    f[0]=0;
+    f[1]=1;
 
-//         f[i]=f[i-1]+f[i-2];
-//     }
-//     return f[n]
-// }
+    for(let i=2;i<=n;i++){
 
-// let result=dpfib(a)
-// console.log(result)
+        f[i]=f[i-1]+f[i-2];
+    }
+    return f[n]
+}
 
-//============= reverse the string================
+let fibres=dpfib(num)
+console.log(fibres);
 
-// const a="vikas";
-// let b=""
-// function reverse(a){
-// for(i=a.length-1;i>=0;i--){
-//      b=b+a[i]
-// }
-// console.log(b)
-// }
-//  //reverse(a)
-//   //====through rec===
-//   const ar="vikas";
-//   let br=""
-//   function reverse(a){
-           
-//     if(a.length==1) return a[0] 
-
-//     return reverse(a.substring(1)) +a[0]
-   
-
-//   }
-//   //let res1=reverse(ar)
-//   //console.log(res1);
 
 
 //   //=======================power============
@@ -185,54 +151,44 @@
 //======================
 
 
-arr=[3,45,67,8,3,45]
-str="djgshdcshvadghcsv"
-a={}
-res=[]
+// arr=[3,45,67,8,3,45]
+// str="djgshdcshvadghcsv"
+// a={}
+// res=[]
 
-function dup(x){
+// function dup(x){
 
-  for(i=0;i<str.length;i++){
-    //let v=arr[i]
-   // console.log(a.v,i,v)
-    if(a[str[i]]==undefined){
-      a[str[i]] = str[i];
-    }
-    else{
-   res.push(str[i])
-    }
-  }
-  return res
-}
+//   for(i=0;i<str.length;i++){
+//     //let v=arr[i]
+//    // console.log(a.v,i,v)
+//     if(a[str[i]]==undefined){
+//       a[str[i]] = str[i];
+//     }
+//     else{
+//    res.push(str[i])
+//     }
+//   }
+//   return res
+// }
 
-const result=dup(str.split(""))
-console.log(result)
+// const result=dup(str.split(""))
+// console.log(result)
 
-//========================palindrome=====
 
-str="boob"
+arr = [3, 45, 67, 8, 3, 45];
 
-function palindrome(str){
-  let length=Math.floor(str.length/2);
-  let start=0;
-  let end=str.length-1
-  console.log(str[start],end,length)
+const res=arr.slice(1,4)
+console.log(res)
+console.log(arr)
+const res1=arr.splice(1,2,89)
+//splice overwrites original Array.
+console.log(arr);
 
-  for(i=0;i<length;i++){
-   console.log(str[start],str[end])
-    if(str[start]===str[end]) {
-      start++;
-      end--;
-      continue
-    }
-    else{
-      return "no"
-    }
-  }
-  return "yes"
- }
 
- const res2=palindrome(str)
-console.log(res2)
+//===========================sorting numbers in array=====================
 
-//=======================
+arr.sort((a,b)=>{return a-b})
+console.log(arr)
+
+//===============================
+
