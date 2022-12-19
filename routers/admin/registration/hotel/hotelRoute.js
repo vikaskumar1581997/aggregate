@@ -6,6 +6,8 @@ const roomImageControllers = require("../../../../controller/admin/registration/
 const occupancyMinimumLengthControllers = require("../../../../controller/admin/registration/hotel/hotelActions/occupancyAndMinimum");
 const partnerCredentialsControllers = require("../../../../controller/admin/registration/hotel/hotelActions/loginCredentials");
 const mailCenterControllers = require("../../../../controller/admin/registration/hotel/hotelActions/mailCenter");
+const availabilityControllers = require("../../../../controller/admin/registration/hotel/hotelActions/hotelAvailability");
+const hotelBooking=require("../../../../controller/admin/newBooking/hotelBooking")
 
 router.post("/createHotel", hotelControllers.hotelRegistration);
 router.put("/updateHotel/:id", hotelControllers.updateHotel);
@@ -20,13 +22,14 @@ router.post(
   hotelImageControllers.hotelProfileImageUpload
 );
 
+
 router.post(
   "/roomImageUpload/:id",
   upload.array("gallery"),
   roomImageControllers.roomImageUpload
 );
 
-//===================occupancy and minimum length routes===========================
+//===================occupancy and minimum length routes==================================================
 
 router.post(
   "/createOccupancy",
@@ -71,12 +74,12 @@ router.put(
   "/setStatusLive/:MinLengthStay",
   occupancyMinimumLengthControllers.setStatusLiveOfLength
 );
-//===================mailcenter=======================
+//===================mailcenter==================================================================
 
 router.post("/mailCenter/:hotelId", mailCenterControllers.createMailCenter);
 
 
-//====================partnerLogin Credentials===========================
+//====================partnerLogin Credentials=========================================================
 router.post(
   "/createPartnerCredentials",
   partnerCredentialsControllers.createPartnerLoginCredentials
@@ -87,7 +90,17 @@ router.put(
 );
 
 
-//===========================hotel Availability===================================
+//===========================hotel Availability==========================================================
+
+router.post(
+  "/createAvailability",
+  availabilityControllers.createHotelAvailability
+);
+
+router.post(
+  "/createBlock",
+  availabilityControllers.createBlockChekinCheckouts
+);
 
 
 
@@ -110,8 +123,8 @@ router.put(
 
 
 
-
-
+//======================================================
+router.get("/bookHotel", hotelBooking.hotelBooking);
 
 
 

@@ -24,7 +24,7 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       required: true,
     },
     releaseDay: {
-      type: String,
+      type: Number,
       required: true,
     },
     status: {
@@ -32,6 +32,8 @@ const hotelAvailabilitySchema = new mongoose.Schema(
       default: "notLive",
     },
     validityList: [[String]],
+
+    checkinAllowed:[String]
   },
   { timestamp: true }
 );

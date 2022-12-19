@@ -1,6 +1,7 @@
 const hotelAvailabilityModel = require("../../../../../model/admin/registration/hotel/hotelActions/hotelAvailabilityModel");
 const blockCheckinCheckoutsModel = require("../../../../../model/admin/registration/hotel/hotelActions/blockCheckinCheckouts");
 const stopSaleModel = require("../../../../../model/admin/registration/hotel/hotelActions/stopSale");
+const mongoose=require("mongoose")
 
 const isvalidRequest = function (requestBody) {
   return Object.keys(requestBody).length > 0;
@@ -77,7 +78,7 @@ const deletedHotelAvailability = async (req, res, next) => {
   try {
     const availabilityId = req.params.availabilityId;
 
-    const deltedAvailability = await minimumLengthStayModel.deleteOne({
+    const deltedAvailability = await hotelAvailabilityModel.deleteOne({
       _id: availabilityId,
     });
 
@@ -93,7 +94,7 @@ const deletedHotelAvailability = async (req, res, next) => {
 const setStatusLiveAvailability = async (req, res, next) => {
   try {
      const availabilityId = req.params.availabilityId;
-    const availability = await contractModel.findOneAndUpdate(
+    const availability = await hotelAvailabilityModel.findOneAndUpdate(
       { _id: availabilityId },
       { status: "live" },
       { new: true }
@@ -331,6 +332,15 @@ const setStatusLiveStopSale = async (req, res, next) => {
   }
 };
 
+
+
+const getHotelAvailability=async(req,res, next)=>{
+  try {
+    //const 
+  } catch (error) {
+    
+  }
+}
 module.exports = {
   createHotelAvailability,
   updateHotelAvailability,
