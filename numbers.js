@@ -1,4 +1,4 @@
-// ===binary search====================
+// ==============================binary search====================
 
 // let binary=function(arr,x){
 //     let start=0,end=arr.length-1;
@@ -48,21 +48,21 @@
 // mypromise().then(()=>console.log("jbfedj"))
 //                     .catch(()=>console.log("errkad"))
 
-//====================================
+//==================================string loop ================
 
-const jds=()=>{
-tags={
-    a:"jhkdc",
-    b:"udguiw"
-}
+// const jds=()=>{
+// tags={
+//     a:"jhkdc",
+//     b:"udguiw"
+// }
 
- for(ele in tags){
-    console.log(ele);
-    console.log(tags[ele])
- }
-}
+//  for(ele in tags){
+//     console.log(ele);
+//     console.log(tags[ele])
+//  }
+// }
 
-jds()
+// jds()
 
 //==================== ***FIBONACCI**** ====================================
 
@@ -79,20 +79,20 @@ const num=9;
 // console.log(res)
 
 
-function dpfib(n){
-    let f=new Array(n+2)
-    f[0]=0;
-    f[1]=1;
+// function dpfib(n){
+//     let f=new Array(n+2)
+//     f[0]=0;
+//     f[1]=1;
 
-    for(let i=2;i<=n;i++){
+//     for(let i=2;i<=n;i++){
 
-        f[i]=f[i-1]+f[i-2];
-    }
-    return f[n]
-}
+//         f[i]=f[i-1]+f[i-2];
+//     }
+//     return f[n]
+// }
 
-let fibres=dpfib(num)
-console.log(fibres);
+// let fibres=dpfib(num)
+// console.log(fibres);
 
 
 
@@ -120,8 +120,19 @@ console.log(fibres);
 // let res=power(i,j)
 // console.log(res);
 
+//==================================factorial ==============
 
-// //=================
+
+function factorial(x) {
+  if (x === 0) {
+    return 1;
+  }
+  return x * factorial(x - 1);
+}
+console.log(factorial(5));
+
+
+// //=======================================
 //  //find min distane between  minimum
 
 //  arr=[7,5,1,67,8,45,1,3,1,67]
@@ -148,47 +159,50 @@ console.log(fibres);
 //  }
 //  my(aj)
 
-//======================
+//=============================== duplicates========
 
 
 // arr=[3,45,67,8,3,45]
-// str="djgshdcshvadghcsv"
-// a={}
-// res=[]
+str="djgshdcshvadghcsv"
+a={}
+res=[]
 
-// function dup(x){
+function dup(x){
 
-//   for(i=0;i<str.length;i++){
-//     //let v=arr[i]
-//    // console.log(a.v,i,v)
-//     if(a[str[i]]==undefined){
-//       a[str[i]] = str[i];
-//     }
-//     else{
-//    res.push(str[i])
-//     }
-//   }
-//   return res
-// }
+  for(i=0;i<str.length;i++){
+    //let v=arr[i]
+   // console.log(a.v,i,v)
+    if(a[str[i]]==undefined){
+      a[str[i]] = str[i];
+    }
+    else{
+   res.push(str[i])
+    }
+  }
+  return res
+}
 
-// const result=dup(str.split(""))
-// console.log(result)
+const result=dup(str.split(""))
+console.log(result)
+console.log(a)
 
 
-arr = [3, 45, 67, 8, 3, 45];
+//===========================================
 
-const res=arr.slice(1,4)
-console.log(res)
-console.log(arr)
-const res1=arr.splice(1,2,89)
-//splice overwrites original Array.
-console.log(arr);
+// arr = [3, 45, 67, 8, 3, 45];
+
+// const res=arr.slice(1,4)
+// console.log(res)
+// console.log(arr)
+// const res1=arr.splice(1,2,89)
+// //splice overwrites original Array.
+// console.log(arr);
 
 
 //===========================sorting numbers in array=====================
 
-arr.sort((a,b)=>{return a-b})
-console.log(arr)
+// arr.sort((a,b)=>{return a-b})
+// console.log(arr)
 
 //===============================
 
