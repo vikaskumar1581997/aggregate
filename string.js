@@ -1,4 +1,4 @@
-//==================remove duplicates===================
+//==================remove duplicates & frequency===================
 
 const str1 = "i have have a mango mango that is is tasty.";
 
@@ -9,6 +9,7 @@ function removeduplicates(inputstr) {
     obj[inputstr[i]] = (obj[inputstr[i]] || 0) + 1;
   }
   console.log(obj);
+  //till here frequenct get counted 
   res = [];
   for (i in obj) {
     // console.log(i)

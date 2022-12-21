@@ -27,27 +27,6 @@
 //===============================
 
 
-
-
-
-//====================================
-
-// var mypromise=(function (time) new Promise(
-//     function (res,rej){
-//         //setTimeout(res,time)
-
-
-
-//         // res()
-//         rej()
-//     }
-
-// ))
-
-// //mypromise(3000).then(()=>console.log("hello"))
-// mypromise().then(()=>console.log("jbfedj"))
-//                     .catch(()=>console.log("errkad"))
-
 //==================================string loop ================
 
 // const jds=()=>{
@@ -145,7 +124,7 @@ console.log(factorial(5));
 //  }
 
 
-//  //=======
+//  //======================delete key of object =========================
 
 
 //  aj={
@@ -159,30 +138,38 @@ console.log(factorial(5));
 //  }
 //  my(aj)
 
-//=============================== duplicates========
+//===============================print all duplicates========
 
 
-// arr=[3,45,67,8,3,45]
-str="djgshdcshvadghcsv"
+arr=[3,45,67,8,3,45]
+//str="djgshdcshvadghcsv"
 a={}
 res=[]
 
 function dup(x){
 
-  for(i=0;i<str.length;i++){
-    //let v=arr[i]
-   // console.log(a.v,i,v)
-    if(a[str[i]]==undefined){
-      a[str[i]] = str[i];
+  
+  for(i=0;i<x.length;i++){
+    let v = x[i];
+    console.log(a.v, i, v);
+    if (a[x[i]] == undefined) {
+      a[x[i]] = i;
+    } else {
+      res.push(arr[i]);
     }
-    else{
-   res.push(str[i])
-    }
+    //for(i=0;i<str.length;i++){
+    //   if(a[str[i]]==undefined){
+    //     a[str[i]] = str[i];
+    //   }
+    //   else{
+    //  res.push(str[i])
+    //   }
   }
   return res
 }
 
-const result=dup(str.split(""))
+//const result=dup(str.split(""))
+const result=dup(arr)
 console.log(result)
 console.log(a)
 
@@ -204,5 +191,28 @@ console.log(a)
 // arr.sort((a,b)=>{return a-b})
 // console.log(arr)
 
-//===============================
+//===============================array flattening=======================
+array=[[1,3,4,6],[3,4],[78,96,[45,67,89]],34,67]
+// let flattened = arr.reduce((acc, curVal) => {
+// return acc.concat(curVal)
+// }, []);
 
+const flatten = (nested) => {
+  const flat = [];
+  const handleFlat = (array) => {
+    let counter = 0;
+    while (counter < array.length) {
+      const val = array[counter];
+      if (Array.isArray(val)) {
+        handleFlat(val);
+      } else {
+        flat.push(val);
+      }
+      counter++;
+    }
+  };
+  handleFlat(nested);
+  return flat;
+};
+
+console.log(flatten(array),"flat")

@@ -14,6 +14,35 @@
 // arr.pop(1)
 // console.log(arr)
 
+
+// ==============================binary search====================
+
+// let binary=function(arr,x){
+//     let start=0,end=arr.length-1;
+
+// while(start<=end){
+//     let mid=Math.floor((start+end)/2)
+//     if(mid==x) return true
+
+//     else if(arr[mid]<x){
+//         start=mid+1
+//     }
+//     else{
+//         end=mid-1;
+//     }
+   
+
+// }
+// return false
+// }
+
+// arr=[1,2,3,4,5]
+// let res=binary(arr,2)
+// console.log(res)
+
+
+//===============================
+
 //===================bubble sort============
 
 ar = [5, 6, 3, 4, 3, 5, 6, 1];
