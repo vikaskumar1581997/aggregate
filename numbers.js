@@ -151,7 +151,7 @@ function dup(x){
   
   for(i=0;i<x.length;i++){
     let v = x[i];
-    console.log(a.v, i, v);
+    console.log(a[v], i, v);
     if (a[x[i]] == undefined) {
       a[x[i]] = i;
     } else {

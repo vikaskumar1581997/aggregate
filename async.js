@@ -1,29 +1,29 @@
 const async = require("async");
 
-// var stack = [];
-// var f1 = function (allback) {
-//   //do loguic
-//   //console.log("dfjsj")
-//   allback("jgjkj","jfhtd");
-// };
-// var f2 = function (allback) {
-//   //do loguic
-// //   console.log("dfjwesj");
-//   allback("dhwh", "sec Function result");
-// };
-// var f3 = function (allback) {
-//   //do loguic
-//   //console.log("dfjdssj");
-//  allback(null, "third Function result");
-// };
-// stack.push(f1)
-// stack.push(f2);
-// stack.push(f3);
+var stack = [];
+var f1 = function (allback) {
+  //do loguic
+  //console.log("dfjsj")
+  allback(null,"jfhtd");
+};
+var f2 = function (allback) {
+  //do loguic
+//   console.log("dfjwesj");
+  allback(null, "sec Function result");
+};
+var f3 = function (allback) {
+  //do loguic
+  //console.log("dfjdssj");
+ allback(null, "third Function result");
+};
+stack.push(f1)
+stack.push(f2);
+stack.push(f3);
 
-// async.parallel(stack,function (err,result) {
-//     console.log(result);
+async.parallel(stack,function (err,result) {
+    console.log(result,"btfft");
 
-// })
+})
 
 // async.parallel({
 //     one: function(callback) {
@@ -87,8 +87,8 @@ const async = require("async");
 // );
 
 
- let current_time_date = new Date(Date.now());
- let day_middle_time = (current_time_date.setHours(0, 0, 0, 0));
+//  let current_time_date = new Date(Date.now());
+//  let day_middle_time = (current_time_date.setHours(0, 0, 0, 0));
 
- console.log(day_middle_time)
- console.log(current_time_date);
+//  console.log(day_middle_time)
+//  console.log(current_time_date);

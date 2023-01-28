@@ -14,3 +14,10 @@ for (let i = 1; i <= n; i++) {
   string += "\n";
 }
 console.log(string);
+
+
+for (var i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
+}

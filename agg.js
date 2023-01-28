@@ -21,10 +21,12 @@ app.use(function (req, res, next) {
 // .then(()=>console.log("mongo connected"))
 // .catch((err)=>console/log(err))
 
-mongoose.connect("mongodb://localhost:27017/vik",
-{useNewUrlParser:true})
-.then(()=>{console.log("mongo connected")})
-.catch((err)=>console.log(err))
+mongoose
+  .connect("mongodb://localhost:27017/vik", { useNewUrlParser: true })
+  .then(() => {
+    console.log("mongo connected");
+  })
+  .catch((err) => console.log(err));
 
 
 // const userSchema=new mongoose.Schema({
